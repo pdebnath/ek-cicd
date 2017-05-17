@@ -1,0 +1,25 @@
+{
+  "name": "easyknock",
+  "authors": [
+    "rvelugu@ctepl.com <rvelugu@ctepl.com>"
+  ],
+  "description": "Properties",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "^1.6.4",
+    "angular": "^1.6.4",
+    "bootstrap": "^3.3.7",
+    "jquery-dist": "^2.1.3",
+    "angular-ui-router": "^1.0.0"
+  }
+}
