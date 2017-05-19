@@ -18,11 +18,12 @@ eknock.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $
 		url:'/dashboard/:userid',
 		templateUrl:'pages/dashboard/dashboard.html',
 		controller:'dashboardController'
-	}).state('newticket',{
-		url:'/newticket',
-		templateUrl:'pages/dashboard/new-ticket.html',
+	}).state('homeowner',{
+		url:'/homeowner',
+		templateUrl:'pages/dashboard/homeowner/home-owner.html',
+		controller:'HomeOwnerController'
 	})
 
-	$urlRouterProvider.otherwise('/login');
+	$urlRouterProvider.otherwise('/homeowner');
 }])
 

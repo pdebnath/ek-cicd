@@ -1,0 +1,236 @@
+<div class="container-fluid shadowBox">
+                <div class="col-md-8">
+                    <div class="margin-top-30 margin-bottom-30">
+                        <span>Viewing deals for property</span>&nbsp;
+                        <span class="inlineBlock">
+                            <select class="select-class black" ng-model="claimedProperty" ng-init="claimedProperty=claimedProperties[0]"  ng-options = "cProperty.propertyAddress for cProperty in claimedProperties">
+                            </select>
+                        </span>&nbsp;
+                        <a href="" class="links uppercase normal"><i class="icon-data-edit size-14"></i> Update property details</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="margin-top-30 margin-bottom-30 text-right">
+                        <a href="" class="links uppercase normal line-height-30">View all claimed properties</a>
+                    </div>
+                </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="checkbox black">
+                      <label class="col-md-4 col-xs-12 padding-top-bottom-5">
+                          <input type="checkbox"> with in
+                          <select class="select-class black">
+                              <option selected>10%</option>
+                              <option>20%</option>
+                              <option>30%</option>
+                          </select> of my move price
+                      </label>
+                      <label class="col-md-3 col-xs-12 padding-top-bottom-5">
+                          <input type="checkbox"> No contacted via bulk-request
+                      </label>
+                      <label class="col-md-3 col-xs-12 padding-top-bottom-5">
+                          <input type="checkbox"> Has at least 
+                          <select class="select-class black">
+                              <option selected>2%</option>
+                              <option>4%</option>
+                              <option>6%</option>
+                          </select> Varifications
+                      </label>
+                      <label class="col-md-2 col-xs-12 padding-top-bottom-5">
+                          <span class="darkGrey">Sort By:</span> <select class="select-class black">
+                              <option selected>Newest</option>
+                              <option>old</option>
+                          </select>
+                      </label>
+                    </div>
+               </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 margin-top-30 darkGrey alignSelect size-16">
+                    <select  class="select no-background inlineBlock ">
+                      <option selected>Ongoing Deals (0)</option>
+                      <option>Ongoing Deals (1)</option>
+                      <option>Ongoing Deals (2)</option>
+                    </select>
+                </div>
+                <div class="col-md-12 margin-top-30">
+                    <div style="display:none">
+                        <p class="text-center">You have no ongoing deals at this movement</p>
+                        <div class="text-center"><a class="btn btn-lg btn-raised btn-success btn-radius uppercase">Search for homes<div class="ripple-container"></div></a></div>
+                    </div>
+<!-- Cards -->                    
+                    <div class="jumboCard white" data-toggle="modal" data-target="#myModal" ng-repeat="cPropertydeals in  claimedPropertyDeals">
+                        <div class="row">
+                            <div  class="col-md-3 border-right">
+                                <div class="relative min-height-198">
+                                <!--<img src="images/6154074882_52ec40c20b_o.jpg" class="full-width"/>-->
+                                    <div class="price-info">{{cPropertydeals.interestPrice | currency}}<span>(est)</span> <i class="icon-message-information2 size-14"></i></div>
+                                    <div class="user-block-info">
+                                        <div class="user-img margin-left-right-15"><img src="images/6154074882_52ec40c20b_o.jpg"/></div>
+                                        <div class="user-right-info">
+                                            <div class="uppercase darkBlueColor bold">{{cPropertydeals.buyerName}}</div>
+                                            <div ng-if="!cPropertydeals.userRating" class="user-rating italic lightGrey size-13">Not at rated</div> 
+                                            <div ng-if="cPropertydeals.userRating" class="user-rating italic lightGrey size-13">
+                                                <div class="rating star-icon value-{{cPropertydeals.userRating}}">
+                                                    <div class="star-container">
+                                                        <div class="star">
+                                                            <i class="star-empty"></i>
+                                                            <i class="star-half"></i>
+                                                            <i class="star-filled"></i>
+                                                        </div>
+                                                        <div class="star">
+                                                            <i class="star-empty"></i>
+                                                            <i class="star-half"></i>
+                                                            <i class="star-filled"></i>
+                                                        </div>
+                                                        <div class="star">
+                                                            <i class="star-empty"></i>
+                                                            <i class="star-half"></i>
+                                                            <i class="star-filled"></i>
+                                                        </div>
+                                                        <div class="star">
+                                                            <i class="star-empty"></i>
+                                                            <i class="star-half"></i>
+                                                            <i class="star-filled"></i>
+                                                        </div>
+                                                        <div class="star">
+                                                            <i class="star-empty"></i>
+                                                            <i class="star-half"></i>
+                                                            <i class="star-filled"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>       
+                                            </div>
+                                            <div  ng-if="cPropertydeals.idVerification" class="user-verified grey"><i class="icon-check black"></i> Verified identity</div>
+                                            <div  ng-if="cPropertydeals.financeVerification" class="user-verified grey"><i class="icon-check black"></i> Verified financials</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="row full-width margin-top-15">
+                                    <div class="col-md-7 darkBlueColor bold">Step {{cPropertydeals.dealStatus}} of 10: Schedule house showing</div>
+                                    <div class="col-md-5">
+                                        <div class="pink uppercase normal text-right">. 3 New Messages</div>
+                                        <div class="italic normal text-right darkGrey">Last Activity 3 days ago</div>
+                                    </div>
+                                </div>
+                                <div class="row full-width">
+                                    <div class="col-md-12 margin-top-30">
+                                        <div class="bs-component progress-curve">
+                                          <div class="progress">
+                                              <div class="progress-bar" style="width:60;"></div><span class="progress-bar-percent">{{cPropertydeals.dealProgress}}%</span>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+<!-- Cards -->  
+                    <div class="jumboCard white">
+                        <div class="row">
+                            <div  class="col-md-3 border-right">
+                                <div class="relative min-height-198">
+                                <!--<img src="images/6154074882_52ec40c20b_o.jpg" class="full-width"/>-->
+                                    <div class="price-info disable">$1,200,000<span>(est)</span> <i class="icon-message-information2 size-14"></i></div>
+                                    <div class="user-block-info">
+                                        <div class="user-img margin-left-right-15"><div class="imgarea"><i class="icon-user-profile size-25 grey"></i></div></div>
+                                        <div class="user-right-info">
+                                            <div class="uppercase darkBlueColor bold">casey shishkbob</div>
+                                            <div class="user-rating italic lightGrey size-13">Not at rated <i class="icon-mark-as-favorite-star italic"></i>&nbsp;
+                                                <i class="icon-mark-as-favorite-star italic"></i>&nbsp;
+                                                <i class="icon-mark-as-favorite-star italic"></i>&nbsp;
+                                                <i class="icon-mark-as-favorite-star italic"></i>&nbsp;
+                                                <i class="icon-mark-as-favorite-star italic"></i></div>
+                                            <div class="user-verified grey"><i class="icon-check black"></i> Verified identity</div>
+                                            <div class="user-verified grey"><i class="icon-check black"></i> Verified financials</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="row full-width margin-top-15">
+                                    <div class="col-xs-12">
+                                        <div class="grey">Here comes text</div>
+                                        
+                                        <div class="checkbox margin-top-15 black">
+                                            <label class="size-14">
+                                                <input type="checkbox"> Include personal concierge service (uncheck to save 0.5% off of fees) <i class="icon-message-information2 blue"></i>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <a type="button" class="btn btn-lg btn-raised btn-success btn-radius uppercase">Accept request</a>
+                                            <a href="#" class="darkGrey uppercase">Decline</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-owner-info">Contacted via bulk-request <i class="icon-message-information2 size-14"></i></div>
+                    </div>
+<!---->
+                </div>
+                <div style="min-height:200px"></div>
+                <div class="line"></div>
+                <div class="col-md-12 margin-top-30 darkGrey alignSelect size-16">
+                    <select  class="select no-background inlineBlock ">
+                      <option selected>Completed Deals (0)</option>
+                      <option>Completed Deals (1)</option>
+                      <option>Completed Deals (2)</option>
+                    </select>
+                </div>
+                <div class="col-md-12 margin-top-30">
+                    <p class="text-center">You have no Completed deals</p>
+                    <!--
+                    <div class="jumboCard white" data-toggle="modal" data-target="#myModal">
+                        <div class="row">
+                            <div  class="col-md-3 border-right">
+                                <div class="relative min-height-198">
+                                    <div class="price-info">$1,200,000<span>(est)</span> <i class="icon-message-information2 size-14"></i></div>
+                                    <div class="user-block-info">
+                                        <div class="user-img margin-left-right-15"><img src="images/6154074882_52ec40c20b_o.jpg"/></div>
+                                        <div class="user-right-info">
+                                            <div class="uppercase darkBlueColor bold">casey shishkbob</div>
+                                            <div class="user-rating italic lightGrey size-13">Not at rated <i class="icon-mark-as-favorite-star italic"></i>&nbsp;
+                                                <i class="icon-mark-as-favorite-star italic"></i>&nbsp;
+                                                <i class="icon-mark-as-favorite-star italic"></i>&nbsp;
+                                                <i class="icon-mark-as-favorite-star italic"></i>&nbsp;
+                                                <i class="icon-mark-as-favorite-star italic"></i></div>
+                                            <div class="user-verified grey"><i class="icon-check black"></i> Verified identity</div>
+                                            <div class="user-verified grey"><i class="icon-check black"></i> Verified financials</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                
+                                <div class="row full-width margin-top-15">
+                                    <div class="col-md-7 darkBlueColor bold">Step 2 of 11: Schedule house showing</div>
+                                    <div class="col-md-5">
+                                        <div class="pink uppercase normal text-right">. 3 New Messages</div>
+                                        <div class="italic normal text-right darkGrey">Last Activity 3 days ago</div>
+                                    </div>
+                                </div>
+                                <div class="row full-width">
+                                    <div class="col-md-12 margin-top-30">
+                                        <div class="bs-component progress-curve">
+                                          <div class="progress">
+                                            <div class="progress-bar" style="width: 60%;"></div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-owner-info">Homeowner will move for right price</div>
+                    </div>
+                    -->
+                </div>
+
+            </div>
+        </div>

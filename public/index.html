@@ -1,20 +1,43 @@
 <html lang="en" >
 <head>
-<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Easy Knock</title>
+  <!-- Material Design fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css" >
+    <link rel="stylesheet" href="bower_components/bootstrap-material-design/dist/css/ripples.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/jquery-dropdown/jquery.dropdown.min.css">
+    <link rel="stylesheet" href="bower_components/css-star-rating/dist/css/star-rating.css">
+    <link rel="stylesheet" href="bower_components/css-star-rating/dist/css/star-rating.css">
+    <link href="stylesheets/fontIcons.css" rel="stylesheet">
+    <link href="stylesheets/main.css" rel="stylesheet">
 </head>
-<body ng-app="eknock">
-	<div ui-view></div>
+<body ng-app="eknock" class="eKnock">
+  <!-- Header Content-->
+  <div ng-include="'pages/common/header.html'"></div>
+  <!--Main Content Satrt-->
+	<section>
+    <div ui-view></div>
+	</section>
+  <!--Main Content End-->
+   <!-- Footer Content-->
+   <div ng-include="'pages/common/footer.html'"></div>
+
 </body>
   <script src="bower_components/jquery-dist/jquery.min.js"></script>
   <script src="bower_components/angular/angular.min.js"></script>
-  <!--<script src="bower_components/angular-route/angular-route.min.js"></script>-->
   <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="bower_components/jquery-dropdown/jquery.dropdown.min.js"></script>
+  <script src="bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
+  <script src="bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
   <script src="main.js"></script>
-  <!--<script src="services/dataStoreService.js"></script>
-  <script src="factories/dashboardFactory.js"></script>
-  <script src="controller/dashboardController.js"></script>-->
   <script src="pages/user/userFactory.js"></script>
   <script src="pages/user/userController.js"></script>
+  <script src="pages/dashboard/homeowner/homeOwnerController.js"></script>
+  <script src="pages/dashboard/homeowner/homeOwnerFactory.js"></script>
 </html>
