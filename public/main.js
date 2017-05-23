@@ -23,7 +23,11 @@ eknock.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $
 		templateUrl:'pages/dashboard/homeowner/home-owner.html',
 		controller:'HomeOwnerController'
 	})
-
+	.state('search',{
+		url:'/search',
+		templateUrl:'pages/search/search.html',
+		controller:'SearchController'
+	})
 	$urlRouterProvider.otherwise('/homeowner');
 }])
 

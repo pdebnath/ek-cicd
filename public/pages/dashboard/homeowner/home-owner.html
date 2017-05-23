@@ -61,7 +61,7 @@
                         <div class="text-center"><a class="btn btn-lg btn-raised btn-success btn-radius uppercase">Search for homes<div class="ripple-container"></div></a></div>
                     </div>
 <!-- Cards -->                    
-                    <div class="jumboCard white" data-toggle="modal" data-target="#myModal" ng-repeat="cPropertydeals in  claimedPropertyDeals">
+                    <div class="jumboCard white" data-toggle="modal" data-target="#myModal" ng-repeat="cPropertydeals in  cPropertyonGoing">
                         <div class="row">
                             <div  class="col-md-3 border-right">
                                 <div class="relative min-height-198">
@@ -120,34 +120,75 @@
                                 <div class="row full-width">
                                     <div class="col-md-12 margin-top-30">
                                         <div class="bs-component progress-curve">
-                                          <div class="progress">
-                                              <div class="progress-bar" style="width:60;"></div><span class="progress-bar-percent">{{cPropertydeals.dealProgress}}%</span>
+                                           <div class="progress">
+                                              <div class="progress-bar" ng-style="{ 'width': cPropertydeals.dealProgress + '%' }";"></div><span class="progress-bar-percent">{{cPropertydeals.dealProgress}}%</span>
                                           </div>
                                         </div>
-                                    </div>
+                                    </div>  
                                 </div>
                             </div>
                         </div>
-                        
+                       <div ng-if="cPropertydeals.contactedViaBulk" class="card-owner-info">Contacted via bulk-request <i class="icon-message-information2 size-14"></i></div> 
                     </div>
-<!-- Cards -->  
-                    <div class="jumboCard white">
+                    </div>
+                    <!-- Cards --> 
+
+                 <div class="col-md-12 margin-top-30 darkGrey alignSelect size-16">
+                    <select  class="select no-background inlineBlock ">
+                      <option selected>Pending Deals (0)</option>
+                      <option>Pending Deals (1)</option>
+                      <option>Pending Deals (2)</option>
+                    </select>
+                </div>
+                <div class="col-md-12 margin-top-30">
+                    <div style="display:none">
+                        <p class="text-center">You have no Pending deals at this movement</p>
+                        <div class="text-center"><a class="btn btn-lg btn-raised btn-success btn-radius uppercase">Search for homes<div class="ripple-container"></div></a></div>
+                    </div>
+                    <div class="jumboCard white" ng-repeat="cPropertydeals in  cPropertyOpen">
                         <div class="row">
                             <div  class="col-md-3 border-right">
                                 <div class="relative min-height-198">
                                 <!--<img src="images/6154074882_52ec40c20b_o.jpg" class="full-width"/>-->
-                                    <div class="price-info disable">$1,200,000<span>(est)</span> <i class="icon-message-information2 size-14"></i></div>
+                                    <div class="price-info disable">{{cPropertydeals.interestPrice | currency}}<span>(est)</span> <i class="icon-message-information2 size-14"></i></div>
                                     <div class="user-block-info">
                                         <div class="user-img margin-left-right-15"><div class="imgarea"><i class="icon-user-profile size-25 grey"></i></div></div>
                                         <div class="user-right-info">
-                                            <div class="uppercase darkBlueColor bold">casey shishkbob</div>
-                                            <div class="user-rating italic lightGrey size-13">Not at rated <i class="icon-mark-as-favorite-star italic"></i>&nbsp;
-                                                <i class="icon-mark-as-favorite-star italic"></i>&nbsp;
-                                                <i class="icon-mark-as-favorite-star italic"></i>&nbsp;
-                                                <i class="icon-mark-as-favorite-star italic"></i>&nbsp;
-                                                <i class="icon-mark-as-favorite-star italic"></i></div>
-                                            <div class="user-verified grey"><i class="icon-check black"></i> Verified identity</div>
-                                            <div class="user-verified grey"><i class="icon-check black"></i> Verified financials</div>
+                                            <div class="uppercase darkBlueColor bold">{{cPropertydeals.buyerName}}</div>
+                                            <div ng-if="!cPropertydeals.userRating" class="user-rating italic lightGrey size-13">Not at rated</div> 
+                                            <div ng-if="cPropertydeals.userRating" class="user-rating italic lightGrey size-13">
+                                                <div class="rating star-icon value-{{cPropertydeals.userRating}}">
+                                                    <div class="star-container">
+                                                        <div class="star">
+                                                            <i class="star-empty"></i>
+                                                            <i class="star-half"></i>
+                                                            <i class="star-filled"></i>
+                                                        </div>
+                                                        <div class="star">
+                                                            <i class="star-empty"></i>
+                                                            <i class="star-half"></i>
+                                                            <i class="star-filled"></i>
+                                                        </div>
+                                                        <div class="star">
+                                                            <i class="star-empty"></i>
+                                                            <i class="star-half"></i>
+                                                            <i class="star-filled"></i>
+                                                        </div>
+                                                        <div class="star">
+                                                            <i class="star-empty"></i>
+                                                            <i class="star-half"></i>
+                                                            <i class="star-filled"></i>
+                                                        </div>
+                                                        <div class="star">
+                                                            <i class="star-empty"></i>
+                                                            <i class="star-half"></i>
+                                                            <i class="star-filled"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>       
+                                            </div>
+                                            <div  ng-if="cPropertydeals.idVerification" class="user-verified grey"><i class="icon-check black"></i> Verified identity</div>
+                                            <div  ng-if="cPropertydeals.financeVerification" class="user-verified grey"><i class="icon-check black"></i> Verified financials</div>
                                         </div>
                                     </div>
                                 </div>
@@ -171,10 +212,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-owner-info">Contacted via bulk-request <i class="icon-message-information2 size-14"></i></div>
+                        <div ng-if="cPropertydeals.contactedViaBulk" class="card-owner-info">Contacted via bulk-request <i class="icon-message-information2 size-14"></i></div>
                     </div>
-<!---->
                 </div>
+<!---->
+                
                 <div style="min-height:200px"></div>
                 <div class="line"></div>
                 <div class="col-md-12 margin-top-30 darkGrey alignSelect size-16">
@@ -186,31 +228,57 @@
                 </div>
                 <div class="col-md-12 margin-top-30">
                     <p class="text-center">You have no Completed deals</p>
-                    <!--
-                    <div class="jumboCard white" data-toggle="modal" data-target="#myModal">
+                    <div class="jumboCard white" data-toggle="modal" data-target="#myModal" ng-repeat="cPropertydeals in  cPropertyclosed">
                         <div class="row">
                             <div  class="col-md-3 border-right">
                                 <div class="relative min-height-198">
-                                    <div class="price-info">$1,200,000<span>(est)</span> <i class="icon-message-information2 size-14"></i></div>
+                                <!--<img src="images/6154074882_52ec40c20b_o.jpg" class="full-width"/>-->
+                                    <div class="price-info">{{cPropertydeals.interestPrice | currency}}<span>(est)</span> <i class="icon-message-information2 size-14"></i></div>
                                     <div class="user-block-info">
                                         <div class="user-img margin-left-right-15"><img src="images/6154074882_52ec40c20b_o.jpg"/></div>
                                         <div class="user-right-info">
-                                            <div class="uppercase darkBlueColor bold">casey shishkbob</div>
-                                            <div class="user-rating italic lightGrey size-13">Not at rated <i class="icon-mark-as-favorite-star italic"></i>&nbsp;
-                                                <i class="icon-mark-as-favorite-star italic"></i>&nbsp;
-                                                <i class="icon-mark-as-favorite-star italic"></i>&nbsp;
-                                                <i class="icon-mark-as-favorite-star italic"></i>&nbsp;
-                                                <i class="icon-mark-as-favorite-star italic"></i></div>
-                                            <div class="user-verified grey"><i class="icon-check black"></i> Verified identity</div>
-                                            <div class="user-verified grey"><i class="icon-check black"></i> Verified financials</div>
+                                            <div class="uppercase darkBlueColor bold">{{cPropertydeals.buyerName}}</div>
+                                            <div ng-if="!cPropertydeals.userRating" class="user-rating italic lightGrey size-13">Not at rated</div> 
+                                            <div ng-if="cPropertydeals.userRating" class="user-rating italic lightGrey size-13">
+                                                <div class="rating star-icon value-{{cPropertydeals.userRating}}">
+                                                    <div class="star-container">
+                                                        <div class="star">
+                                                            <i class="star-empty"></i>
+                                                            <i class="star-half"></i>
+                                                            <i class="star-filled"></i>
+                                                        </div>
+                                                        <div class="star">
+                                                            <i class="star-empty"></i>
+                                                            <i class="star-half"></i>
+                                                            <i class="star-filled"></i>
+                                                        </div>
+                                                        <div class="star">
+                                                            <i class="star-empty"></i>
+                                                            <i class="star-half"></i>
+                                                            <i class="star-filled"></i>
+                                                        </div>
+                                                        <div class="star">
+                                                            <i class="star-empty"></i>
+                                                            <i class="star-half"></i>
+                                                            <i class="star-filled"></i>
+                                                        </div>
+                                                        <div class="star">
+                                                            <i class="star-empty"></i>
+                                                            <i class="star-half"></i>
+                                                            <i class="star-filled"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>       
+                                            </div>
+                                            <div  ng-if="cPropertydeals.idVerification" class="user-verified grey"><i class="icon-check black"></i> Verified identity</div>
+                                            <div  ng-if="cPropertydeals.financeVerification" class="user-verified grey"><i class="icon-check black"></i> Verified financials</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-9">
-                                
                                 <div class="row full-width margin-top-15">
-                                    <div class="col-md-7 darkBlueColor bold">Step 2 of 11: Schedule house showing</div>
+                                    <div class="col-md-7 darkBlueColor bold">Step {{cPropertydeals.dealStatus}} of 10: Schedule house showing</div>
                                     <div class="col-md-5">
                                         <div class="pink uppercase normal text-right">. 3 New Messages</div>
                                         <div class="italic normal text-right darkGrey">Last Activity 3 days ago</div>
@@ -219,17 +287,16 @@
                                 <div class="row full-width">
                                     <div class="col-md-12 margin-top-30">
                                         <div class="bs-component progress-curve">
-                                          <div class="progress">
-                                            <div class="progress-bar" style="width: 60%;"></div>
+                                           <div class="progress">
+                                              <div class="progress-bar" style="width:{{cPropertydeals.dealProgress}}%;"></div><span class="progress-bar-percent">{{cPropertydeals.dealProgress}}%</span>
                                           </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-owner-info">Homeowner will move for right price</div>
+                       <div ng-if="cPropertydeals.contactedViaBulk" class="card-owner-info">Contacted via bulk-request <i class="icon-message-information2 size-14"></i></div> 
                     </div>
-                    -->
                 </div>
 
             </div>
