@@ -140,6 +140,9 @@ body.eKnock{
     padding-left: 10px;
     padding-right:10px;
 }
+.eKnock .padding-15{
+    padding:15px;
+}
 .eKnock .margin-left-right-10{
     margin-left: 10px;
     margin-right:10px;
@@ -166,6 +169,9 @@ body.eKnock{
 .eKnock .margin-left-20{
     margin-left: 20px;
 }
+.eKnock .margin-left-30{
+    margin-left: 30px;
+}
 .eKnock .margin-right-30{
     margin-right: 30px;
 }
@@ -184,14 +190,26 @@ body.eKnock{
 .eKnock .margin-top-60{
     margin-top: 60px;
 }
+.eKnock .letterSpacing-1{
+    letter-spacing: 1px;
+}
 .eKnock .letterSpacing-2{
     letter-spacing: 2px;
+}
+.eKnock .weight500{
+    font-weight: 500 !important;
 }
 .eKnock .line-height-30{
     line-height: 30px;
 }
 .eKnock .min-height-198{
     min-height:198px;
+}
+.eKnock .margin-0{
+    margin-top:0;
+    margin-bottom:0;
+    margin-left:0;
+    margin-right:0;
 }
 .eKnock .input-group.inputSearch{
     border-radius: 40px;
@@ -269,6 +287,15 @@ body.eKnock{
   border-radius: 2px;
   border: 0;
 }
+.eKnock .searchCard {
+  background-color: #fff;
+  color:#FFFFFF;
+  margin-bottom: 20px;
+  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 2px;
+  border: 0;
+}
 .eKnock .full-width{
   width:100%;
 }
@@ -297,6 +324,12 @@ body.eKnock{
     background: -o-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1)); 
     background: -moz-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1)); 
     background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1));
+}
+.eKnock .searchCard .address-info{
+    padding:10px 15px;
+}
+.eKnock .searchCard .price-info{
+    font-size: 14px;
 }
 .eKnock .card-owner-info{
     position: absolute;
@@ -377,6 +410,23 @@ body.eKnock{
     text-align: center;
     right: 0;
 }
+.eKnock .sub-tabs ul > li {
+    padding: 20px 0px 10px 0px;
+    margin: 0 20px;
+    color: #909090;
+}
+.eKnock .sub-tabs ul > li {
+    color: #909090;
+    text-decoration: none;
+    cursor:pointer
+}
+.eKnock .sub-tabs ul > li.active,
+.eKnock .sub-tabs ul > li:hover{
+    border-bottom: 5px solid #009688;
+    color: #009688;
+}
+
+
 @media (min-width: 1300px){
     .modal .modal-dialog.modal-lg {
         width: 1240px;

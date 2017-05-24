@@ -28,7 +28,11 @@ eknock.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $
                 }
             }
 	})
-
+	.state('search',{
+		url:'/search',
+		templateUrl:'pages/search/search.html',
+		controller:'SearchController'
+	})
 	$urlRouterProvider.otherwise('/homeowner');
 }])
 .config(function ($ocLazyLoadProvider) {
