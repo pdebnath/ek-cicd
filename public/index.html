@@ -12,11 +12,10 @@
     <link rel="stylesheet" href="bower_components/bootstrap-material-design/dist/css/ripples.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/jquery-dropdown/jquery.dropdown.min.css">
     <link rel="stylesheet" href="bower_components/css-star-rating/dist/css/star-rating.css">
-    <link rel="stylesheet" href="bower_components/css-star-rating/dist/css/star-rating.css">
     <link href="stylesheets/fontIcons.css" rel="stylesheet">
     <link href="stylesheets/main.css" rel="stylesheet">
 </head>
-<body ng-app="eknock" class="eKnock">
+<body ng-app="eknock" class="eKnock" ng-controller="ParentController">
   <!-- Header Content-->
   <div ng-include="'pages/common/header.html'"></div>
   <!--Main Content Satrt-->
@@ -26,7 +25,6 @@
   <!--Main Content End-->
    <!-- Footer Content-->
    <div ng-include="'pages/common/footer.html'"></div>
-
 </body>
   <script src="bower_components/jquery-dist/jquery.min.js"></script>
   <script src="bower_components/angular/angular.min.js"></script>
@@ -36,6 +34,7 @@
   <script src="bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
   <script src="bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
   <script src="main.js"></script>
+  <script src="pages/common/parentController.js"></script>
   <script src="pages/user/userFactory.js"></script>
   <script src="pages/user/userController.js"></script>
   <script src="pages/dashboard/homeowner/homeOwnerController.js"></script>

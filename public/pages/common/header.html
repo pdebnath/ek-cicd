@@ -8,10 +8,10 @@
                     <span class="header-right-cont">
                         <span class="input-group inputSearch col-md-12 whiteBg">
                             <span class="relative block">
-                                <input type="text" class="search-query form-control" placeholder="Enter an address, city,  zip code or neighborhood" /><span class="icon-gps bold gps-align darkGrey"></span>
+                                <input type="text" class="search-query form-control" ng-model="$parent.searchText" placeholder="Enter an address, city,  zip code or neighborhood" /><span class="icon-gps bold gps-align darkGrey"></span>
                             </span>
                             <span class="input-group-btn padding-0">
-                                <button class="btn pinkBg white" type="button">
+                                <button class="btn pinkBg white" type="button" ng-click="searchPropertyBroadCast()">
                                     <span class="icon-search-find bold white"></span> 
                                     <span class="white letterSpacing-2">&nbsp;Search</span>
                                 </button>

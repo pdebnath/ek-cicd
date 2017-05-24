@@ -28,7 +28,7 @@ var logger = require('./../../config/logger');
               return res.json({status:0,resp:'Exception while fetching claimed property deals :'+err}) 
             }
             var resp1='[{"buyerName":"EasyKnock Buyer","dealStatus":1,"dealProgress":10,"interestPrice":123000,"userRating":2,"contactedViaBulk":1,"idVerification":1,"financeVerification":1,"dealPr":1},{"buyerName":"EasyKnock Buyer1","dealStatus":8,"dealProgress":80,"interestPrice":12300,"userRating":3,"contactedViaBulk":1,"idVerification":1,"financeVerification":1,"dealPr":2},{"buyerName":"EasyKnock Buyer2","dealStatus":5,"dealProgress":50,"interestPrice":1200,"userRating":1,"contactedViaBulk":1,"idVerification":1,"financeVerification":1,"dealPr":3}]';
-            return  res.json({status:1,resp:JSON.parse(resp1)});
+            return  res.json({status:1,resp:rows[0]});
           });
         })
   });

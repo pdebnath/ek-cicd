@@ -2,20 +2,28 @@ var eknock=eknock||angular.module('eknock');
 eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','HomeOwnerFactory',function($rootScope,$scope,$state,HomeOwnerFactory){
    
     $scope.init=function(){
+        
         $scope.claimedProperties=[];
         $scope.model={userId:2}
         HomeOwnerFactory.getClaimedPropertyList($scope.model).then(function(resp){
             if(resp.data.status===1){
                 $scope.claimedProperties=resp.data.resp;
+                if($scope.claimedProperties.length>0){
+                    $scope.claimedProperty=$scope.claimedProperties[0];
+                    $scope.getClaimedPropertyDeals();
+                }
             }
         })
     }
-    $scope.test=5;
+
     $scope.getClaimedPropertyDeals=function(){
+
          $scope.cPropertyOpen=[];
          $scope.cPropertyonGoing=[];
          $scope.cPropertyclosed=[];
-        $scope.model={propertyId:2}
+        $scope.model={
+            propertyId:$scope.claimedProperty.propertyId
+        }
         HomeOwnerFactory.getClaimedPropertyDeals($scope.model).then(function(resp){
             if(resp.data.status===1){
                 $scope.claimedPropertyDeals=resp.data.resp;
@@ -29,11 +37,11 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','HomeOwn
                 else  if($scope.data1[i].dealPr===3) 
                     $scope.cPropertyclosed.push($scope.data1[i]);
             }
-                            console.log($scope.cPropertyOpen);
-                            console.log($scope.cPropertyonGoing);
-                            console.log($scope.cPropertyclosed);
+                /*console.log($scope.cPropertyOpen);
+                console.log($scope.cPropertyonGoing);
+                console.log($scope.cPropertyclosed);*/
         })
     }
 $scope.init();
-$scope.getClaimedPropertyDeals();
+
 }]);

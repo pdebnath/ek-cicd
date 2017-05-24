@@ -3,7 +3,7 @@
                     <div class="margin-top-30 margin-bottom-30">
                         <span>Viewing deals for property</span>&nbsp;
                         <span class="inlineBlock">
-                            <select class="select-class black" ng-model="claimedProperty" ng-init="claimedProperty=claimedProperties[0]"  ng-options = "cProperty.propertyAddress for cProperty in claimedProperties">
+                            <select class="select-class black" ng-model="claimedProperty" ng-init="claimedProperty=claimedProperties[0]"  ng-options = "cProperty.propertyAddress for cProperty in claimedProperties" ng-change="getClaimedPropertyDeals()">
                             </select>
                         </span>&nbsp;
                         <a href="" class="links uppercase normal"><i class="icon-data-edit size-14"></i> Update property details</a>
