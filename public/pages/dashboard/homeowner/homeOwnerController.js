@@ -1,5 +1,5 @@
 var eknock=eknock||angular.module('eknock');
-eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','HomeOwnerFactory',function($rootScope,$scope,$state,HomeOwnerFactory){
+eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','HomeOwnerFactory','$uibModal','commonDataHolder',function($rootScope,$scope,$state,HomeOwnerFactory,$uibModal,commonDataHolder){
    
     $scope.init=function(){
         
@@ -43,5 +43,20 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','HomeOwn
         })
     }
 $scope.init();
+<<<<<<< HEAD
+=======
+$scope.getClaimedPropertyDeals();
+      $scope.clickedCard=false;
+    $scope.redirectToModal = function(obj){
+       commonDataHolder.holdData = obj;
+        var size;
+     var modalInstance = $uibModal.open({
+          animation: $scope.animationsEnabled,
+          templateUrl: 'pages/dashboard/modal/commonModal.html',
+          controller: 'commonChecklistController',
+          size: size
+        });
+    }
+>>>>>>> 0f11aacd2e111c5f210fa0429e640004177a1de6
 
 }]);

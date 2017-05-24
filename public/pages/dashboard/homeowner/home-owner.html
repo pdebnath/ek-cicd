@@ -61,8 +61,9 @@
                         <div class="text-center"><a class="btn btn-lg btn-raised btn-success btn-radius uppercase">Search for homes<div class="ripple-container"></div></a></div>
                     </div>
 <!-- Cards -->                    
-                    <div class="jumboCard white" data-toggle="modal" data-target="#myModal" ng-repeat="cPropertydeals in  cPropertyonGoing">
-                        <div class="row">
+ 
+                    <div class="jumboCard white" data-toggle="modal" data-target="#myModal" ng-repeat="cPropertydeals in  cPropertyonGoing" ng-click="redirectToModal(cPropertydeals)">
+                         <div class="row">
                             <div  class="col-md-3 border-right">
                                 <div class="relative min-height-198">
                                 <!--<img src="images/6154074882_52ec40c20b_o.jpg" class="full-width"/>-->
@@ -300,4 +301,7 @@
                 </div>
 
             </div>
+
+
         </div>
+

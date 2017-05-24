@@ -1,0 +1,36 @@
+ <div class="modal-header">
+        <p class="modal-title">Homeowner Checklist Modal</p>
+      </div>
+      <div class="modal-body" >
+       <ol >
+  <li ng-repeat="list in checklist track by $index"   >
+    <input 
+			  type="checkbox" 
+			  name="mycheckbox" 
+        class="checkbox-circle"
+			  ng-model= "list.checked"
+			  ng-click="getSequence(list)"
+			  ng-disabled="disabledList.indexOf(list.sequenceId) == -1"
+			  ng-value='list.sequenceId'
+			  ng-checked='checkeddList.indexOf(list.sequenceId) != -1'
+        
+				/>  
+	  		<span  ng-class="{strikethrough: list.checked}">	{{list.name}}</span>
+			<br >
+			<br >
+
+  </li>
+  </ol>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="cancel()">OK</button>
+       
+      </div>
+
+       <style>
+         .strikethrough {
+            text-decoration: line-through;
+          }
+          
+         </style>

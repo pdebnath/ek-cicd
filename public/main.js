@@ -1,4 +1,4 @@
-var eknock=angular.module('eknock',['ui.router']);
+var eknock=angular.module('eknock',['ui.router','oc.lazyLoad']);
 
 eknock.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider){
 	
@@ -21,7 +21,12 @@ eknock.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $
 	}).state('homeowner',{
 		url:'/homeowner',
 		templateUrl:'pages/dashboard/homeowner/home-owner.html',
-		controller:'HomeOwnerController'
+		controller:'HomeOwnerController',
+		resolve: {
+                deps: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('ui.bootstrap');
+                }
+            }
 	})
 	.state('search',{
 		url:'/search',
@@ -30,4 +35,15 @@ eknock.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $
 	})
 	$urlRouterProvider.otherwise('/homeowner');
 }])
-
+.config(function ($ocLazyLoadProvider) {
+        $ocLazyLoadProvider.config({
+            debug: false,
+            events: true,
+            modules: [{
+                name: "ui.bootstrap",
+                files: [
+	          "bower_components/angular-bootstrap/ui-bootstrap-tpls.js"
+	        ],
+	      }]
+        });
+    })
