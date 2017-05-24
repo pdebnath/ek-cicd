@@ -1,6 +1,8 @@
+var eknock=eknock||angular.module('eknock');
+    
 eknock.controller('commonChecklistController',['$rootScope','$scope','$state','HomeOwnerFactory','$http','$uibModalInstance','checklistModalFactory','commonDataHolder'
 ,function($rootScope,$scope,$state,HomeOwnerFactory,$http,$uibModalInstance,checklistModalFactory,commonDataHolder){
- 
+        
         $scope.cancel = function() {
             $uibModalInstance.dismiss('cancel');
         };
@@ -16,10 +18,10 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
            
         var obj={
                     "userType" : 1
-                }
+                };
 
         checklistModalFactory.getModalCheckList(obj).then(function(result){
-            $scope.checklist = result.data.resp
+            $scope.checklist = result.data.resp ;
                 
                 
                 for (var i=0;i<$scope.checklist.length;i++){
@@ -27,22 +29,16 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
                     $scope.checklist[i].checked = false;
                 }
 
-                $scope.getSequenceByDealStatusId(commonDataHolder.holdData.dealStatus);
+                $scope.getSequenceByIndexDealStatusId(commonDataHolder.holdData.dealStatus);
         });
 
-    }
+    };
     // loading modal checklist
     $scope.getModalCheckList();
  
-   	$scope.getSequenceByDealStatusId=function(id){
-                
-                var obj ={
-                    "currentStatusId" : id,
-                    "userType" : 1
-                }
-         checklistModalFactory.getSequenceByDealStatusId(obj).then(function(result){
-              
-                    currentIndex = result.data.resp[0].sequenceId;
+   	$scope.getSequenceByIndexDealStatusId=function(id){
+
+                    currentIndex = id;
                     nextIndex = currentIndex+1; 
                     
                     if(currentIndex >= 2){
@@ -60,12 +56,9 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
                      $scope.checklist[i].checked=true;
                      $scope.checkeddList.push(i);
                 }
-               
-        });
-                
-     }
+     };
   	 
-		$scope.userEventFunction = function(item){
+	$scope.userEventFunction = function(item){
 			
              if(!item.checked){
                  //Update
@@ -84,8 +77,8 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
                          $scope.disabledList =[currentIndex];
                 }
 				$scope.checkeddList =[currentIndex];
-				for(var i=1;i<currentIndex ;i++){
-					$scope.checkeddList.push(i)
+				for(var j=1;j<currentIndex ;j++){
+					$scope.checkeddList.push(j);
 				}
                  
                  $scope.UpdateDealStatus(nextIndex);  
@@ -101,8 +94,8 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
 				$scope.disabledList =[currentIndex,nextIndex];
 				$scope.checkeddList =[currentIndex];
                 
-				for(var i=1;i<currentIndex ;i++){
-					$scope.checkeddList.push(i)
+				for(var k=1;k<currentIndex ;k++){
+					$scope.checkeddList.push(k);
 				}
             }
             
@@ -110,14 +103,14 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
             	 
 		}
            
-	}
+	};
 
     $scope.getSequence=function(item){
             var checkedObj = item;
 			var obj ={
 				"currentStatusId" : item.dealStatusId,
                 "userType" : 1
-			}
+			};
 	  checklistModalFactory.getSequenceByDealStatusId(obj).then(function(result){
               
              	currentIndex=result.data.resp[0].sequenceId;
@@ -126,8 +119,7 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
                 $scope.userEventFunction(checkedObj);   
                
        });
-	}
-
+	};
     $scope.UpdateDealStatus = function(id){
        
               var obj={
@@ -135,13 +127,15 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
                     "buyerId" : 3 , // commonDataHolder.holdData.buyerId
                     "propertyOwnerId" : "1",
                     "userType" : 1
-                }
+                };
 
         checklistModalFactory.updateCheckList(obj).then(function(result){
               
              	 console.log(result)   
                
        }); 
-    }
+    };
+ 
 	    
 }]);
+
