@@ -16,11 +16,11 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
 		 
        $scope.getModalCheckList = function(){
            
-        var obj={
+        var objgetModalCheckList={
                     "userType" : 1
                 };
 
-        checklistModalFactory.getModalCheckList(obj).then(function(result){
+        checklistModalFactory.getModalCheckList(objgetModalCheckList).then(function(result){
             $scope.checklist = result.data.resp ;
                 
                 
@@ -29,14 +29,14 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
                     $scope.checklist[i].checked = false;
                 }
 
-                $scope.getSequenceByIndexDealStatusId(commonDataHolder.holdData.dealStatus);
+                getSequenceByIndexDealStatusId(6);
         });
 
     };
     // loading modal checklist
     $scope.getModalCheckList();
  
-   	$scope.getSequenceByIndexDealStatusId=function(id){
+   	function getSequenceByIndexDealStatusId  (id){
 
                     currentIndex = id;
                     nextIndex = currentIndex+1; 
@@ -58,7 +58,7 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
                 }
      };
   	 
-	$scope.userEventFunction = function(item){
+	function userEventFunction (item){
 			
              if(!item.checked){
                  //Update
@@ -81,7 +81,7 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
 					$scope.checkeddList.push(j);
 				}
                  
-                 $scope.UpdateDealStatus(nextIndex);  
+                 UpdateDealStatus(nextIndex);  
 			}
            
 		}else if(item.checked){
@@ -99,7 +99,7 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
 				}
             }
             
-			 $scope.UpdateDealStatus(currentIndex);
+			 UpdateDealStatus(currentIndex);
             	 
 		}
            
@@ -107,31 +107,32 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
 
     $scope.getSequence=function(item){
             var checkedObj = item;
-			var obj ={
+			var objgetSequence ={
 				"currentStatusId" : item.dealStatusId,
                 "userType" : 1
 			};
-	  checklistModalFactory.getSequenceByDealStatusId(obj).then(function(result){
+	  checklistModalFactory.getSequenceByDealStatusId(objgetSequence).then(function(result){
               
              	currentIndex=result.data.resp[0].sequenceId;
 				//nextIndex = currentIndex + 1;
                 
-                $scope.userEventFunction(checkedObj);   
+                userEventFunction(checkedObj);   
                
        });
 	};
-    $scope.UpdateDealStatus = function(id){
+    function UpdateDealStatus (id){
        
-              var obj={
+              var objUpdateDealStatus={
+                    "userType" : 1,
                     "currentDealStatusId" : id,
                     "buyerId" : 3 , // commonDataHolder.holdData.buyerId
-                    "propertyOwnerId" : "1",
-                    "userType" : 1
+                    "homeOwnerId" : "1",
+                    "propertyId" : 3
                 };
 
-        checklistModalFactory.updateCheckList(obj).then(function(result){
+        checklistModalFactory.updateCheckList(objUpdateDealStatus).then(function(result){
               
-             	 console.log(result)   
+             	 console.log(result);
                
        }); 
     };

@@ -1,3 +1,5 @@
+var eknock=eknock||angular.module('eknock');
+
 eknock.factory('$exceptionHandler', ['$log',function($log, logErrorsToBackend) {
     return function myExceptionHandler(exception, cause) {
      // logErrorsToBackend(exception, cause);

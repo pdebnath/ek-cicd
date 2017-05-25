@@ -3,6 +3,7 @@ let router = express.Router();
 let logger = require('./../../config/logger');
 let excuteQuery=require('./../../config/mysqldatasource');
 
+// retrieving checklist modal based on role
 
 router.post('/modal/details',  (req ,res) => {
    console.log(req.body.userType)
@@ -19,6 +20,9 @@ router.post('/modal/details',  (req ,res) => {
 	   });
 
 })
+
+// retrieving checklist modal sequence based on statusid and user role
+
 router.post('/modal/details/sequence',  (req ,res) => {
        excuteQuery((conn,err) => {
    
@@ -36,20 +40,21 @@ router.post('/modal/details/sequence',  (req ,res) => {
 
 
 })
+
+// updating checklist modal sequence based on role,status
+
 router.post('/modal/details/update',  (req ,res) => {
        excuteQuery((conn,err) => {
    
-     
-    
-     let userType = 1;
-     let currentStatusId = req.body.currentDealStatusId;
+     let userType = req.body.userType;
+     let currentDealStatusId = req.body.currentDealStatusId;
      let buyerId = req.body.buyerId; 
-     let homeOwnerId = 1; 
-     let propertyId = 3; 
+     let homeOwnerId = req.body.homeOwnerId; 
+     let propertyId = req.body.propertyId; 
  
 
 	   return conn.query('call sp_homeowner_update_deal_status(?,?,?,?,?)',[
-       userType,currentStatusId,buyerId,homeOwnerId,propertyId
+       userType,currentDealStatusId,buyerId,homeOwnerId,propertyId
 
      ],function(err,rows){
             conn.release();
@@ -60,8 +65,5 @@ router.post('/modal/details/update',  (req ,res) => {
             return  res.json({status:1,resp:rows[0]});
           });
 	   });
-
-
-
 })
 module.exports = router;
