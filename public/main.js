@@ -3,7 +3,7 @@ underscore.factory('_', ['$window', function($window) {
   return $window._; 
 }]);
 
-var eknock=angular.module('eknock',['underscore','ui.router','ui.bootstrap','oc.lazyLoad']);
+var eknock=angular.module('eknock',['ui.router','ui.bootstrap','oc.lazyLoad','underscore']);
 
 eknock.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider){
 	
@@ -26,13 +26,7 @@ eknock.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $
 	}).state('homeowner',{
 		url:'/homeowner',
 		templateUrl:'pages/dashboard/homeowner/home-owner.html',
-		controller:'HomeOwnerController',
-		/*resolve: {
-	                deps: function ($ocLazyLoad) {
-	                    return $ocLazyLoad.load('ui.bootstrap');
-	                }
-                }
-        */
+		controller:'HomeOwnerController'
 	})
 	.state('search',{
 		url:'/search',
