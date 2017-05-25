@@ -23,6 +23,9 @@
     "angular-ui-router": "^1.0.0",
     "jquery-dropdown": "^2.0.3",
     "bootstrap-material-design": "v0.5.10",
-    "css-star-rating": "^1.1.3"
+    "css-star-rating": "^1.1.3",
+    "oclazyload": "^1.1.0",
+    "angular-bootstrap": "^2.5.0",
+    "underscore": "^1.8.3"
   }
 }
