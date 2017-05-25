@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 //var users = require('./routes/users');
 var homeOwnerDashBoardController = require('./routes/dashborad/HomeOwnerDashBoardController');
-var checklistModal = require('./routes/dashborad/commonChecklistModal');
+var checklistModal = require('./routes/dashborad/CommonChecklistModal');
 
 var app = express();
 // view engine setup
