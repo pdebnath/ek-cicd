@@ -1,13 +1,24 @@
- <div class="modal-header">
-        <p class="modal-title">Homeowner Checklist Modal</p>
-      </div>
+ <div class="modal-header" >
+   <button type="button" class="close" data-dismiss="modal" ng-click="cancel()" aria-hidden="true">×</button>
+    <ekprice>$180000 <i class="fa fa-info-circle" aria-hidden="true"></i></ekprice>
+        <div class="modal-Address">
+            <div class="address">
+              <h4>124 Henry St, newyork, NY 10092M <i class="fa fa-share" aria-hidden="true"></i></h4>
+              <i>Last Activity 3 days ago</i>
+            </div>
+        </div>
+  </div>
       <div class="modal-body" >
+        <div class="row">
+        <div class="col-md-8 col-sm-12">
        <ol >
   <li ng-repeat="list in checklist track by $index"   >
-    <input 
+    <div class="form-group">
+      <div class="checkbox">
+        <label>{{$index + 1}} <input 
 			  type="checkbox" 
 			  name="mycheckbox" 
-        class="checkbox-circle"
+        class=""
 			  ng-model= "list.checked"
 			  ng-click="getSequence(list)"
 			  ng-disabled="disabledList.indexOf(list.sequenceId) == -1"
@@ -15,16 +26,53 @@
 			  ng-checked='checkeddList.indexOf(list.sequenceId) != -1'
         
 				/>  
-	  		<span  ng-class="{strikethrough: list.checked}">	{{list.name}}</span>
-			<br >
-			<br >
-
+	  		<span  ng-class="{strikethrough: list.checked}">	{{list.name}}</span></label>
+      </div>
+    </div>
   </li>
-  </ol>
+  </ol></div>
+<div class="col-md-4 col-sm-12 offer-right">
+  <div class="card padding-20">
+    <div class="row">
+      <div class="col-md-4 col-sm-4 col-xs-4">
+        <div class="avatar"><img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%288%29.jpg" class="rounded-circle img-responsive"></div></div>
+        <div class="col-md-8 col-sm-8 col-xs-8"><h4 class="card-title">Anna Doe</h4><i class="in-active-text">Not yet rated</i> &nbsp; <i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
+          <br/><br/>
+          <p class="verify-list"><i class="fa fa-check" aria-hidden="true"></i> Verified identity</p>
+          <p class="verify-list"><i class="fa fa-check" aria-hidden="true"></i> Verified identity</p>
+          <p class="verify-list"><i class="fa fa-check" aria-hidden="true"></i> Verified identity</p>
+        </div>
+        
+    </div>
+    <div class="blue-bg padding-20 margin-n20">Hi How are you</div>
+    <div class="bg-eee margin-n20">
+        <div class="padding-20">
+          <p class="color-666">Make an offer to Jill:</p>
+          <div class="form-group">
+            <label for="" class="color-blue">Offer Amount <i class="fa fa-info-circle" aria-hidden="true"></i></label>
+            <input type="text" class="form-control" placeholder="$3000000" />
+          </div>
+            <div class="form-group in-row clearfix">
+              <label for="" class="color-blue">Offer Amount <i class="fa fa-info-circle" aria-hidden="true"></i></label><br/>
+              <input type="text" class="form-control price" placeholder="$3000000" /> <select class="form-control percent"><option>1%</option><option>5%</option></select> 
+              </div>
+        </div>
+    </div>
+    <div class="card-block">
+        <!--Name-->
+        
+        <hr>
+        <!--Quotation-->
+        <p><i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci</p>
+    </div>
 
+</div>
+
+</div>
+
+</div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="cancel()">OK</button>
        
       </div>
 

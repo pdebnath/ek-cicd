@@ -55,6 +55,11 @@ eknock.factory('checklistModalFactory',['$http','$log','$q',function($http,$log,
 			  	deferred.reject('Error While Fetching Sequence');
 			  });
 			return deferred.promise;
+	   	},
+		 buyerSubmitOffer :function(model){
+			
+			
+			return modal;
 	   	}
 
      }

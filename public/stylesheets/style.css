@@ -6,3 +6,33 @@ body {
 a {
   color: #00B7FF;
 }
+.modal-header{
+  background-image:url('https://uploads.toptal.io/blog/image/91092/toptal-blog-image-1430741874305-ff5cf6be18d32ac3dc83b32dfb8edb56.jpg');
+  background-repeat: no-repeat;
+  background-color:#ccc;
+  background-size:cover;
+}
+ekprice{background:#FF008A; color:#fff; font-size:24px; float:left; padding:5px; position: absolute; top: 0; left: 0;}
+/*<i class="fa fa-info-circle" aria-hidden="true"></i>*/
+.modal-backdrop{background: rgba(0,0,0,.9);}
+.address{color:#fff;}
+.modal-Address{margin: 100px 0;}
+.offer-right{position: relative;}
+.padding-20{padding:20px;}
+.padding-10{padding:10px;}
+.padding-5{padding:5px;}
+.avatar{width:100px; height: 100px; border-radius: 100px;}
+.avatar img{width:inherit; height: inherit; border-radius: inherit;}
+.card{border-radius: 5px; position: absolute; left: 0; top: -150px;}
+.in-active-text, .verify-list{color:#CCC;}
+.verify-list .fa-check{color:blue;}
+.blue-bg{background: blue; color:#fff;}
+.margin-n20{margin: 0 -20px;}
+.gray-bg{background:#ccc;}
+.bg-eee{background:#eee;}
+.color-666{color:#666;}
+.color-blue{color:blue !important;}
+.form-control{background:#fff !important; padding:0 10px;}
+.in-row input, .in-row select{display:inline-block; width:auto; box-sizing: border-box;}
+.in-row input.price{width:75%; float:left;}
+.in-row select.percent{width:24%; border-left:solid 1px #ccc; float:left; }

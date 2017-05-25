@@ -9,14 +9,14 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
 
         var currentIndex ;
         var nextIndex;
-
+        let userRole =  2;
         $scope.checklist = [];
         $scope.disabledList =[];
 		$scope.checkeddList =[];
 		 
        $scope.getModalCheckList = function(){
            
-        var objgetModalCheckList={
+        let objgetModalCheckList={
                     "userType" : 1
                 };
 
@@ -107,7 +107,7 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
 
     $scope.getSequence=function(item){
             var checkedObj = item;
-			var objgetSequence ={
+			let objgetSequence ={
 				"currentStatusId" : item.dealStatusId,
                 "userType" : 1
 			};
@@ -122,7 +122,7 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
 	};
     function UpdateDealStatus (id){
        
-              var objUpdateDealStatus={
+              let objUpdateDealStatus={
                     "userType" : 1,
                     "currentDealStatusId" : id,
                     "buyerId" : 3 , // commonDataHolder.holdData.buyerId
@@ -136,7 +136,28 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
                
        }); 
     };
- 
+    
+    $scope.buyerSubmitOffer = function(){
+        if(userRole == 2){
+             let objbuyerSubmitOffer={
+                    "userType" : 2,
+                    "buyerId" : 300000,
+                    "propertyId" : 3,
+                    "offerAmout" : 3 ,
+                    "downPayment" : 60000,
+                    "financialContigency" : 15,
+                    "timeToClose" : 30,
+                    "inspectionContigency" : 15,
+                    "offerExpirationDate" : '2017-06-20'
+                };
+        checklistModalFactory.buyerSubmitOffer(objbuyerSubmitOffer).then(function(result){
+                
+                    console.log(result);
+                
+        });    
+      }
+   };
+    
 	    
 }]);
 
