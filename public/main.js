@@ -1,4 +1,9 @@
-var eknock=angular.module('eknock',['ui.router','oc.lazyLoad']);
+var underscore = angular.module('underscore', []);
+underscore.factory('_', ['$window', function($window) {
+  return $window._; 
+}]);
+
+var eknock=angular.module('eknock',['underscore','ui.router','ui.bootstrap','oc.lazyLoad']);
 
 eknock.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider){
 	
@@ -22,11 +27,12 @@ eknock.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $
 		url:'/homeowner',
 		templateUrl:'pages/dashboard/homeowner/home-owner.html',
 		controller:'HomeOwnerController',
-		resolve: {
-                deps: function ($ocLazyLoad) {
-                    return $ocLazyLoad.load('ui.bootstrap');
+		/*resolve: {
+	                deps: function ($ocLazyLoad) {
+	                    return $ocLazyLoad.load('ui.bootstrap');
+	                }
                 }
-            }
+        */
 	})
 	.state('search',{
 		url:'/search',
@@ -34,16 +40,25 @@ eknock.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $
 		controller:'SearchController'
 	})
 	$urlRouterProvider.otherwise('/homeowner');
-}])
-.config(function ($ocLazyLoadProvider) {
-        $ocLazyLoadProvider.config({
-            debug: false,
-            events: true,
-            modules: [{
-                name: "ui.bootstrap",
-                files: [
-	          "bower_components/angular-bootstrap/ui-bootstrap-tpls.js"
-	        ],
-	      }]
-        });
-    })
+}]);
+
+
+eknock.run(function($timeout){
+	$timeout(function(){
+        $.material.init();
+    },1000)	
+})
+
+/*
+eknock.config(function ($ocLazyLoadProvider) {
+	$ocLazyLoadProvider.config({
+	    debug: false,
+	    events: true,
+	    modules: [{
+	        name: "ui.bootstrap",
+	        files: [
+	      "bower_components/angular-bootstrap/ui-bootstrap-tpls.js"
+	    ],
+	  }]
+	});
+})*/

@@ -1,6 +1,13 @@
 var eknock=eknock||angular.module('eknock');
-eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','HomeOwnerFactory','$uibModal','commonDataHolder',function($rootScope,$scope,$state,HomeOwnerFactory,$uibModal,commonDataHolder){
-   
+eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','HomeOwnerFactory','$uibModal','commonDataHolder',function($rootScope,$scope,$state,_,HomeOwnerFactory,$uibModal,commonDataHolder){
+    
+    $scope.sortingArray = [{type: 1, value: 'Newest'},{type: 2, value: 'Old'}];
+    
+   /* $scope.test=function(){
+       $scope.cPropertyonGoing = _.filter($scope.cPropertyonGoing, function(obj){return obj.contactedViaBulk == 1;});
+    }*/
+
+   /* this function fetch claimed properties*/
     $scope.init=function(){
         
         $scope.claimedProperties=[];
@@ -16,8 +23,9 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','HomeOwn
         })
     }
 
+    /* this function fetch deals for one claimed 
+    property based on claimded property drop down*/
     $scope.getClaimedPropertyDeals=function(){
-
          $scope.cPropertyOpen=[];
          $scope.cPropertyonGoing=[];
          $scope.cPropertyclosed=[];
@@ -27,36 +35,53 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','HomeOwn
         HomeOwnerFactory.getClaimedPropertyDeals($scope.model).then(function(resp){
             if(resp.data.status===1){
                 $scope.claimedPropertyDeals=resp.data.resp;
+                $scope.devideDeals();
             }
-            $scope.data1=resp.data.resp;
-            for(var i=0;i<$scope.data1.length;i++){
-                if($scope.data1[i].dealPr===1)
-                   $scope.cPropertyOpen.push($scope.data1[i]);
-                else  if($scope.data1[i].dealPr===2) 
-                    $scope.cPropertyonGoing.push($scope.data1[i]);
-                else  if($scope.data1[i].dealPr===3) 
-                    $scope.cPropertyclosed.push($scope.data1[i]);
-            }
-                /*console.log($scope.cPropertyOpen);
-                console.log($scope.cPropertyonGoing);
-                console.log($scope.cPropertyclosed);*/
         })
     }
-$scope.init();
-<<<<<<< HEAD
-=======
-$scope.getClaimedPropertyDeals();
-      $scope.clickedCard=false;
+
     $scope.redirectToModal = function(obj){
        commonDataHolder.holdData = obj;
         var size;
-     var modalInstance = $uibModal.open({
+        var modalInstance = $uibModal.open({  
           animation: $scope.animationsEnabled,
           templateUrl: 'pages/dashboard/modal/commonModal.html',
           controller: 'commonChecklistController',
           size: size
         });
     }
->>>>>>> 0f11aacd2e111c5f210fa0429e640004177a1de6
 
+
+
+/* this function is uded to devides deals*/
+$scope.devideDeals=function(){
+
+         $scope.groupData={};
+         if($scope.notBulkRequest)
+           $scope.groupData= _.filter($scope.claimedPropertyDeals, function(obj){return obj.contactedViaBulk == 1;});
+         else
+            $scope.groupData=$scope.claimedPropertyDeals;
+
+            $scope.cPropertyOnGoing=$scope.groupData;
+
+
+         /*$scope.groupData=_.groupBy($scope.claimedPropertyDeals, 'dealStatus');
+         $scope.cPropertyOpen=$scope.groupData.open;
+         $scope.cPropertyOnGoing=$scope.groupData.onGoing;
+         $scope.cPropertyClosed=$scope.groupData.clsed;*/
+
+         /* Sorting funvtionality*/
+        /* if($scope.sortingType.type===1){
+          $scope.cPropertyOnGoing=_.sortBy($scope.groupData, function(obj){
+                return obj.modifiedDate;
+          }); 
+      }
+      if($scope.sortingType.type===2){
+          $scope.cPropertyOnGoing=_.sortBy($scope.groupData, function(obj){
+                return obj.modifiedDate;
+          }); 
+          $scope.cPropertyOnGoing=$scope.cPropertyOnGoing.reverse();
+      }*/
+}
+$scope.init();
 }]);
