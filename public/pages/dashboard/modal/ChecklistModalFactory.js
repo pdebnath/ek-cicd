@@ -7,7 +7,7 @@ eknock.factory('checklistModalFactory',['$http','$log','$q',function($http,$log,
 
 				$http(
 					{
-						url:'/dashboard/modal/details',
+						url:'/api/common/dashboard/checklist/modal/details',
 						data : model,
 						method:'post',
 						headers: {'Content-Type': 'application/json'
@@ -26,7 +26,7 @@ eknock.factory('checklistModalFactory',['$http','$log','$q',function($http,$log,
 			var deferred=$q.defer();
 			$http(
 				{
-					url:'/dashboard/modal/details/update',
+					url:'/api/common/dashboard/checklist/modal/details/update',
 					data : model,
 					method:'post',
 					headers: {'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ eknock.factory('checklistModalFactory',['$http','$log','$q',function($http,$log,
 			var deferred=$q.defer();
 			$http(
 				{
-					url:'/dashboard/modal/details/sequence',
+					url:'/api/common/dashboard/checklist/modal/details/sequence',
 					data : model,
 					method:'post',
 					headers: {'Content-Type': 'application/json'

@@ -23,8 +23,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/', index);
 //app.use('/users', users);
-app.use('/api/homeownwer/dashboard', homeOwnerDashBoardController);
-app.use('/dashboard/', checklistModal);
+app.use('/api/homeowner/dashboard', homeOwnerDashBoardController);
+app.use('/api/common/dashboard/checklist', checklistModal);
 
 
 // catch 404 and forward to error handler
