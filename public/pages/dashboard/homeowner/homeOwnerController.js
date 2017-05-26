@@ -11,9 +11,8 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','Hom
                             {value: 3, percentage: '30%'}
                           ];
     $scope.verificationArray=[
-                                {value: 2, percentage: '2%'},
-                                {value: 4, percentage: '4%'},
-                                {value: 6, percentage: '6%'}
+                                {value: 1, percentage: '1'},
+                                {value: 2, percentage: '2'}
                             ];
 
    /* this function fetch claimed properties*/
@@ -65,31 +64,47 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','Hom
     /* this function is uded to devides deals*/
     $scope.devideDeals=function(){
 
-         $scope.groupData={};
+         $scope.groupData=[];
+
+         /* filter for Bulk Request*/
          if($scope.notBulkRequest){
            $scope.groupData= _.filter($scope.claimedPropertyDeals,function(obj){return obj.contactedViaBulk == 1;});
          }else{
             $scope.groupData=$scope.claimedPropertyDeals;
          }
+         /* code for devideing groups*/
+         $scope.groupData=_.groupBy($scope.claimedPropertyDeals,function(obj){
+            if(obj.dealInfo.dealStatus===undefined){
+              obj.dealInfo=JSON.parse(obj.dealInfo);
+            }
+            return obj.dealInfo.dealStatus;
+          });
 
+          $scope.cPropertyOpen=$scope.groupData.open;
+          $scope.cPropertyOnGoing=$scope.groupData.progress;
+          $scope.cPropertyClosed=$scope.groupData.closed;
 
-            $scope.cPropertyOnGoing=$scope.groupData;
-
-
-         /*$scope.groupData=_.groupBy($scope.claimedPropertyDeals, 'dealStatus');
-         $scope.cPropertyOpen=$scope.groupData.open;
-         $scope.cPropertyOnGoing=$scope.groupData.onGoing;
-         $scope.cPropertyClosed=$scope.groupData.clsed;*/
 
          /* Sorting funvtionality*/
-         if($scope.sortingType.type===1){
-              $scope.cPropertyOnGoing=_.sortBy($scope.groupData, function(obj){return obj.modifiedDate;}); 
-          }
+          $scope.cPropertyOnGoing=_.sortBy($scope.cPropertyOnGoing, function(obj){return obj.modifiedDate;}); 
+          $scope.cPropertyOpen=_.sortBy($scope.cPropertyOpen, function(obj){return obj.modifiedDate;}) 
+          $scope.cPropertyClosed=_.sortBy($scope.cPropertyClosed, function(obj){return obj.modifiedDate;});
+
           if($scope.sortingType.type===2){
-              $scope.cPropertyOnGoing=_.sortBy($scope.groupData, function(obj){return obj.modifiedDate;}).reverse(); 
-              $scope.cPropertyOpen=_.sortBy($scope.cPropertyOpen, function(obj){return obj.modifiedDate;}).reverse(); 
-              $scope.cPropertyClosed=_.sortBy($scope.cPropertyClosed, function(obj){return obj.modifiedDate;}).reverse();
+              $scope.cPropertyOnGoing=$scope.cPropertyOnGoing.reverse();
+              $scope.cPropertyOpen=$scope.cPropertyOpen.reverse();
+              $scope.cPropertyClosed=$scope.cPropertyClosed.reverse();
           }
+          console.log($scope.cPropertyClosed)
+    }
+
+    function isJson(str) {
+      try {
+          JSON.parse(str);
+      } catch (e) {
+          return false;
+      }
+    return true;
     }
 $scope.init();
 }]);

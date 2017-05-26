@@ -61,6 +61,10 @@ body.eKnock{
     background: none;
     display: inline-block;
     white-space: nowrap;
+    
+}
+.eKnock .select-width-class{
+    width: 350px;
 }
 .eKnock .dropdownjs > ul > li{
     color:#000000;
@@ -97,6 +101,9 @@ body.eKnock{
 }
 .eKnock .padding-top-30{
     padding-top:30px;
+}
+.eKnock .padding-top-10{
+    padding-top:10px;
 }
 .eKnock .cursor{
     cursor: pointer;
