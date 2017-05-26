@@ -4,7 +4,7 @@ eknock.factory('HomeOwnerFactory',['$http','$log','$q',function($http,$log,$q){
 	return{
         	getClaimedPropertyList:function(model){
 			var deferred=$q.defer();
-			$http({url:'/api/homeownwer/dashboard/getClaimedProperties/',data:model,method:'post',headers: {'Content-Type': 'application/json'}})
+			$http({url:'/api/homeowner/dashboard/getClaimedProperties/',data:model,method:'post',headers: {'Content-Type': 'application/json'}})
 			.then(function onSuccess(resp) {
 			   	deferred.resolve(resp);
 			  },function onError(error) {
@@ -14,7 +14,7 @@ eknock.factory('HomeOwnerFactory',['$http','$log','$q',function($http,$log,$q){
 	   	},
 		getClaimedPropertyDeals:function(model){
 			var deferred=$q.defer();
-			$http({url:'/api/homeownwer/dashboard/getClaimedPropertiesDeals/',data:model,method:'post',headers: {'Content-Type': 'application/json'}})
+			$http({url:'/api/homeowner/dashboard/getClaimedPropertiesDeals/',data:model,method:'post',headers: {'Content-Type': 'application/json'}})
 			.then(function onSuccess(resp) {
 			   	deferred.resolve(resp);
 			  },function onError(error) {
