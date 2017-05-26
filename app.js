@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 //var users = require('./routes/users');
 var homeOwnerDashBoardController = require('./routes/dashborad/HomeOwnerDashBoardController');
-var checklistModal = require('./routes/dashborad/commonChecklistModal');
+var checklistModal = require('./routes/dashborad/CommonChecklistModal');
 
 var app = express();
 // view engine setup
@@ -23,8 +23,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/', index);
 //app.use('/users', users);
-app.use('/api/homeownwer/dashboard', homeOwnerDashBoardController);
-app.use('/dashboard/', checklistModal);
+app.use('/api/homeowner/dashboard', homeOwnerDashBoardController);
+app.use('/api/common/dashboard/checklist', checklistModal);
 
 
 // catch 404 and forward to error handler

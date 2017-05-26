@@ -51,10 +51,10 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','Hom
 
     $scope.redirectToModal = function(obj){
        commonDataHolder.holdData = obj;
-        var size;
+        var size='lg';
         var modalInstance = $uibModal.open({  
           animation: $scope.animationsEnabled,
-          templateUrl: 'pages/dashboard/modal/commonModal.html',
+          templateUrl: 'pages/dashboard/modal/common-modal.html',
           controller: 'commonChecklistController',
           size: size
         });
