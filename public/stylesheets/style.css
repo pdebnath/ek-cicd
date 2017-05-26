@@ -23,16 +23,44 @@ ekprice{background:#FF008A; color:#fff; font-size:24px; float:left; padding:5px;
 .padding-5{padding:5px;}
 .avatar{width:100px; height: 100px; border-radius: 100px;}
 .avatar img{width:inherit; height: inherit; border-radius: inherit;}
-.card{border-radius: 5px; position: absolute; left: 0; top: -150px;}
+.deal-card{border-radius: 5px; position: absolute; left: 0; top: -200px;}
 .in-active-text, .verify-list{color:#CCC;}
-.verify-list .fa-check{color:blue;}
-.blue-bg{background: blue; color:#fff;}
+.verify-list .fa-check{color:#000041;}
+.blue-bg{background: #000041; color:#fff;}
 .margin-n20{margin: 0 -20px;}
 .gray-bg{background:#ccc;}
 .bg-eee{background:#eee;}
 .color-666{color:#666;}
-.color-blue{color:blue !important;}
+.color-blue{color:#000041 !important;}
 .form-control{background:#fff !important; padding:0 10px;}
 .in-row input, .in-row select{display:inline-block; width:auto; box-sizing: border-box;}
 .in-row input.price{width:75%; float:left;}
 .in-row select.percent{width:24%; border-left:solid 1px #ccc; float:left; }
+.close{color:#fff;text-shadow: 0 1px 0 #333;}
+.close:hover{color:#333;text-shadow: 0 1px 0 #fff;}
+.relative{position:relative;}
+.absolute{position:absolute;}
+.btn-easyknock{background:#FF008A; color:#fff !important; border-radius:25px; width:100%; text-transform:uppercase;}
+.btn.btn-easyknock:hover{background-color:#19C7B8!important;  }
+.sticky-btn{width:80%; margin:10% 10%; bottom: -70px; padding: 15px;}
+.text-uppercase, .deal-card label{text-transform:uppercase;}
+.cancel-deal{right: 0; left: 0; bottom: -80; margin: 0 auto; text-align: center;}
+.bottom{bottom:0;}
+.bottom-rounded{border-radius:0 0 5px 5px;}
+.content-box{box-sizing:content-box}
+.left-0{left:0;}
+.right-0{right:0;}
+.help-tips{margin:40px; padding:0;}
+.help-tips li {margin-bottom:20px;color:#999;}
+.help-tips li  a{color:#999;}
+.bottom-note{bottom: -56px;left: 0;}
+.min-h-1000{min-height:1000px;}
+.nav-tabs{background:transparent;}
+.nav-tabs .active {border-bottom:solid 2px #009688}
+.nav-tabs li a, .nav-tabs li a:hover, .nav-tabs li a:focus{color:#009688 !important; text-transform:uppercase;}
+.nav-tabs .active a{color:#009688 !important}
+.checklist-ul{list-style:none; margin-top:20px; border:solid 1px #eee;	padding:0; border-bottom:none;}
+.checklist-ul li{padding:0; border-bottom:#eee solid 1px;}
+.checklist-ul li .form-group{margin:0; }
+.checklist-ul li{margin:0; padding:0;}
+.checklist-ul li .checkbox{margin:10px;}

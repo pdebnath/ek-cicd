@@ -2,14 +2,10 @@ var eknock=eknock||angular.module('eknock');
     
 eknock.controller('commonChecklistController',['$rootScope','$scope','$state','HomeOwnerFactory','$http','$uibModalInstance','checklistModalFactory','commonDataHolder'
 ,function($rootScope,$scope,$state,HomeOwnerFactory,$http,$uibModalInstance,checklistModalFactory,commonDataHolder){
-        
-        $scope.cancel = function() {
-            $uibModalInstance.dismiss('cancel');
-        };
-
+         
         var currentIndex ;
         var nextIndex;
-        let userRole =  2;
+        let userRole =  1;
         $scope.checklist = [];
         $scope.disabledList =[];
 		$scope.checkeddList =[];
@@ -17,9 +13,9 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
        $scope.getModalCheckList = function(){
            
         let objgetModalCheckList={
-                    "userType" : 1
+                    "userType" : userRole
                 };
-
+ 
         checklistModalFactory.getModalCheckList(objgetModalCheckList).then(function(result){
             $scope.checklist = result.data.resp ;
                 
@@ -32,7 +28,8 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
                 getSequenceByIndexDealStatusId(6);
         });
 
-    };
+      };
+ 
     // loading modal checklist
     $scope.getModalCheckList();
  
@@ -80,11 +77,9 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
 				for(var j=1;j<currentIndex ;j++){
 					$scope.checkeddList.push(j);
 				}
-                 
                  UpdateDealStatus(nextIndex);  
 			}
-           
-		}else if(item.checked){
+	}else if(item.checked){
             //New
            
 				if(item.sequenceId != 1){
@@ -98,18 +93,15 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
 					$scope.checkeddList.push(k);
 				}
             }
-            
-			 UpdateDealStatus(currentIndex);
-            	 
+               UpdateDealStatus(currentIndex);
 		}
-           
 	};
 
     $scope.getSequence=function(item){
             var checkedObj = item;
 			let objgetSequence ={
 				"currentStatusId" : item.dealStatusId,
-                "userType" : 1
+                "userType" : userRole
 			};
 	  checklistModalFactory.getSequenceByDealStatusId(objgetSequence).then(function(result){
               
@@ -123,7 +115,7 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
     function UpdateDealStatus (id){
        
               let objUpdateDealStatus={
-                    "userType" : 1,
+                    "userType" : userRole,
                     "currentDealStatusId" : id,
                     "buyerId" : 3 , // commonDataHolder.holdData.buyerId
                     "homeOwnerId" : "1",
@@ -140,7 +132,7 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
     $scope.buyerSubmitOffer = function(){
         if(userRole == 2){
              let objbuyerSubmitOffer={
-                    "userType" : 2,
+                    "userType" : userRole,
                     "buyerId" : 300000,
                     "propertyId" : 3,
                     "offerAmout" : 3 ,
@@ -157,7 +149,7 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
         });    
       }
    };
-    
+   
 	    
 }]);
 
