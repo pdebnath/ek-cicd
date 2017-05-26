@@ -1,11 +1,20 @@
 var eknock=eknock||angular.module('eknock');
 eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','HomeOwnerFactory','$uibModal','commonDataHolder',function($rootScope,$scope,$state,_,HomeOwnerFactory,$uibModal,commonDataHolder){
-    
-    $scope.sortingArray = [{type: 1, value: 'Newest'},{type: 2, value: 'Old'}];
-    
-   /* $scope.test=function(){
-       $scope.cPropertyonGoing = _.filter($scope.cPropertyonGoing, function(obj){return obj.contactedViaBulk == 1;});
-    }*/
+    /* init Data*/
+    $scope.sortingArray = [
+                            {type: 1, value: 'Newest'},
+                            {type: 2, value: 'Old'}
+                          ];
+    $scope.movePriceArray=[
+                            {value: 1, percentage: '10%'},
+                            {value: 2, percentage: '20%'},
+                            {value: 3, percentage: '30%'}
+                          ];
+    $scope.verificationArray=[
+                                {value: 2, percentage: '2%'},
+                                {value: 4, percentage: '4%'},
+                                {value: 6, percentage: '6%'}
+                            ];
 
    /* this function fetch claimed properties*/
     $scope.init=function(){
@@ -53,14 +62,16 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','Hom
 
 
 
-/* this function is uded to devides deals*/
-$scope.devideDeals=function(){
+    /* this function is uded to devides deals*/
+    $scope.devideDeals=function(){
 
          $scope.groupData={};
-         if($scope.notBulkRequest)
-           $scope.groupData= _.filter($scope.claimedPropertyDeals, function(obj){return obj.contactedViaBulk == 1;});
-         else
+         if($scope.notBulkRequest){
+           $scope.groupData= _.filter($scope.claimedPropertyDeals,function(obj){return obj.contactedViaBulk == 1;});
+         }else{
             $scope.groupData=$scope.claimedPropertyDeals;
+         }
+
 
             $scope.cPropertyOnGoing=$scope.groupData;
 
@@ -71,17 +82,14 @@ $scope.devideDeals=function(){
          $scope.cPropertyClosed=$scope.groupData.clsed;*/
 
          /* Sorting funvtionality*/
-        /* if($scope.sortingType.type===1){
-          $scope.cPropertyOnGoing=_.sortBy($scope.groupData, function(obj){
-                return obj.modifiedDate;
-          }); 
-      }
-      if($scope.sortingType.type===2){
-          $scope.cPropertyOnGoing=_.sortBy($scope.groupData, function(obj){
-                return obj.modifiedDate;
-          }); 
-          $scope.cPropertyOnGoing=$scope.cPropertyOnGoing.reverse();
-      }*/
-}
+         if($scope.sortingType.type===1){
+              $scope.cPropertyOnGoing=_.sortBy($scope.groupData, function(obj){return obj.modifiedDate;}); 
+          }
+          if($scope.sortingType.type===2){
+              $scope.cPropertyOnGoing=_.sortBy($scope.groupData, function(obj){return obj.modifiedDate;}).reverse(); 
+              $scope.cPropertyOpen=_.sortBy($scope.cPropertyOpen, function(obj){return obj.modifiedDate;}).reverse(); 
+              $scope.cPropertyClosed=_.sortBy($scope.cPropertyClosed, function(obj){return obj.modifiedDate;}).reverse();
+          }
+    }
 $scope.init();
 }]);

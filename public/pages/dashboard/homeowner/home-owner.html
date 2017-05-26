@@ -21,22 +21,15 @@
                     <div class="checkbox black">
                       <label class="col-md-4 col-xs-12 padding-top-bottom-5">
                           <input type="checkbox"> with in
-                          <select class="select-class black">
-                              <option selected>10%</option>
-                              <option>20%</option>
-                              <option>30%</option>
-                          </select> of my move price
+                          <select class="select-class black" ng-model="movePrice" ng-options="mp.percentage for mp in movePriceArray" ng-init="movePrice=movePriceArray[0]"  ng-change="devideDeals()"></select>of my move price
                       </label>
                       <label class="col-md-3 col-xs-12 padding-top-bottom-5">
                           <input type="checkbox" ng-model='notBulkRequest' ng-click="devideDeals()"> No contacted via bulk-request
                       </label>
                       <label class="col-md-3 col-xs-12 padding-top-bottom-5">
                           <input type="checkbox"> Has at least 
-                          <select class="select-class black">
-                              <option selected>2%</option>
-                              <option>4%</option>
-                              <option>6%</option>
-                          </select> Varifications
+                           <select class="select-class black" ng-model="verification" ng-options="vc.percentage for vc in verificationArray" ng-init="verification=verificationArray[0]"  ng-change="devideDeals()"></select>
+                          Varifications
                       </label>
                       <label class="col-md-2 col-xs-12 padding-top-bottom-5">
                           <span class="darkGrey">Sort By:</span> 
