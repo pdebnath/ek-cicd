@@ -58,7 +58,6 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
 	function userEventFunction (item){
 			
              if(!item.checked){
-                
                  //Update
               
 				if(item.sequenceId != 1){
@@ -78,11 +77,9 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
 				for(var j=1;j<currentIndex ;j++){
 					$scope.checkeddList.push(j);
 				}
-                 
                  UpdateDealStatus(nextIndex);  
 			}
-           
-		}else if(item.checked){
+	}else if(item.checked){
             //New
            
 				if(item.sequenceId != 1){
@@ -96,11 +93,8 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
 					$scope.checkeddList.push(k);
 				}
             }
-            
-			 UpdateDealStatus(currentIndex);
-            	 
+               UpdateDealStatus(currentIndex);
 		}
-         
 	};
 
     $scope.getSequence=function(item){
