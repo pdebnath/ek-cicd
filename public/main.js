@@ -1,16 +1,10 @@
 var underscore = angular.module('underscore', []);
 underscore.factory('_', ['$window', function($window) {
-<<<<<<< Updated upstream
   return $window._; 
 }]);
 
-var eknock=angular.module('eknock',['ui.router','ui.bootstrap','oc.lazyLoad','underscore']);
-=======
-  return $window._; // assumes underscore has already been loaded on the page
-}]);
 
-var eknock=angular.module('eknock',['ui.router','oc.lazyLoad','underscore']);
->>>>>>> Stashed changes
+var eknock=angular.module('eknock',['ui.router','ui.bootstrap','oc.lazyLoad','underscore']);
 
 eknock.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider){
 	
