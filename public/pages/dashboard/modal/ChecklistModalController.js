@@ -2,17 +2,21 @@ var eknock=eknock||angular.module('eknock');
     
 eknock.controller('commonChecklistController',['$rootScope','$scope','$state','HomeOwnerFactory','$http','$uibModalInstance','checklistModalFactory','commonDataHolder'
 ,function($rootScope,$scope,$state,HomeOwnerFactory,$http,$uibModalInstance,checklistModalFactory,commonDataHolder){
-         
+        //closing modal
+        $scope.cancel = function() {
+            $uibModalInstance.dismiss('cancel');
+        }; 
+
         var currentIndex ;
         var nextIndex;
-        let userRole =  1;
+        var userRole =  1;
         $scope.checklist = [];
         $scope.disabledList =[];
 		$scope.checkeddList =[];
 		 
        $scope.getModalCheckList = function(){
            
-        let objgetModalCheckList={
+        var objgetModalCheckList={
                     "userType" : userRole
                 };
  
@@ -99,7 +103,7 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
 
     $scope.getSequence=function(item){
             var checkedObj = item;
-			let objgetSequence ={
+			var objgetSequence ={
 				"currentStatusId" : item.dealStatusId,
                 "userType" : userRole
 			};
@@ -114,7 +118,7 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
 	};
     function UpdateDealStatus (id){
        
-              let objUpdateDealStatus={
+              var objUpdateDealStatus={
                     "userType" : userRole,
                     "currentDealStatusId" : id,
                     "buyerId" : 3 , // commonDataHolder.holdData.buyerId
@@ -131,7 +135,7 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
     
     $scope.buyerSubmitOffer = function(){
         if(userRole == 2){
-             let objbuyerSubmitOffer={
+             var objbuyerSubmitOffer={
                     "userType" : userRole,
                     "buyerId" : 300000,
                     "propertyId" : 3,
