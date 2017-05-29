@@ -108,7 +108,7 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="row full-width margin-top-15">
-                                    <div class="col-md-7 darkBlueColor bold">Step {{cProperty.buyerDealStatus}} of 11: Schedule house showing</div>
+                                    <div class="col-md-7 darkBlueColor bold">{{cProperty.dealInfo.dealProcess}}</div>
                                     <div class="col-md-5">
                                         <div class="pink uppercase normal text-right">. 3 New Messages</div>
                                         <div class="italic normal text-right darkGrey">Last Activity 3 days ago</div>
@@ -118,7 +118,7 @@
                                     <div class="col-md-12 margin-top-30">
                                         <div class="bs-component progress-curve">
                                            <div class="progress">
-                                              <div class="progress-bar" ng-style="{ 'width': cProperty.dealProgress + '%' }";"></div><span class="progress-bar-percent">{{cProperty.dealProgress}}%</span>
+                                              <div class="progress-bar" ng-style="{ 'width': cProperty.dealInfo.dealProgress + '%' }";"></div><span class="progress-bar-percent">{{cProperty.dealInfo.dealProgress}}%</span>
                                           </div>
                                         </div>
                                     </div>  
