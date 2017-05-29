@@ -6,13 +6,13 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','Hom
                             {type: 2, value: 'Old'}
                           ];
     $scope.movePriceArray=[
-                            {value: 1, percentage: '10%'},
-                            {value: 2, percentage: '20%'},
-                            {value: 3, percentage: '30%'}
+                            {value: 0.9, percentage: '10%'},
+                            {value: 0.8, percentage: '20%'},
+                            {value: 0.7, percentage: '30%'}
                           ];
     $scope.verificationArray=[
-                                {value: 1, percentage: '1'},
-                                {value: 2, percentage: '2'}
+                                {value: 1, verificatons: '1'},
+                                {value: 2, verificatons: '2'}
                             ];
 
    /* this function fetch claimed properties*/
@@ -64,16 +64,37 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','Hom
     /* this function is uded to devides deals*/
     $scope.devideDeals=function(){
 
-         $scope.groupData=[];
+         $scope.groupData=$scope.claimedPropertyDeals;
+         /* filter for move Price*/
+         if($scope.movePriceCheck){
+          var propertyValue=$scope.groupData[0].propertyValue;
+          propertyValue=propertyValue*$scope.movePrice.value;
+           $scope.groupData= _.filter($scope.groupData,function(obj){
+            return obj.interestPrice >= propertyValue;
+           });
+         }
 
          /* filter for Bulk Request*/
          if($scope.notBulkRequest){
-           $scope.groupData= _.filter($scope.claimedPropertyDeals,function(obj){return obj.contactedViaBulk == 1;});
-         }else{
-            $scope.groupData=$scope.claimedPropertyDeals;
+           $scope.groupData= _.filter($scope.groupData,function(obj){
+            return obj.contactedViaBulk == 1;
+           });
+         }
+
+         /* filter for verifications*/
+         if($scope.verificationCheck){
+
+          $scope.groupData= _.filter($scope.groupData,function(obj){
+            if($scope.verification.value===1){
+              return (obj.idVerification === 1 || obj.financeVerification===1);
+            }
+            if($scope.verification.value===2){
+              return (obj.idVerification === 1 && obj.financeVerification===1);
+            }
+          });
          }
          /* code for devideing groups*/
-         $scope.groupData=_.groupBy($scope.claimedPropertyDeals,function(obj){
+         $scope.groupData=_.groupBy($scope.groupData,function(obj){
             if(obj.dealInfo.dealStatus===undefined){
               obj.dealInfo=JSON.parse(obj.dealInfo);
             }
@@ -83,7 +104,6 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','Hom
           $scope.cPropertyOpen=$scope.groupData.open;
           $scope.cPropertyOnGoing=$scope.groupData.progress;
           $scope.cPropertyClosed=$scope.groupData.closed;
-
 
          /* Sorting funvtionality*/
           $scope.cPropertyOnGoing=_.sortBy($scope.cPropertyOnGoing, function(obj){return obj.modifiedDate;}); 
@@ -95,16 +115,8 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','Hom
               $scope.cPropertyOpen=$scope.cPropertyOpen.reverse();
               $scope.cPropertyClosed=$scope.cPropertyClosed.reverse();
           }
-          console.log($scope.cPropertyClosed)
+           console.log($scope.groupData)
     }
 
-    function isJson(str) {
-      try {
-          JSON.parse(str);
-      } catch (e) {
-          return false;
-      }
-    return true;
-    }
-$scope.init();
+  $scope.init();
 }]);
