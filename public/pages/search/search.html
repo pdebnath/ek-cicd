@@ -1,104 +1,72 @@
 <div class="container-fluid shadowBox">
-                <div class="col-md-8">
-                    <div class="margin-top-20">
-                        <a href="" class="links uppercase normal line-height-30"><i class="icon-filter-standard"></i> filter</a>
-                        &nbsp;&nbsp;<span>235 Results</span>&nbsp;
-                        <span type="button" class="btn btn-lg btn-raised btn-primary btn-radius uppercase  margin-0">Contact all 235 homeowners</span>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="margin-top-30 margin-bottom-30 text-right">
-                        <a href="" class="links uppercase normal line-height-30 margin-right-30">Saved searches</a>
-                        <a href="" class="links uppercase normal line-height-30">Favorites(6)</a>
-                    </div>
-                </div>
+    <div class="col-md-8">
+        <div class="margin-top-20">
+            <a href="" class="links uppercase normal line-height-30"><i class="icon-filter-standard"></i> filter</a> &nbsp;&nbsp;
+            <span>{{propertyDetailsJson.length}} Results</span>&nbsp;
+            <span type="button" class="btn btn-lg btn-raised btn-primary btn-radius uppercase  margin-0" ng-click="onContactAllHomeowners(propertyDetailsJson)">Contact all {{propertyDetailsJson.length}} homeowners</span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="margin-top-30 margin-bottom-30 text-right">
+            <a href="" class="links uppercase normal line-height-30 margin-right-30" ng-click="showSavedSearches()">Saved searches</a>
+            <a href="" class="links uppercase normal line-height-30" ng-click="showFavorites()">Favorites(6)</a>
+        </div>
+    </div>
 </div>
-        <div class="container-fluid">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-md-6" style="height:510px; overflow: auto ">
             <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <div class="row">
-                        <div class="col-xs-12 sub-tabs">
-                              <ul class="list-inline uppercase normal">
-                                <li class="active">Newest</li>
-                                <li>Price</li>
-                                <li>Bedrooms</li>
-                                <li>Squarefeet</li>
-                              </ul>
-                        </div>
-                    </div>
-                    <div class="">
-                        <div class="col-sm-6">   
-                            <div class="searchCard">
-                                <div class="relative">
-                                    <img src="images/6154074882_52ec40c20b_o.jpg" class="full-width"/>
-                                    <div class="price-info uppercase letterSpacing-1 weight500">$1,200,000<span>(est)</span></div>
-                                    <div class="reply-icon"><i class="icon-out"></i></div>
-                                    <div class="address-info">
-                                        <div class="bold">124 Henry St../New York,NY 10...</div>
-                                        <div >5 bed, 3 bath, 4,810 sq ft</div>
-                                    </div>
-                                </div>
-                                <div class="relative darkGrey padding-15">
-                                    <div><i class="icon-view"></i> 23 total Views</div>
-                                    <div><i class="icon-chat"></i> 4 people intrested</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="searchCard">
-                                <div class="relative">
-                                    <img src="images/6154074882_52ec40c20b_o.jpg" class="full-width"/>
-                                    <div class="price-info uppercase letterSpacing-1 weight500">$1,200,000<span>(est)</span></div>
-                                    <div class="reply-icon"><i class="icon-out"></i></div>
-                                    <div class="address-info">
-                                        <div class="bold">124 Henry St../New York,NY 10...</div>
-                                        <div >5 bed, 3 bath, 4,810 sq ft</div>
-                                    </div>
-                                </div>
-                                <div class="relative darkGrey padding-15">
-                                    <div><i class="icon-view"></i> 23 total Views</div>
-                                    <div><i class="icon-chat"></i> 4 people intrested</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="searchCard">
-                                <div class="relative">
-                                    <img src="images/6154074882_52ec40c20b_o.jpg" class="full-width"/>
-                                    <div class="price-info uppercase letterSpacing-1 weight500">$1,200,000<span>(est)</span></div>
-                                    <div class="reply-icon"><i class="icon-out"></i></div>
-                                    <div class="address-info">
-                                        <div class="bold">124 Henry St../New York,NY 10...</div>
-                                        <div >5 bed, 3 bath, 4,810 sq ft</div>
-                                    </div>
-                                </div>
-                                <div class="relative darkGrey padding-15">
-                                    <div><i class="icon-view"></i> 23 total Views</div>
-                                    <div><i class="icon-chat"></i> 4 people intrested</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="searchCard">
-                                <div class="relative">
-                                    <img src="images/6154074882_52ec40c20b_o.jpg" class="full-width"/>
-                                    <div class="price-info uppercase letterSpacing-1 weight500">$1,200,000<span>(est)</span></div>
-                                    <div class="reply-icon"><i class="icon-out"></i></div>
-                                    <div class="address-info">
-                                        <div class="bold">124 Henry St../New York,NY 10...</div>
-                                        <div >5 bed, 3 bath, 4,810 sq ft</div>
-                                    </div>
-                                </div>
-                                <div class="relative darkGrey padding-15">
-                                    <div><i class="icon-view"></i> 23 total Views</div>
-                                    <div><i class="icon-chat"></i> 4 people intrested</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-xs-12 sub-tabs">
+                    <ul class="list-inline uppercase normal">
+                        <li class="active" ng-click="propertySortBy('id')">Newest</li>
+                        <li ng-click="propertySortBy('apn')">Price</li>
+                        <li ng-click="propertySortBy('')">Bedrooms</li>
+                        <li ng-click="propertySortBy('')">Squarefeet</li>
+                    </ul>
                 </div>
-                <div class="col-sm-12 col-md-6">
-                    <!--Here comes the map-->
+            </div>
+            <div class="">
+                <div class="col-sm-6" ng-repeat="property in propertyDetailsJson">
+                    <div class="searchCard">
+                        <div class="relative">
+                            <img src="images/6154074882_52ec40c20b_o.jpg" class="full-width" />
+                            <div class="price-info uppercase letterSpacing-1 weight500">${{property.id}}<span>(est)</span></div>
+                            <div class="reply-icon"><i class="icon-out"></i></div>
+                            <div class="address-info">
+                                <div class="bold">{{property.street_address}}../{{property.city}},{{property.state}}...</div>
+                                <div>5 bed, 3 bath, 4,810 sq ft</div>
+                            </div>
+                        </div>
+                        <div class="relative darkGrey padding-15">
+                            <div><i class="icon-view"></i> 23 total Views</div>
+                            <div><i class="icon-chat"></i> 4 people intrested</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="col-sm-12 col-md-6">
+            <div  id="map"></div>
+            <!--Here comes the map-->
+        </div>
+    </div>
+</div>
+<style>
+       #map {
+        height: 100%;
+        width: 100%;
+       }
+    </style>
+<script>
+        function initMap() {
+        // Create a map object and specify the DOM element for display.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          scrollwheel: false,
+          zoom: 8
+        });
+      }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuB_734bE8lJpywQy68pKOJU0nBRLjVd4&callback=initMap"></script>
+    

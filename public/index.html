@@ -1,4 +1,5 @@
-<html lang="en" >
+<html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,12 +23,12 @@
   <!-- Header Content-->
   <div ng-include="'pages/common/header.html'"></div>
   <!--Main Content Satrt-->
-	<section>
+  <section>
     <div ui-view></div>
-	</section>
+  </section>
   <!--Main Content End-->
-   <!-- Footer Content-->
-   <div ng-include="'pages/common/footer.html'"></div>
+  <!-- Footer Content-->
+  <div ng-include="'pages/common/footer.html'"></div>
 </body>
   <script src="bower_components/jquery-dist/jquery.min.js"></script>
   <script src="bower_components/angular/angular.min.js"></script>
@@ -39,7 +40,6 @@
   <script src="bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
   <script src="bower_components/underscore/underscore-min.js"></script>
-
   <script src="bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
 
   <!-- Application components -->
@@ -49,15 +49,14 @@
   <script src="pages/user/userController.js"></script>
   <script src="pages/dashboard/homeowner/HomeOwnerController.js"></script>
   <script src="pages/dashboard/homeowner/HomeOwnerFactory.js"></script>
-
   <script src="pages/dashboard/modal/ChecklistModalController.js"></script>
   <script src="pages/dashboard/modal/ChecklistModalFactory.js"></script>
-
-
+  <script src="pages/search/searchController.js"></script>
+  <script src="pages/search/searchFactory.js"></script>
+  <script src="pages/common/headerController.js"></script>
+  <script src="pages/common/headerFactory.js"></script>
 <!-- Common providers -->
 <script src="pages/common/CommonService.js"></script>
 <script src="pages/common/CommonDirective.js"></script>
 
-  <script src="pages/search/searchController.js"></script>
-  <script src="pages/search/searchFactory.js"></script>
 </html>
