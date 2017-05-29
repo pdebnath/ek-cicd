@@ -13,7 +13,7 @@
         <div class="col-md-8 col-sm-12">
 		
 		<ul class="nav nav-tabs" role="tablist">
-                                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">CheckList (1/11)</a></li>
+                                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">CheckList ( {{disabledList[0]}} /{{checklist.length}})</a></li>
                                         <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">MESSAGES(5)</a></li>
                                     </ul>
 
@@ -24,10 +24,10 @@
 			  <li ng-repeat="list in checklist track by $index"   >
 				<div class="form-group">
 				  <div class="checkbox">
-					<label>{{$index + 1}} <input 
+					<label> {{$index+1}} &nbsp; <input 
 						  type="checkbox" 
 						  name="mycheckbox" 
-					class=""
+							class=""
 						  ng-model= "list.checked"
 						  ng-click="getSequence(list)"
 						  ng-disabled="disabledList.indexOf(list.sequenceId) == -1"
@@ -35,7 +35,7 @@
 						  ng-checked='checkeddList.indexOf(list.sequenceId) != -1'
 					
 							/>  
-						<span  ng-class="{strikethrough: list.checked}">	{{list.name}}</span></label>
+						<span  ng-class="{strikethrough: list.checked}"  checklist-bgcolor >	{{list.name}}</span></label>
 				  </div>
 				</div>
 			  </li>
@@ -90,10 +90,4 @@
       <div class="modal-footer">
        
       </div>
-
-       <style>
-         .strikethrough {
-            text-decoration: line-through;
-          }
-          
-         </style>
+ 

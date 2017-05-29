@@ -64,3 +64,6 @@ ekprice{background:#FF008A; color:#fff; font-size:24px; float:left; padding:5px;
 .checklist-ul li .form-group{margin:0; }
 .checklist-ul li{margin:0; padding:0;}
 .checklist-ul li .checkbox{margin:10px;}
+.strikethrough {
+            text-decoration: line-through;
+}
