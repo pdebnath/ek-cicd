@@ -6,8 +6,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var index = require('./routes/index');
 //var users = require('./routes/users');
+<<<<<<< Updated upstream
 var homeOwnerDashBoardController = require('./routes/dashborad/HomeOwnerDashBoardController');
 var checklistModal = require('./routes/dashborad/CommonChecklistModal');
+=======
+var homeOwnerDashBoardController = require('./routes/dashborad/homeOwnerDashBoardController');
+var checklistModal = require('./routes/dashborad/commonChecklistModal');
+var searchController = require('./routes/search/SearchController');
+>>>>>>> Stashed changes
 
 var app = express();
 // view engine setup
@@ -23,8 +29,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/', index);
 //app.use('/users', users);
+<<<<<<< Updated upstream
 app.use('/api/homeowner/dashboard', homeOwnerDashBoardController);
 app.use('/api/common/dashboard/checklist', checklistModal);
+=======
+app.use('/homeownwer/dashboard', homeOwnerDashBoardController);
+app.use('/dashboard/', checklistModal);
+app.use('/api/search/', searchController);
+>>>>>>> Stashed changes
 
 
 // catch 404 and forward to error handler
