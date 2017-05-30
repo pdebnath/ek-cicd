@@ -439,3 +439,14 @@ body.eKnock{
         width: 1240px;
     }
 }
+
+/** added by naresh on may 30 **/
+#map{position:relative; height:630px; width:100%; z-index:-1;}
+.map-nav{width:60%; position:absolute; left:0; bottom:0; display:none; background:#fff; padding:10px;}
+#flat-cards{ height:630px; overflow-x: none; overflow-y: scroll;}
+#mapConteroller{padding:0;}
+#mapConteroller:hover .map-nav{display:block; }
+.drawonmap{position:absolute;}
+
+
+

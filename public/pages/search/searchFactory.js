@@ -34,5 +34,16 @@ eknock.factory('SearchFactory', ['$http', '$log', '$q', function ($http, $log, $
 				});
 			return deferred.promise;
 		},
+
+		viewPropertyDetails: function (model) {
+			var deferred = $q.defer();
+			$http({ url: '/api/search/viewPropertyDetails/', model, method: 'post', headers: { 'Content-Type': 'application/json' } })
+				.then(function onSuccess(resp) {
+					deferred.resolve(resp);
+				}, function onError(error) {
+					deferred.reject('Error While viewing the property details');
+				});
+			return deferred.promise;
+		},
 	}
 }])

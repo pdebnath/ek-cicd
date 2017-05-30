@@ -32,4 +32,12 @@ searchRouter.post('/contactToAllHomeOwners', function (req, res) {
     return res.json({ status: 1, resp: 'Success' });
 });
 
+/* Below code is used for contact to all property/home owners)*/
+searchRouter.post('/viewPropertyDetails', function (req, res) {
+    console.log(req.body);
+    // Code to update the count in viewed property
+    // Code to Fetch the Property Details
+    return res.json({ status: 1, resp: 'Success' });
+});
+
 module.exports = searchRouter;

@@ -9,11 +9,12 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
             console.log($scope.latlng);
             getPropertyDetailsByLatlng($scope.latlng);
         } else {
-            $scope.searchPropertiesByLatlng();
+            alert('It appears that you have entered an invalid address. Please check your search criteria');
+            //$scope.searchPropertiesByLatlng();
         }
     }
 
-    getPropertyDetailsByAddress = function (data) {
+  /*  getPropertyDetailsByAddress = function (data) {
 
         SearchFactory.getPropertyDetailsByAddress(data).then(function (resp) {
             if (resp.data.status === 1) {
@@ -31,6 +32,35 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
                 $scope.propertyDetails = resp.data.resp;
             }
             $scope.propertyDetailsJson = JSON.parse($scope.propertyDetails).reverse();
+            console.log($scope.propertyDetailsJson.length);
+        });
+    }*/
+
+    $scope.propertyDetailsJson=[];
+    getPropertyDetailsByAddress = function (data) {
+
+        SearchFactory.getPropertyDetailsByAddress(data).then(function (resp) {
+            if (resp.data.status === 1) {
+                $scope.propertyDetails = resp.data.resp;
+            }
+            //console.log($scope.propertyDetails);
+            var resultData = JSON.parse($scope.propertyDetails).reverse();
+            _.each(resultData, function(data) {
+                    $scope.propertyDetailsJson.push(data);
+                })
+            console.log($scope.propertyDetailsJson.length);
+        })
+    }
+
+    getPropertyDetailsByLatlng = function (data) {
+        SearchFactory.getPropertyDetailsByLatlng(data).then(function (resp) {
+            if (resp.data.status === 1) {
+                $scope.propertyDetails = resp.data.resp;
+            }
+           var resultData = JSON.parse($scope.propertyDetails).reverse();
+            _.each(resultData, function(data) {
+                    $scope.propertyDetailsJson.push(data);
+                })
             console.log($scope.propertyDetailsJson.length);
         });
     }
@@ -64,7 +94,7 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
     $scope.onContactAllHomeowners = function (propertiesDeatils) {
         var propertyIds = _.pluck(propertiesDeatils, 'id');
         alert(propertyIds);
-        SearchFactory.contactToAllHomeOwners(propertyIds).then(function (resp) {
+        SearchFactory.contactToAllHomeOwners(propertiesDeatils).then(function (resp) {
             if (resp.data.status === 1) {
                 alert(resp.data.resp);
             }
@@ -73,6 +103,12 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
 
     // --------- Favorites related functionalities ----- Start-----------
     $scope.showFavorites = function() {
+        SearchFactory.showFavorites(user_id).then(function (resp) {
+            alert(user_id);
+            if (resp.data.status === 1) {
+                alert(resp.data.resp);               
+            }
+        });
     }
 
     $scope.getFavoritesCount = function() {
@@ -94,6 +130,17 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
     }
 
     $scope.removeSavedSearch = function() {        
+    }
+
+    //---------------------- View Property Details ---------Start--------------
+    $scope.viewPropertyDetails = function(propertyId){
+        alert(propertyId);
+        SearchFactory.viewPropertyDetails(propertyId).then(function (resp) {
+            if (resp.data.status === 1) {
+                alert(resp.data.resp);
+                $state.go('property_details');
+            }
+        });
     }
 
     $scope.init();

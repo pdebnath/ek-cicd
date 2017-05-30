@@ -8,14 +8,15 @@
     </div>
     <div class="col-md-4">
         <div class="margin-top-30 margin-bottom-30 text-right">
-            <a href="" class="links uppercase normal line-height-30 margin-right-30" ng-click="showSavedSearches()">Saved searches</a>
-            <a href="" class="links uppercase normal line-height-30" ng-click="showFavorites()">Favorites(6)</a>
+            <a href="" class="links uppercase normal line-height-30 margin-right-30" ng-click="showSavedSearches('user_id')">Saved searches</a>
+            <a href="" class="links uppercase normal line-height-30" ng-click="showFavorites('user_id')">Favorites(6)</a>
         </div>
     </div>
 </div>
+
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-12 col-md-6" style="height:510px; overflow: auto ">
+        <div class="col-sm-12 col-md-6" id="flat-cards" infinite-scroll="searchPropertiesByAddress()">
             <div class="row">
                 <div class="col-xs-12 sub-tabs">
                     <ul class="list-inline uppercase normal">
@@ -26,47 +27,76 @@
                     </ul>
                 </div>
             </div>
-            <div class="">
-                <div class="col-sm-6" ng-repeat="property in propertyDetailsJson">
-                    <div class="searchCard">
-                        <div class="relative">
-                            <img src="images/6154074882_52ec40c20b_o.jpg" class="full-width" />
-                            <div class="price-info uppercase letterSpacing-1 weight500">${{property.id}}<span>(est)</span></div>
-                            <div class="reply-icon"><i class="icon-out"></i></div>
-                            <div class="address-info">
-                                <div class="bold">{{property.street_address}}../{{property.city}},{{property.state}}...</div>
-                                <div>5 bed, 3 bath, 4,810 sq ft</div>
-                            </div>
+
+            <div class="col-sm-6" ng-repeat="property in propertyDetailsJson">
+                <div class="searchCard">
+                    <div class="relative" ng-click="viewPropertyDetails(property.id)">
+                        <img src="images/6154074882_52ec40c20b_o.jpg" class="full-width" />
+                        <div class="price-info uppercase letterSpacing-1 weight500">${{property.id}}<span>(est)</span></div>
+                        <div class="reply-icon"><i class="icon-out"></i></div>
+                        <div class="address-info">
+                            <div class="bold">{{property.street_address}}../{{property.city}},{{property.state}}...</div>
+                            <div>5 bed, 3 bath, 4,810 sq ft</div>
                         </div>
-                        <div class="relative darkGrey padding-15">
-                            <div><i class="icon-view"></i> 23 total Views</div>
-                            <div><i class="icon-chat"></i> 4 people intrested</div>
-                        </div>
+                    </div>
+                    <div class="relative darkGrey padding-15">
+                        <div><i class="icon-view"></i> 23 total Views</div>
+                        <div><i class="icon-chat"></i> 4 people intrested</div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 col-md-6">
-            <div  id="map"></div>
-            <!--Here comes the map-->
+
+        <div class="col-sm-12 col-md-6" id="mapConteroller">
+            <div id="map">
+                <!--Here comes the map-->
+            </div>
+            <nav class="map-nav">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="checkbox black">
+                            <label>
+									  <input type="checkbox" id="expandMap"> &nbsp; Make map larger
+									</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="checkbox black">
+                            <label>
+									  <input type="checkbox" id="mapMoveAround"> &nbsp; When move around the map, update results
+									</label>
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </div>
     </div>
 </div>
-<style>
-       #map {
-        height: 100%;
-        width: 100%;
-       }
-    </style>
 <script>
-        function initMap() {
-        // Create a map object and specify the DOM element for display.
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          scrollwheel: false,
-          zoom: 8
+    $(function () {
+        $.material.init();
+        $('#expandMap').click(function () {
+            if ($(this).is(':checked')) {
+                $('#flat-cards').removeClass('col-md-6').addClass('col-md-4');
+                $('#flat-cards > div.col-sm-6').addClass('col-md-12');
+                $('#mapConteroller').removeClass('col-md-6').addClass('col-md-8');
+            } else {
+                $('#flat-cards').removeClass('col-md-4').addClass('col-md-6');
+                $('#mapConteroller').removeClass('col-md-8').addClass('col-md-6');
+                $('#flat-cards > div.col-sm-6').removeClass('col-md-12');
+            }
         });
-      }
+    });
+
+    function initMap() {
+        var uluru = { lat: -25.363, lng: 131.044 };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: uluru
+        });
+    }
+
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuB_734bE8lJpywQy68pKOJU0nBRLjVd4&callback=initMap"></script>
-    
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuB_734bE8lJpywQy68pKOJU0nBRLjVd4&callback=initMap">
+
+</script>
