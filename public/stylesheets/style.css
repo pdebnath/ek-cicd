@@ -67,3 +67,6 @@ ekprice{background:#FF008A; color:#fff; font-size:24px; float:left; padding:5px;
 .strikethrough {
             text-decoration: line-through;
 }
+.activeButton {
+    color:#009688 ;
+}

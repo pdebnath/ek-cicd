@@ -2,20 +2,26 @@ var eknock=eknock||angular.module('eknock');
     
 eknock.controller('commonChecklistController',['$rootScope','$scope','$state','HomeOwnerFactory','$http','$uibModalInstance','checklistModalFactory','commonDataHolder','$timeout'
 ,function($rootScope,$scope,$state,HomeOwnerFactory,$http,$uibModalInstance,checklistModalFactory,commonDataHolder,$timeout){
-        //closing modal
-        $scope.cancel = function() {
-            $uibModalInstance.dismiss('cancel');
-        }; 
-			
+        
+        
         var currentIndex ;
         var nextIndex;
+        var lastObjectInList ;
         var userRole =  1;
         $scope.checklist = [];
         $scope.disabledList =[];
 		$scope.checkeddList =[];
-		 
+        $scope.propertyObject = commonDataHolder.data;
+
+        /* for closing modal */ 
+        $scope.cancel = function() {
+            $uibModalInstance.dismiss('cancel');
+        }; 
+		
+
+    /* for retrivening checklist based on role */ 
        $scope.getModalCheckList = function(){
-           
+
         var objgetModalCheckList={
                     "userType" : userRole
                 };
@@ -23,25 +29,27 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
         checklistModalFactory.getModalCheckList(objgetModalCheckList).then(function(result){
             $scope.checklist = result.data.resp ;
                 
-                
                 for (var i=0;i<$scope.checklist.length;i++){
                     $scope.checklist[0].checked = true;
                     $scope.checklist[i].checked = false;
                 }
+                lastObjectInList = $scope.checklist[$scope.checklist.length - 1];
+                
 				$timeout(function(){
 								$.material.init();
-						},1000)
-                getSequenceByIndexDealStatusId(6);
+						},1000);
+
+               
+                getSequenceByIndexDealStatusId($scope.propertyObject.property.homeOwnerDealStatusId);
+               
         });
 
       };
- 
-    // loading modal checklist
-    $scope.getModalCheckList();
- 
-   	function getSequenceByIndexDealStatusId  (id){
 
-                    currentIndex = id;
+     /* for enable/disable checklist based on sequenceId */ 
+   	function getSequenceByIndexDealStatusId  (seqId){
+
+                    currentIndex = seqId;
                     nextIndex = currentIndex+1; 
                     
                     if(currentIndex >= 2){
@@ -60,7 +68,7 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
                      $scope.checkeddList.push(i);
                 }
      };
-  	 
+  	/* for handle checklist check/uncheck events  */ 
 	function userEventFunction (item){
 			
              if(!item.checked){
@@ -73,36 +81,41 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
 
 
 				$scope.disabledList =[currentIndex,nextIndex];
-
+                
                if(nextIndex >= 2){
                         $scope.disabledList =[currentIndex,nextIndex];
                 }else{
                          $scope.disabledList =[currentIndex];
                 }
+                
 				$scope.checkeddList =[currentIndex];
 				for(var j=1;j<currentIndex ;j++){
 					$scope.checkeddList.push(j);
 				}
-                 UpdateDealStatus(nextIndex);  
+                 var resultObj = _.find($scope.checklist, function(obj) { return obj.sequenceId == nextIndex });
+                 UpdateDealStatus(resultObj.dealStatusId);  
 			}
 	}else if(item.checked){
             //New
-           
+                
 				if(item.sequenceId != 1){
 				
 				currentIndex = item.sequenceId;
 				nextIndex = currentIndex+1;
 				$scope.disabledList =[currentIndex,nextIndex];
+                
 				$scope.checkeddList =[currentIndex];
                 
 				for(var k=1;k<currentIndex ;k++){
 					$scope.checkeddList.push(k);
 				}
             }
-               UpdateDealStatus(currentIndex);
+                var resultObj = _.find($scope.checklist, function(obj) { return obj.sequenceId == currentIndex });
+                UpdateDealStatus(resultObj.dealStatusId);
 		}
+         
 	};
-
+ /* for retrieving current sequence from checklist based on deal status id  */ 
     $scope.getSequence=function(item){
             var checkedObj = item;
 			var objgetSequence ={
@@ -118,44 +131,23 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
                
        });
 	};
+    /* for updating current deal statusId from checklist based on user event   */ 
     function UpdateDealStatus (id){
        
               var objUpdateDealStatus={
                     "userType" : userRole,
                     "currentDealStatusId" : id,
-                    "buyerId" : 3 , // commonDataHolder.holdData.buyerId
-                    "homeOwnerId" : "1",
-                    "propertyId" : 3
+                    "buyerId" : $scope.propertyObject.property.buyerId , 
+                    "homeOwnerId" : $scope.propertyObject.property.homeOwnerId,
+                    "propertyId" : $scope.propertyObject.address.propertyId,
                 };
-
-        checklistModalFactory.updateCheckList(objUpdateDealStatus).then(function(result){
+                console.log(objUpdateDealStatus)
+         checklistModalFactory.updateCheckList(objUpdateDealStatus).then(function(result){
               
-             	 console.log(result);
+               	 console.log(result);
                
-       }); 
+          }); 
     };
-    
-    $scope.buyerSubmitOffer = function(){
-        if(userRole == 2){
-             var objbuyerSubmitOffer={
-                    "userType" : userRole,
-                    "buyerId" : 300000,
-                    "propertyId" : 3,
-                    "offerAmout" : 3 ,
-                    "downPayment" : 60000,
-                    "financialContigency" : 15,
-                    "timeToClose" : 30,
-                    "inspectionContigency" : 15,
-                    "offerExpirationDate" : '2017-06-20'
-                };
-        checklistModalFactory.buyerSubmitOffer(objbuyerSubmitOffer).then(function(result){
-                
-                    console.log(result);
-                
-        });    
-      }
-   };
-   
-	    
+
 }]);
 

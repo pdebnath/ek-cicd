@@ -8,7 +8,8 @@ eknock.factory('$exceptionHandler', ['$log',function($log) {
   }])
 
 eknock.service('commonDataHolder', ['$log',function ($log) {
-      this.holdData={};
+    
+        this.data ={};
 }]);
 
 

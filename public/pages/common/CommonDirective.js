@@ -11,12 +11,3 @@ eknock.directive('infiniteScroll', function() {
         });
     };
 });
-
-eknock.directive('checklistBgcolor', function() {
-  return {
-    restrict: 'AC',
-    link: function(scope, el, attr) {
-       el.css('color', ( scope.$index + 1 == scope.disabledList[1] ? '#009688': ''));     
-    }
-  }
-})

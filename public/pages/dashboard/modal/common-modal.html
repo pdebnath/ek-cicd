@@ -1,9 +1,9 @@
- <div class="modal-header" >
+<div class="modal-header" ng-init="getModalCheckList()">
    <button type="button" class="close" data-dismiss="modal" ng-click="cancel()" aria-hidden="true">×</button>
-    <ekprice>$180000 <i class="fa fa-info-circle" aria-hidden="true"></i></ekprice>
+    <ekprice> {{propertyObject.property.interestPrice}} (est)<i class="fa fa-info-circle" aria-hidden="true"></i></ekprice>
         <div class="modal-Address">
             <div class="address">
-              <h4>124 Henry St, newyork, NY 10092M <i class="fa fa-share" aria-hidden="true"></i></h4>
+              <h4>{{ propertyObject.address.propertyAddress}} <i class="fa fa-share" aria-hidden="true"></i></h4>
               <i>Last Activity 3 days ago</i>
             </div>
         </div>
@@ -24,7 +24,7 @@
 			  <li ng-repeat="list in checklist track by $index"   >
 				<div class="form-group">
 				  <div class="checkbox">
-					<label> {{$index+1}} &nbsp; <input 
+					<label> <input 
 						  type="checkbox" 
 						  name="mycheckbox" 
 							class=""
@@ -35,7 +35,8 @@
 						  ng-checked='checkeddList.indexOf(list.sequenceId) != -1'
 					
 							/>  
-						<span  ng-class="{strikethrough: list.checked}"  checklist-bgcolor >	{{list.name}}</span></label>
+					{{$index+1}} &nbsp; 
+						<span  ng-class="{strikethrough: list.checked  , activeButton : (disabledList.indexOf(list.sequenceId) != -1 && !list.checked)} "  >	{{list.name}}</span></label>
 				  </div>
 				</div>
 			  </li>
@@ -56,28 +57,61 @@
     <div class="row">
       <div class="col-md-4 col-sm-4 col-xs-4">
         <div class="avatar"><img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%288%29.jpg" class="rounded-circle img-responsive"></div></div>
-        <div class="col-md-8 col-sm-8 col-xs-8"><h4 class="card-title">Anna Doe</h4><i class="in-active-text">Not yet rated</i> &nbsp; <i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
+        <div class="col-md-8 col-sm-8 col-xs-8"><h4 class="card-title">{{propertyObject.property.buyerName}}</h4><i class="in-active-text" ng-if="!propertyObject.property.userRating">Not yet rated</i> 
           <br/><br/>
-          <p class="verify-list"><i class="fa fa-check" aria-hidden="true"></i> Verified identity</p>
-          <p class="verify-list"><i class="fa fa-check" aria-hidden="true"></i> Verified identity</p>
-          <p class="verify-list"><i class="fa fa-check" aria-hidden="true"></i> Verified identity</p>
+           <p class="verify-list" ng-if="propertyObject.property.idVerification"><i class="fa fa-check" aria-hidden="true"></i> Verified identity</p>
+ 					 <p class="verify-list" ng-if="propertyObject.property.financeVerification"><i class="fa fa-check" aria-hidden="true"></i> Verified financials</p>
+ 
+
+             <div ng-if="propertyObject.property.userRating" class="user-rating italic lightGrey size-13">
+                                                <div class="rating star-icon value-{{propertyObject.property.userRating}}">
+                                                    <div class="star-container">
+                                                        <div class="star">
+                                                            <i class="star-empty"></i>
+                                                            <i class="star-half"></i>
+                                                            <i class="star-filled"></i>
+                                                        </div>
+                                                        <div class="star">
+                                                            <i class="star-empty"></i>
+                                                            <i class="star-half"></i>
+                                                            <i class="star-filled"></i>
+                                                        </div>
+                                                        <div class="star">
+                                                            <i class="star-empty"></i>
+                                                            <i class="star-half"></i>
+                                                            <i class="star-filled"></i>
+                                                        </div>
+                                                        <div class="star">
+                                                            <i class="star-empty"></i>
+                                                            <i class="star-half"></i>
+                                                            <i class="star-filled"></i>
+                                                        </div>
+                                                        <div class="star">
+                                                            <i class="star-empty"></i>
+                                                            <i class="star-half"></i>
+                                                            <i class="star-filled"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>       
+                                            </div>
         </div>
         
     </div><br/><br/><br/>
-    <div class="blue-bg padding-20 margin-n20 absolute bottom bottom-rounded full-width">Hi How are you</div>
+    <div class="blue-bg padding-20 margin-n20 absolute bottom bottom-rounded full-width" ng-if="propertyObject.property.contactedViaBulk">Contacted via bulk-request <i class="icon-message-information2 size-14"></i></div>
 </div><br/><br/><br/><br/>
 	<div class="text-uppercase align-center cancel-deal"><a href="#">Cancel Deal</a></div> 
 	<br/><br/>
 	<div class="card padding-20 absolute left-0">
 		<div class="color-blue text-center">Helpful Tips:</div>
 		<ul class="help-tips">
-			<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br/><a href="#">Read more</a></li>
-			<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br/><a href="#">Read more</a></li>
-			<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br/><a href="#">Read more</a></li>
-			<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br/><a href="#">Read more</a></li>
-			<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br/><a href="#">Read more</a></li>
-			<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br/><a href="#">Read more</a></li>
-			<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br/><a href="#">Read more</a></li>
+			<li>
+                Did you know that high resolution listing photos can increase your chances of a sale by up to 110%
+                <br/><a href="#">Read more</a></li>
+			<li>Studies have shown that cleaning up for a house showing and freshening the air inside have correlated with higher chance in sale <br/><a href="#">Read more</a></li>
+			<li>Increase your trust and credibility to the seller by verifying your identity <br/><a href="#">Get verified</a></li>
+			<li>Understand how the EasyKnock process works in detail <br/><a href="#">How it Works</a></li>
+			<li>Trust and safety are the highest priority with EasyKnock. Learn more on our Resource center: <br/><a href="#">Learn about safety</a></li>
+			
 		</ul>
 	<div class="align-center absolute bottom-note"><i>It is a long established fact that a reader will be distracted </i><i class="fa fa-info-circle color-blue" aria-hidden="true"></i></div> 
     </div>
@@ -90,4 +124,3 @@
       <div class="modal-footer">
        
       </div>
- 
