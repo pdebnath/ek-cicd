@@ -19,9 +19,9 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','Hom
     $scope.init=function(){
         
         $scope.claimedProperties=[];
-        $scope.model={userId:2}
+        $scope.model={userId:1}
         HomeOwnerFactory.getClaimedPropertyList($scope.model).then(function(resp){
-            if(resp.data.status===1){
+            if(resp.data.status==1){
                 $scope.claimedProperties=resp.data.resp;
                 if($scope.claimedProperties.length>0){
                     $scope.claimedProperty=$scope.claimedProperties[0];
@@ -41,7 +41,7 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','Hom
             propertyId:$scope.claimedProperty.propertyId
         }
         HomeOwnerFactory.getClaimedPropertyDeals($scope.model).then(function(resp){
-            if(resp.data.status===1){
+            if(resp.data.status==1){
                 $scope.claimedPropertyDeals=resp.data.resp;
                 $scope.devideDeals();
             }
@@ -65,13 +65,14 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','Hom
     $scope.devideDeals=function(){
 
          $scope.groupData=$scope.claimedPropertyDeals;
+         
          /* filter for move Price*/
          if($scope.movePriceCheck){
-          var propertyValue=$scope.groupData[0].propertyValue;
-          propertyValue=propertyValue*$scope.movePrice.value;
-           $scope.groupData= _.filter($scope.groupData,function(obj){
-            return obj.interestPrice >= propertyValue;
-           });
+            var propertyValue=$scope.groupData[0].propertyValue;
+            propertyValue=propertyValue*$scope.movePrice.value;
+             $scope.groupData= _.filter($scope.groupData,function(obj){
+              return obj.interestPrice >= propertyValue;
+             });
          }
 
          /* filter for Bulk Request*/
@@ -85,17 +86,17 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','Hom
          if($scope.verificationCheck){
 
           $scope.groupData= _.filter($scope.groupData,function(obj){
-            if($scope.verification.value===1){
-              return (obj.idVerification === 1 || obj.financeVerification===1);
+            if($scope.verification.value==1){
+              return (obj.idVerification == 1 || obj.financeVerification==1);
             }
-            if($scope.verification.value===2){
-              return (obj.idVerification === 1 && obj.financeVerification===1);
+            if($scope.verification.value==2){
+              return (obj.idVerification == 1 && obj.financeVerification==1);
             }
           });
          }
          /* code for devideing groups*/
          $scope.groupData=_.groupBy($scope.groupData,function(obj){
-            if(obj.dealInfo.dealStatus===undefined){
+            if(obj.dealInfo.dealStatus==undefined){
               obj.dealInfo=JSON.parse(obj.dealInfo);
             }
             return obj.dealInfo.dealStatus;
@@ -110,7 +111,7 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','Hom
           $scope.cPropertyOpen=_.sortBy($scope.cPropertyOpen, function(obj){return obj.modifiedDate;}) 
           $scope.cPropertyClosed=_.sortBy($scope.cPropertyClosed, function(obj){return obj.modifiedDate;});
 
-          if($scope.sortingType.type===2){
+          if($scope.sortingType.type==2){
               $scope.cPropertyOnGoing=$scope.cPropertyOnGoing.reverse();
               $scope.cPropertyOpen=$scope.cPropertyOpen.reverse();
               $scope.cPropertyClosed=$scope.cPropertyClosed.reverse();
