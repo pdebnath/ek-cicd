@@ -1,12 +1,12 @@
 var eknock=eknock||angular.module('eknock');
     
-eknock.controller('commonChecklistController',['$rootScope','$scope','$state','HomeOwnerFactory','$http','$uibModalInstance','checklistModalFactory','commonDataHolder'
-,function($rootScope,$scope,$state,HomeOwnerFactory,$http,$uibModalInstance,checklistModalFactory,commonDataHolder){
+eknock.controller('commonChecklistController',['$rootScope','$scope','$state','HomeOwnerFactory','$http','$uibModalInstance','checklistModalFactory','commonDataHolder','$timeout'
+,function($rootScope,$scope,$state,HomeOwnerFactory,$http,$uibModalInstance,checklistModalFactory,commonDataHolder,$timeout){
         //closing modal
         $scope.cancel = function() {
             $uibModalInstance.dismiss('cancel');
         }; 
-
+			
         var currentIndex ;
         var nextIndex;
         var userRole =  1;
@@ -28,7 +28,9 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
                     $scope.checklist[0].checked = true;
                     $scope.checklist[i].checked = false;
                 }
-
+				$timeout(function(){
+								$.material.init();
+						},1000)
                 getSequenceByIndexDealStatusId(6);
         });
 
