@@ -49,7 +49,11 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','Hom
     }
 
     $scope.redirectToModal = function(obj){
-       commonDataHolder.holdData = obj;
+        var objForStore={
+            "property" : obj,
+            "address" : $scope.claimedProperty
+        }
+       commonDataHolder.data = objForStore;
         var size='lg';
         var modalInstance = $uibModal.open({  
           animation: $scope.animationsEnabled,
