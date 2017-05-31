@@ -12,6 +12,7 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
         $scope.disabledList =[];
 		$scope.checkeddList =[];
         $scope.propertyObject = commonDataHolder.data;
+        
 
         /* for closing modal */ 
         $scope.cancel = function() {
@@ -32,7 +33,11 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
                 for (var i=0;i<$scope.checklist.length;i++){
                     $scope.checklist[0].checked = true;
                     $scope.checklist[i].checked = false;
-                }
+                 }
+                //  var result = _.filter( $scope.checklist, function(someThing) {
+                //        return someThing.name == "Hire concierge (optional)" 
+                //  })
+                //  console.log(result)
                 lastObjectInList = $scope.checklist[$scope.checklist.length - 1];
                 
 				$timeout(function(){
@@ -61,11 +66,11 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
 		            $scope.checkeddList =[currentIndex];
                            
                     
-                    commonDataHolder.holdData={};
+                    commonDataHolder.data={};
                    
-                for (var i=0;i<currentIndex;i++){
-                     $scope.checklist[i].checked=true;
-                     $scope.checkeddList.push(i);
+                for (var l=0;l<currentIndex;l++){
+                     $scope.checklist[l].checked=true;
+                     $scope.checkeddList.push(l);
                 }
      };
   	/* for handle checklist check/uncheck events  */ 
@@ -117,6 +122,7 @@ eknock.controller('commonChecklistController',['$rootScope','$scope','$state','H
 	};
  /* for retrieving current sequence from checklist based on deal status id  */ 
     $scope.getSequence=function(item){
+            
             var checkedObj = item;
 			var objgetSequence ={
 				"currentStatusId" : item.dealStatusId,

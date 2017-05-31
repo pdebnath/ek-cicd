@@ -36,7 +36,10 @@
 					
 							/>  
 					{{$index+1}} &nbsp; 
-						<span  ng-class="{strikethrough: list.checked  , activeButton : (disabledList.indexOf(list.sequenceId) != -1 && !list.checked)} "  >	{{list.name}}</span></label>
+						<span  ng-class="{strikethrough: list.checked  , activeButton : (disabledList.indexOf(list.sequenceId) != -1 && !list.checked)} "  >	{{list.name}}  </span>
+                        <span ng-if="list.name=='Hire concierge (optional)'"   ng-click="getSequence(list)"> Skip </span> 
+                        <span ng-if="list.name=='Hire an attorney (optional)' " ng-click="getSequence(list)">Skip </span>
+                    </label>
 				  </div>
 				</div>
 			  </li>
