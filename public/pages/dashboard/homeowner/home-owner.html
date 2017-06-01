@@ -1,6 +1,6 @@
 <div class="container-fluid shadowBox">
                 <div class="col-md-4">
-                    <div class="margin-top-30 margin-bottom-30">
+                    <div class="margin-top-30 margin-bottom-30 margin-bt-0-sm">
                         <span>Viewing deals for property</span>&nbsp;
                         <span class="inlineBlock">
                             <select class="select-class select-width-class black" ng-model="claimedProperty" ng-init="claimedProperty=claimedProperties[0]"  ng-options = "cProperty.propertyAddress for cProperty in claimedProperties" ng-change="getClaimedPropertyDeals()">
@@ -12,14 +12,14 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                <div class="checkbox black margin-top-30 margin-bottom-30 padding-top-10">
+                <div class="checkbox black margin-top-45 padding-top-10 margin-tp-10-sm">
                       <label padding-top-bottom-5">
-                          <input type="checkbox" checked="true"> You accepted the personal concierge service for this property
+                          <input type="checkbox" checked="true"> You accepted the personal concierge service for this property <i class="icon-message-information2 blue"></i>
                       </label>
                 </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="margin-top-30 margin-bottom-30 padding-top-30 text-right">
+                    <div class="margin-top-25 padding-top-30 text-right align-sm-left padding-tp-0-sm">
                         <a href="" class="links uppercase normal line-height-30">View all claimed properties</a>
                     </div>
                 </div>
@@ -54,23 +54,22 @@
                 <div class="col-md-12 margin-top-30">
                     <div ng-show="cPropertyOnGoing.length<=0">
                         <p class="text-center">You have no ongoing deals at this movement</p>
-                        <div class="text-center"><a class="btn btn-lg btn-raised btn-success btn-radius uppercase">Search for homes<div class="ripple-container"></div></a></div>
                     </div>
 <!-- Cards -->                    
  
-                    <div class="jumboCard white" data-toggle="modal" data-target="#myModal" ng-repeat="cProperty in  cPropertyOnGoing" ng-click="redirectToModal(cProperty)">
+                    <div class="jumboCard white relative" data-toggle="modal" data-target="#myModal" ng-repeat="cProperty in  cPropertyOnGoing" ng-click="redirectToModal(cProperty)">
                          <div class="row">
                             <div  class="col-md-3 border-right">
                                 <div class="relative min-height-198">
                                 <!--<img src="images/6154074882_52ec40c20b_o.jpg" class="full-width"/>-->
                                     <div class="price-info">{{cProperty.interestPrice | currency}}<span>(est)</span> <i class="icon-message-information2 size-14"></i></div>
                                     <div class="user-block-info">
-                                        <div class="user-img margin-left-right-15"><img ng-src="http://d9cc5dno6z2fj.cloudfront.net/user_profiles/snapshot.jpg"/></div>
+                                        <div class="user-img margin-left-right-15"><img ng-src="http://d9cc5dno6z2fj.cloudfront.net/user_profiles/4.jpg"/></div>
                                         <div class="user-right-info">
                                             <div class="uppercase darkBlueColor bold">{{cProperty.buyerName}}</div>
                                             <div ng-if="!cProperty.userRating" class="user-rating italic lightGrey size-13">Not at rated</div> 
                                             <div ng-if="cProperty.userRating" class="user-rating italic lightGrey size-13">
-                                                <div class="rating star-icon value-{{cProperty.userRating}}">
+                                                <div class="rating star-icon value-{{cProperty.userRating}} align-sm-left">
                                                     <div class="star-container">
                                                         <div class="star">
                                                             <i class="star-empty"></i>
@@ -115,7 +114,7 @@
                                     </div>
                                 </div>
                                 <div class="row full-width">
-                                    <div class="col-md-12 margin-top-30">
+                                    <div class="col-md-12 margin-top-30 margin-bottom-70">
                                         <div class="bs-component progress-curve">
                                            <div class="progress">
                                               <div class="progress-bar" ng-style="{ 'width': cProperty.dealInfo.dealProgress + '%' }";"></div><span class="progress-bar-percent">{{cProperty.dealInfo.dealProgress}}%</span>
@@ -128,6 +127,7 @@
                        <div ng-if="cProperty.contactedViaBulk" class="card-owner-info">Contacted via bulk-request <i class="icon-message-information2 size-14"></i></div> 
                     </div>
                     </div>
+
                     <!-- Cards --> 
 
                  <div class="col-md-12 margin-top-30 darkGrey alignSelect size-16">
@@ -136,7 +136,6 @@
                 <div class="col-md-12 margin-top-30">
                     <div ng-show="cPropertyOpen.length<=0">
                         <p class="text-center">You have no Pending deals at this movement</p>
-                        <div class="text-center"><a class="btn btn-lg btn-raised btn-success btn-radius uppercase">Search for homes<div class="ripple-container"></div></a></div>
                     </div>
                     <div class="jumboCard white" ng-repeat="cProperty in  cPropertyOpen">
                         <div class="row">
@@ -189,16 +188,11 @@
                             <div class="col-md-9">
                                 <div class="row full-width margin-top-15">
                                     <div class="col-xs-12">
-                                        <div class="grey">{{cProperty.buyerName}} is intrested in your property with an indicated interest level of {{cProperty.interestPrice | currency}} .Would you like to accept their request? By accepting, you agree to our <a>Terms of Service</a> and that you will sell your house exclusively through EasyKnock.</div>
-                                        
-                                        <div class="checkbox margin-top-15 black">
-                                            <label class="size-14">
-                                                <input type="checkbox"> Include personal concierge service (uncheck to save 0.5% off of fees) <i class="icon-message-information2 blue"></i>
-                                            </label>
+                                        <div class="grey">{{cProperty.buyerName}} is intrested in your property with an indicated interest level of {{cProperty.interestPrice | currency}} .Would you like to accept their request? By accepting, you agree to our <a>Terms of Service</a> and that you will sell your house exclusively through EasyKnock.
                                         </div>
                                         <div>
-                                            <a type="button" class="btn btn-lg btn-raised btn-success btn-radius uppercase">Accept request</a>
-                                            <a href="#" class="darkGrey uppercase">Decline</a>
+                                            <a type="button" class="btn btn-lg btn-raised pinkBg btn-radius uppercase" ng-click="acceptOrDeclineRequest(cProperty.dealId,1)">Accept request</a>
+                                            &nbsp; &nbsp; &nbsp;<span  ng-click="acceptOrDeclineRequest(cProperty.dealId,0)" class="darkGrey links uppercase">Decline</span>
                                         </div>
                                     </div>
 
@@ -211,7 +205,6 @@
 <!---->
                 
                 <div style="min-height:200px"></div>
-                <div class="line"></div>
                 <div class="col-md-12 margin-top-30 darkGrey alignSelect size-16">
                     <label>Completed Deals ({{cPropertyClosed.length}})</label>
                 </div>
@@ -219,7 +212,7 @@
                     <div ng-show="cPropertyClosed.length<=0">
                         <p class="text-center">You have no Completed deals</p>
                     </div>
-                    <div class="jumboCard white" data-toggle="modal" data-target="#myModal" ng-repeat="cProperty in  cPropertyClosed">
+                    <div class="jumboCard white relative" data-toggle="modal" data-target="#myModal" ng-repeat="cProperty in  cPropertyClosed">
                         <div class="row">
                             <div  class="col-md-3 border-right">
                                 <div class="relative min-height-198">
@@ -276,7 +269,7 @@
                                     </div>
                                 </div>
                                 <div class="row full-width">
-                                    <div class="col-md-12 margin-top-30">
+                                    <div class="col-md-12 margin-top-30 margin-bottom-70">
                                         <div class="bs-component progress-curve">
                                            <div class="progress">
                                               <div class="progress-bar" ng-style="{ 'width': cProperty.dealInfo.dealProgress + '%' }";"></div><span class="progress-bar-percent">{{cProperty.dealInfo.dealProgress}}%</span>

@@ -27,7 +27,22 @@ var logger = require('./../../config/logger');
               logger.error('Exception while fetching claimed property deals :'+err);
               return res.json({status:0,resp:'Exception while fetching claimed property deals :'+err}) 
             }
-            var resp1='[{"buyerName":"EasyKnock Buyer","dealStatus":1,"dealProgress":10,"interestPrice":123000,"userRating":2,"contactedViaBulk":1,"idVerification":1,"financeVerification":1,"dealPr":1},{"buyerName":"EasyKnock Buyer1","dealStatus":8,"dealProgress":80,"interestPrice":12300,"userRating":3,"contactedViaBulk":1,"idVerification":1,"financeVerification":1,"dealPr":2},{"buyerName":"EasyKnock Buyer2","dealStatus":5,"dealProgress":50,"interestPrice":1200,"userRating":1,"contactedViaBulk":1,"idVerification":1,"financeVerification":1,"dealPr":3}]';
+            return  res.json({status:1,resp:rows[0]});
+          });
+        })
+  });
+   /* Below code is used to fetch deal conversions for particular property)*/
+  router.post('/dealStatusUpdate', function(req, res) {
+        excuteQuery(function(conn,err){
+          logger.info('dealStatusUpdate POST Request Started');
+          logger.info('call sp_homeowner_update_deal_status(%s,%s,%s)',req.body.userType,req.body.currentDealStatusId,req.body.propertyDealId);
+          conn.query('call sp_homeowner_update_deal_status(?,?,?);',[req.body.userType,req.body.currentDealStatusId,req.body.propertyDealId],function(err,rows){
+            conn.release();
+            if(err){
+              logger.error('Exception while updating deal status :'+err);
+              return res.json({status:0,resp:'Exception while fetching claimed property deals :'+err}) 
+            }
+             logger.info('dealStatusUpdate POST Request Ended');
             return  res.json({status:1,resp:rows[0]});
           });
         })

@@ -2,8 +2,11 @@ var eknock=eknock||angular.module('eknock');
 eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','HomeOwnerFactory','$uibModal','commonDataHolder',function($rootScope,$scope,$state,_,HomeOwnerFactory,$uibModal,commonDataHolder){
     /* init Data*/
     $scope.sortingArray = [
-                            {type: 1, value: 'Newest'},
-                            {type: 2, value: 'Old'}
+                            {type: 1, value: 'Newest first'},
+                            {type: 2, value: 'Oldest first'},
+                            {type: 3, value: 'Progress of the deal '},
+                            {type: 4, value: 'Offer/level of interest price '}
+                             
                           ];
     $scope.movePriceArray=[
                             {value: 0.9, percentage: '10%'},
@@ -48,6 +51,19 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','Hom
         })
     }
 
+    /* This function is used accept or decline Buyer Request*/
+    $scope.acceptOrDeclineRequest=function(dealId,status){
+       $scope.model={
+        userType:1,
+        currentDealStatusId:status,
+        propertyDealId:dealId
+      }
+       HomeOwnerFactory.acceptOrDeclineRequest($scope.model).then(function(resp){
+            if(resp.data.status==1){
+              $scope.getClaimedPropertyDeals();
+            }
+        })
+    }
     $scope.redirectToModal = function(obj){
         var objForStore={
             "property" : obj,
@@ -69,7 +85,7 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','Hom
     $scope.devideDeals=function(){
 
          $scope.groupData=$scope.claimedPropertyDeals;
-         
+
          /* filter for move Price*/
          if($scope.movePriceCheck){
             var propertyValue=$scope.groupData[0].propertyValue;
@@ -103,7 +119,7 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','Hom
             if(obj.dealInfo.dealStatus==undefined){
               obj.dealInfo=JSON.parse(obj.dealInfo);
             }
-            return obj.dealInfo.dealStatus;
+            return obj.dealStatus;
           });
 
           $scope.cPropertyOpen=$scope.groupData.open;
@@ -111,14 +127,25 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','Hom
           $scope.cPropertyClosed=$scope.groupData.closed;
 
          /* Sorting funvtionality*/
-          $scope.cPropertyOnGoing=_.sortBy($scope.cPropertyOnGoing, function(obj){return obj.modifiedDate;}); 
-          $scope.cPropertyOpen=_.sortBy($scope.cPropertyOpen, function(obj){return obj.modifiedDate;}) 
-          $scope.cPropertyClosed=_.sortBy($scope.cPropertyClosed, function(obj){return obj.modifiedDate;});
-
+          if($scope.sortingType.type==1){
+            $scope.cPropertyOnGoing=_.sortBy($scope.cPropertyOnGoing, function(obj){return obj.modifiedDate;}); 
+            $scope.cPropertyOpen=_.sortBy($scope.cPropertyOpen, function(obj){return obj.modifiedDate;}); 
+            $scope.cPropertyClosed=_.sortBy($scope.cPropertyClosed, function(obj){return obj.modifiedDate;});
+          }
           if($scope.sortingType.type==2){
-              $scope.cPropertyOnGoing=$scope.cPropertyOnGoing.reverse();
-              $scope.cPropertyOpen=$scope.cPropertyOpen.reverse();
-              $scope.cPropertyClosed=$scope.cPropertyClosed.reverse();
+              $scope.cPropertyOnGoing=_.sortBy($scope.cPropertyOnGoing, function(obj){return obj.modifiedDate;}).reverse();
+              $scope.cPropertyOpen=_.sortBy($scope.cPropertyOpen, function(obj){return obj.modifiedDate;}).reverse();
+              $scope.cPropertyClosed=_.sortBy($scope.cPropertyClosed, function(obj){return obj.modifiedDate;}).reverse();
+          }
+          if($scope.sortingType.type==3){
+            $scope.cPropertyOnGoing=_.sortBy($scope.cPropertyOnGoing, function(obj){return obj.dealInfo.dealProgress;}).reverse();; 
+            $scope.cPropertyOpen=_.sortBy($scope.cPropertyOpen, function(obj){return obj.dealInfo.dealProgress;}).reverse(); 
+            $scope.cPropertyClosed=_.sortBy($scope.cPropertyClosed, function(obj){return obj.dealInfo.dealProgress;}).reverse();
+          }
+          if($scope.sortingType.type==4){
+            $scope.cPropertyOnGoing=_.sortBy($scope.cPropertyOnGoing, function(obj){return obj.interestPrice;}).reverse(); 
+            $scope.cPropertyOpen=_.sortBy($scope.cPropertyOpen, function(obj){return obj.interestPrice;}).reverse(); 
+            $scope.cPropertyClosed=_.sortBy($scope.cPropertyClosed, function(obj){return obj.interestPrice;}).reverse();
           }
            console.log($scope.groupData)
     }

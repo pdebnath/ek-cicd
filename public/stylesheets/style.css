@@ -1,4 +1,7 @@
 
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
 a {
   color: #00B7FF;
 }
@@ -66,3 +69,52 @@ ekprice{background:#FF008A; color:#fff; font-size:24px; float:left; padding:5px;
 .activeButton {
     color:#009688 ;
 }
+=======
+.margin-top-25{margin-top:25px;}
+.margin-top-40{margin-top:40px;}
+.margin-top-45{margin-top:45px;}
+.margin-top-50{margin-top:50px;}
+.margin-bottom-70{margin-bottom:70px;}
+.rating{justify-content:left;}
+@media (max-width: 768px) {
+	.eKnock .align-sm-center{
+		text-align: center;
+	}
+	.eKnock .align-sm-left{
+		text-align: left;
+	}
+	.eKnock .align-sm-right{
+		text-align: right;
+	}
+	.eKnock .margin-tp-0-sm{
+		margin-top: 0;
+	}
+	.eKnock .margin-bt-0-sm{
+		margin-bottom: 0;
+	}
+	.eKnock .margin-tp-10-sm{
+		margin-top: 10px;
+	}
+	.eKnock .margin-bt-10-sm{
+		margin-bottom: 10px;
+	}
+	.eKnock .padding-tp-0-sm{
+		padding-top: 0;
+	}
+	.eKnock .padding-bt-0-sm{
+		padding-bottom: 0;
+	}
+	.eKnock .padding-tp-10-sm{
+		padding-top: 10px;
+	}
+	.eKnock .padding-bt-10-sm{
+		padding-bottom: 10px;
+	}
+	.eKnock .jumboCard{padding:10px;}
+	.eKnock .min-height-198{
+		min-height: 140px;
+	}
+}
+
+
+

@@ -22,5 +22,16 @@ eknock.factory('HomeOwnerFactory',['$http','$log','$q',function($http,$log,$q){
 			  });
 			return deferred.promise;
 	   	},
+	   	acceptOrDeclineRequest:function(model){
+			var deferred=$q.defer();
+			$http({url:'/api/homeowner/dashboard/dealStatusUpdate/',data:model,method:'post',headers: {'Content-Type': 'application/json'}})
+			.then(function onSuccess(resp) {
+			   	deferred.resolve(resp);
+			  },function onError(error) {
+			  	deferred.reject('Error While fetching  ClaimedProperties deals');
+			  });
+			return deferred.promise;
+	   	},
+	   	
         }
 }])

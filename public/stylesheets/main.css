@@ -3,6 +3,7 @@ body.eKnock{
     font-family: 'Rubik', sans-serif;
     font-weight: normal;
     color: #909090;
+    background: #fff;
 }
 
 .eKnock .blue{color: #1D2FA4}
@@ -23,7 +24,7 @@ body.eKnock{
 
 .eKnock .darkBlue{ background:#000041}
 .eKnock .whiteBg{background: #FCFCFC}
-.eKnock .pinkBg{background: #FF008A}
+.eKnock .pinkBg{background: #FF008A; color:#fff;}
 .eKnock .blueBg{color: #1D2FA4}
 .eKnock .checkbox.black label{color: #020202; }
 
@@ -65,6 +66,7 @@ body.eKnock{
 }
 .eKnock .select-width-class{
     width: 350px;
+    margin: 5px 0;
 }
 .eKnock .dropdownjs > ul > li{
     color:#000000;
@@ -379,8 +381,9 @@ body.eKnock{
 .eKnock .shadowBox{
     box-shadow: 0px 2px 10px #909090;
 }
-.eKnock a.links{
+.eKnock a.links,.eKnock .links{
     color:#1D2FA4;
+    cursor:pointer;
     text-decoration: none;
 }
 .eKnock .user-block-info{
