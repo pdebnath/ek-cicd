@@ -3,6 +3,7 @@ eknock.controller('ParentController', ['$rootScope', '$scope', '$state', functio
 
     $scope.searchPropertiesByAddress = function () {
         $scope.latlng=null;
+        $scope.searchData = $scope.searchText;
         $scope.$broadcast('searchPropertiesByAddressEvent', $scope.searchText);
         $state.go('search');
     };
@@ -15,8 +16,13 @@ eknock.controller('ParentController', ['$rootScope', '$scope', '$state', functio
         }
     };
 
+    // $scope.$on('searchDataEvent', function (event, data) {
+    //     $scope.searchData = data;
+    // });
+
     getCurrentLocation = function (position) {
         $scope.searchText=null;
+        $scope.searchData = 'IN MY LOCATION';
         $scope.latlng= position.coords.latitude + "," + position.coords.longitude;
         $scope.$broadcast('searchPropertiesByLatlngEvent', $scope.latlng);
         $state.go('search');

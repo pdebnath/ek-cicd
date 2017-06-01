@@ -16,13 +16,12 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-12 col-md-6" id="flat-cards" infinite-scroll="searchPropertiesByAddress()">
+        <div class="col-sm-12 col-md-6" id="flat-cards" infinite-scroll="getPropertyDetailsinfiniteScroll()">
             <div class="row">
                 <div class="col-xs-12 sub-tabs">
                     <ul class="list-inline uppercase normal">
-                        <li class="active" ng-click="propertySortBy('id')">Newest</li>
-                        <li ng-click="propertySortBy('apn')">Price</li>
-                        <li ng-click="propertySortBy('')">Bedrooms</li>
+                        <li class="active" ng-click="propertySortBy('id')">Price</li>
+                        <li ng-click="propertySortBy('apn')">Bedrooms</li>
                         <li ng-click="propertySortBy('')">Squarefeet</li>
                     </ul>
                 </div>
@@ -30,7 +29,7 @@
 
             <div class="col-sm-6" ng-repeat="property in propertyDetailsJson">
                 <div class="searchCard">
-                    <div class="relative" ng-click="viewPropertyDetails(property.id)">
+                    <div class="relative" ng-click="viewPropertyDetails(property)">
                         <img src="images/6154074882_52ec40c20b_o.jpg" class="full-width" />
                         <div class="price-info uppercase letterSpacing-1 weight500">${{property.id}}<span>(est)</span></div>
                         <div class="reply-icon"><i class="icon-out"></i></div>
@@ -76,6 +75,7 @@
     $(function () {
         $.material.init();
         $('#expandMap').click(function () {
+            alert()
             if ($(this).is(':checked')) {
                 $('#flat-cards').removeClass('col-md-6').addClass('col-md-4');
                 $('#flat-cards > div.col-sm-6').addClass('col-md-12');

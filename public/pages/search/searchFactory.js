@@ -25,19 +25,22 @@ eknock.factory('SearchFactory', ['$http', '$log', '$q', function ($http, $log, $
 		},
 
 		contactToAllHomeOwners: function (model) {
+			alert(model);
 			var deferred = $q.defer();
-			$http({ url: '/api/search/contactToAllHomeOwners/', model, method: 'post', headers: { 'Content-Type': 'application/json' } })
+			var propertiesData = {"key":model};
+			$http({ url: '/api/search/contactToAllHomeOwners/', data:propertiesData, method: 'post', headers: { 'Content-Type': 'application/json' } })
 				.then(function onSuccess(resp) {
 					deferred.resolve(resp);
 				}, function onError(error) {
-					deferred.reject('Error While fetching  Contact to all home owners deals');
+					deferred.reject('Error While Contact to all home owners deals');
 				});
 			return deferred.promise;
 		},
 
 		viewPropertyDetails: function (model) {
 			var deferred = $q.defer();
-			$http({ url: '/api/search/viewPropertyDetails/', model, method: 'post', headers: { 'Content-Type': 'application/json' } })
+			var propertyData = {"key":model};
+			$http({ url: '/api/search/viewPropertyDetails/', data:propertyData, method: 'post', headers: { 'Content-Type': 'application/json' } })
 				.then(function onSuccess(resp) {
 					deferred.resolve(resp);
 				}, function onError(error) {

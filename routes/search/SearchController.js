@@ -28,16 +28,33 @@ searchRouter.post('/getPropertiesDetailsByLatlng', function (req, res) {
 
 /* Below code is used for contact to all property/home owners)*/
 searchRouter.post('/contactToAllHomeOwners', function (req, res) {
-    console.log(req.body);
-    return res.json({ status: 1, resp: 'Success' });
+    var propertyData = req.body.key;
+    propertyData.forEach(function (element) {
+        logger.info(element.id);
+        excuteQuery(function (conn, err) {
+            conn.query('call sp_contact_to_homeowner(?,?,?,?,?,?);', [element.id, element.address, 10000, 2, 9999, 1], function (err, rows) {
+                conn.release();
+                if (err) {
+                    logger.error('Exception while contact to homeowner :' + err);
+                }
+            });
+        })
+    });
 });
 
 /* Below code is used for contact to all property/home owners)*/
 searchRouter.post('/viewPropertyDetails', function (req, res) {
-    console.log(req.body);
-    // Code to update the count in viewed property
-    // Code to Fetch the Property Details
-    return res.json({ status: 1, resp: 'Success' });
+    var propertyData = req.body.key;    
+        logger.info(propertyData.id);
+        excuteQuery(function (conn, err) {
+            conn.query('call sp_insert_view_property(?,?,?,?);', [propertyData.id, propertyData.address, 10000, 2], function (err, rows) {
+                conn.release();
+                if (err) {
+                    logger.error('Exception while inserting view property :' + err);
+                }
+                return  res.json({status:1,resp:''});
+            });
+        })
 });
 
 module.exports = searchRouter;

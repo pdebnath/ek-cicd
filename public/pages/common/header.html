@@ -29,13 +29,17 @@
             </div>
             <div class="row">
                 <div class="col-md-12 white alignSelect uppercase margin-top-bottom-60 headerSelect">
-                    <h2><span class="bold">Dashboard As a</span>
+                    <h2 ng-if="'homeowner' | includedByState"><span class="bold">Dashboard As a</span>
                       <select class="select">
                           <option selected>Buyer</option>
                           <option>Seller</option>
                       </select>
                     </h2>
+                    <h2><span class="bold">Homes in {{searchData}}</span>
+                      
+                    </h2>
                 </div>
             </div>
         </div>
     </header>
+  
