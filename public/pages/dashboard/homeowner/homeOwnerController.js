@@ -52,10 +52,10 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','Hom
     }
 
     /* This function is used accept or decline Buyer Request*/
-    $scope.acceptOrDeclineRequest=function(dealId,status){
+    $scope.acceptOrDeclineRequest=function(status,statusId,dealId){
        $scope.model={
-        userType:1,
-        currentDealStatusId:status,
+        dealStatus:status,
+        currentDealStatusId:statusId,
         propertyDealId:dealId
       }
        HomeOwnerFactory.acceptOrDeclineRequest($scope.model).then(function(resp){
@@ -116,7 +116,7 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','Hom
          }
          /* code for devideing groups*/
          $scope.groupData=_.groupBy($scope.groupData,function(obj){
-            if(obj.dealInfo.dealStatus==undefined){
+            if(obj.dealInfo.dealProgress==undefined){
               obj.dealInfo=JSON.parse(obj.dealInfo);
             }
             return obj.dealStatus;

@@ -115,6 +115,6 @@ ekprice{background:#FF008A; color:#fff; font-size:24px; float:left; padding:5px;
 		min-height: 140px;
 	}
 }
-
+.jumboCard:hover .price-info{opacity: 1;}
 
 
