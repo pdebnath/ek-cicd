@@ -35,7 +35,8 @@ eknock.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider,
 	}).state('property_details', {
 		url: '/view_property',
 		templateUrl: 'pages/property_details/property_details.html',
-		controller: 'PropertyController'
+		controller: 'PropertyController',
+		params: {property: null}
 	})
 
 	$urlRouterProvider.otherwise('/homeowner');

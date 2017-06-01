@@ -22,7 +22,7 @@ eknock.controller('ParentController', ['$rootScope', '$scope', '$state', functio
 
     getCurrentLocation = function (position) {
         $scope.searchText=null;
-        $scope.searchData = 'IN MY LOCATION';
+        $scope.searchData = 'MY LOCATION';
         $scope.latlng= position.coords.latitude + "," + position.coords.longitude;
         $scope.$broadcast('searchPropertiesByLatlngEvent', $scope.latlng);
         $state.go('search');

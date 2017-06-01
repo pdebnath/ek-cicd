@@ -1,5 +1,5 @@
 var eknock = eknock || angular.module('eknock');
-eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'SearchFactory', '_', function ($rootScope, $scope, $state, SearchFactory, _) {
+eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'SearchFactory', '_','$uibModal', function ($rootScope, $scope, $state, SearchFactory, _, $uibModal) {
 
     $scope.init = function () {
         if ($scope.searchText) {
@@ -41,7 +41,7 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
                 console.log($scope.propertyDetailsJson.length);
             });
         } else {
-            alert('It appears that you have entered an invalid address. Please check your search criteria');            
+            alert('It appears that you have entered an invalid address. Please check your search criteria');
         }
     }
 
@@ -139,23 +139,71 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
     }
 
     // --------- Favorites related functionalities ----- Start-----------
+    $scope.userFavoritesObjArray = [];
     $scope.showFavorites = function () {
-        SearchFactory.showFavorites(user_id).then(function (resp) {
-            alert(user_id);
-            if (resp.data.status === 1) {
-                alert(resp.data.resp);
+        var size = 'md';
+        var modalInstance = $uibModal.open({
+            animation: $scope.animationsEnabled,
+            templateUrl: 'pages/search/favorite-modal.html',
+            scope: $scope,
+            size: size
+        });
+        var objgetFavorites = {
+            "userId": 4
+        }
+        SearchFactory.getFavorites(objgetFavorites).then(function (data) {
+            $scope.userFavoritesObjArray = data.data.resp;
+            for (var i = 0; i < $scope.userFavoritesObjArray.length; i++) {
+                $scope.userFavoritesObjArray[i].checked = true;
             }
+            console.log($scope.userFavoritesObjArray)
         });
     }
 
     $scope.getFavoritesCount = function () {
-    }
+        var objgetFavoritesCount = {
+            "userId": 4
+        }
+        SearchFactory.getFavoritesCount(objgetFavoritesCount).then(function (data) {
+            $scope.favoritePropertiesCount = data.data.resp[0].propFavoritesCount;
+        });
+    };
+    $scope.getFavoritesCount();
 
-    $scope.saveFavorite = function () {
-    }
+    $scope.saveFavorite = function (data) {
+        var objsaveFavorite = {
+            "userId": 4,
+            "quantariumId": data.id,
+            "address": data.address,
+            "propertyValue": 125000,
+            "mode": 0,
+        }
+        SearchFactory.saveFavorites(objsaveFavorite).then(function (data) {
+            console.log(data)
+            $scope.favoritePropertiesCount = $scope.favoritePropertiesCount + 1;
+            //   $scope.getFavoritesCount();
+        });
+    };
 
-    $scope.removeFavorite = function () {
+    $scope.removeFavorite = function (obj) {
+        console.log(obj)
+        var objremoveFavorite = {
+            "userId": 4,
+            "mode": 1,
+            "propertyId": obj.propertyId
+        }
+
+        SearchFactory.removeFavorite(objremoveFavorite).then(function (data) {
+            if (data.data.status == 1) {
+                $scope.favoritePropertiesCount = $scope.favoritePropertiesCount - 1;
+                $scope.userFavoritesObjArray = _.without($scope.userFavoritesObjArray, _.findWhere($scope.userFavoritesObjArray, {
+                    propertyId: obj.propertyId
+                }));
+            }
+
+        });
     }
+    // --------- Favorites related functionalities ----- End-----------
     // --------- Saved Search related functionalities ----- Start-----------
     $scope.showSavedSearches = function () {
     }
@@ -171,11 +219,10 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
 
     //---------------------- View Property Details ---------Start--------------
     $scope.viewPropertyDetails = function (property) {
-        alert(property);
         SearchFactory.viewPropertyDetails(property).then(function (resp) {
             if (resp.data.status === 1) {
                 alert(resp.data.resp);
-                $state.go('property_details');
+                $state.go('property_details', { 'property': property });
             }
         });
     }

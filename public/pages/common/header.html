@@ -35,7 +35,7 @@
                           <option>Seller</option>
                       </select>
                     </h2>
-                    <h2><span class="bold">Homes in {{searchData}}</span>
+                    <h2 ng-if="'search' | includedByState"><span class="bold">Homes in {{searchData}}</span>
                       
                     </h2>
                 </div>

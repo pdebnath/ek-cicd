@@ -9,7 +9,7 @@
     <div class="col-md-4">
         <div class="margin-top-30 margin-bottom-30 text-right">
             <a href="" class="links uppercase normal line-height-30 margin-right-30" ng-click="showSavedSearches('user_id')">Saved searches</a>
-            <a href="" class="links uppercase normal line-height-30" ng-click="showFavorites('user_id')">Favorites(6)</a>
+            <a href="" class="links uppercase normal line-height-30" ng-click="showFavorites('user_id')">Favorites <span ng-if="favoritePropertiesCount">({{favoritePropertiesCount}})</span></a>
         </div>
     </div>
 </div>
@@ -41,6 +41,8 @@
                     <div class="relative darkGrey padding-15">
                         <div><i class="icon-view"></i> 23 total Views</div>
                         <div><i class="icon-chat"></i> 4 people intrested</div>
+                        <div class="favIcon">
+                            <input type="checkbox" ng-model="property.checked" ng-click="saveFavorite(property)" ng-value='property.id' /></div>
                     </div>
                 </div>
             </div>
@@ -54,16 +56,14 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="checkbox black">
-                            <label>
-									  <input type="checkbox" id="expandMap"> &nbsp; Make map larger
-									</label>
+                            <label><input type="checkbox" id="expandMap"> &nbsp; Make map larger</label>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="checkbox black">
                             <label>
-									  <input type="checkbox" id="mapMoveAround"> &nbsp; When move around the map, update results
-									</label>
+								<input type="checkbox" id="mapMoveAround"> &nbsp; When move around the map, update results
+							</label>
                         </div>
                     </div>
                 </div>

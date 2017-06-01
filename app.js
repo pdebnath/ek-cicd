@@ -10,6 +10,7 @@ var index = require('./routes/index');
 var homeOwnerDashBoardController = require('./routes/dashborad/HomeOwnerDashBoardController');
 var checklistModal = require('./routes/dashborad/CommonChecklistModal');
 var searchController = require('./routes/search/SearchController');
+var propertyController = require('./routes/property/PropertyController');
 
 var app = express();
 // view engine setup
@@ -31,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/homeowner/dashboard', homeOwnerDashBoardController);
 app.use('/api/common/dashboard/checklist', checklistModal);
 app.use('/api/search/', searchController);
+app.use('/api/property_view/', propertyController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
