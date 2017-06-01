@@ -7,7 +7,7 @@ var logger = require('./../../config/logger');
   router.post('/getClaimedProperties', function(req, res) {
         excuteQuery(function(conn,err){
           logger.info(req.body.userId);
-          conn.query('call sp_select_claimed_properties(?);',[req.body.userId],function(err,rows){
+          conn.query('call sp_select_homeowner_claimed_properties(?);',[req.body.userId],function(err,rows){
             conn.release();
             if(err){
               logger.error('Exception while fetching claimed properties :'+err);
@@ -35,8 +35,8 @@ var logger = require('./../../config/logger');
   router.post('/dealStatusUpdate', function(req, res) {
         excuteQuery(function(conn,err){
           logger.info('dealStatusUpdate POST Request Started');
-          logger.info('call sp_homeowner_update_deal_status(%s,%s,%s)',req.body.userType,req.body.currentDealStatusId,req.body.propertyDealId);
-          conn.query('call sp_homeowner_update_deal_status(?,?,?);',[req.body.userType,req.body.currentDealStatusId,req.body.propertyDealId],function(err,rows){
+          logger.info('call sp_update_homeowner_deal_status(%s,%s,%s)',req.body.dealStatus,req.body.currentDealStatusId,req.body.propertyDealId);
+          conn.query('call sp_update_homeowner_deal_status(?,?,?);',[req.body.dealStatus,req.body.currentDealStatusId,req.body.propertyDealId],function(err,rows){
             conn.release();
             if(err){
               logger.error('Exception while updating deal status :'+err);
