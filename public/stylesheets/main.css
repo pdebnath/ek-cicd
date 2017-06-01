@@ -26,7 +26,8 @@ body.eKnock{
 .eKnock .whiteBg{background: #FCFCFC}
 .eKnock .pinkBg{background: #FF008A; color:#fff;}
 .eKnock .blueBg{color: #1D2FA4}
-.eKnock .checkbox.black label{color: #020202; }
+.eKnock .tealBg{background: #19C7B8}
+.eKnock .checkbox.black label{color: #020202; font-size: 14px;font-weight:400;}
 
 .eKnock .disable, disable{
     opacity:0.3;
@@ -66,6 +67,7 @@ body.eKnock{
 }
 .eKnock .select-width-class{
     width: 350px;
+    max-width:100%;
     margin: 5px 0;
 }
 .eKnock .dropdownjs > ul > li{
@@ -164,6 +166,10 @@ body.eKnock{
     margin-left: 20px;
     margin-right: 20px;
 }
+.eKnock .margin-top-bottom-15{
+    margin-top:15px;
+    margin-bottom:15px;
+}
 .eKnock .margin-top-bottom-30{
     margin-top:30px;
     margin-bottom:30px;
@@ -190,8 +196,14 @@ body.eKnock{
 .eKnock .margin-top-20{
     margin-top: 20px;
 }
+.eKnock .margin-top-25{
+    margin-top: 25px;
+}
 .eKnock .margin-top-30{
     margin-top: 30px;
+}
+.eKnock .margin-top-40{
+    margin-top: 40px;
 }
 .eKnock .margin-bottom-30{
     margin-bottom: 30px;
@@ -295,6 +307,7 @@ body.eKnock{
           box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 2px;
   border: 0;
+  position: relative;
 }
 .eKnock .searchCard {
   background-color: #fff;
@@ -342,9 +355,9 @@ body.eKnock{
 }
 .eKnock .card-owner-info{
     position: absolute;
-    right: 15px;
+    right: 0;
     background: #000041;
-    bottom: 20px;
+    bottom: 0;
     padding: 5px 10px;
     border-radius: 2px;
 }
@@ -376,7 +389,7 @@ body.eKnock{
     position: absolute;
     top: -25px;
     margin-left: -25px;
-    color: #009688;
+    color: #19C7B8;
 }
 .eKnock .shadowBox{
     box-shadow: 0px 2px 10px #909090;
@@ -435,14 +448,38 @@ body.eKnock{
     border-bottom: 5px solid #009688;
     color: #009688;
 }
+.eKnock .star-container{
+    margin-left:0px;
+    margin-right:0px;
+}
+/* Bootstrap Customized colors */
+.eKnock .progress .progress-bar, 
+.eKnock .progress .progress-bar.progress-bar-default{
+    background-color:#19C7B8;
+    background-image: none;
+}
 
+.eKnock .checkbox input[type=checkbox]:checked+.checkbox-material .check, 
+.eKnock label.checkbox-inline input[type=checkbox]:checked+.checkbox-material .check{
+    color:#19C7B8;
+    border-color:#19C7B8;
+}
+.eKnock .checkbox input[type=checkbox]:checked+.checkbox-material .check:before, 
+.eKnock  label.checkbox-inline input[type=checkbox]:checked+.checkbox-material .check:before{
+    color:#19C7B8;
+}
 
 @media (min-width: 1300px){
     .modal .modal-dialog.modal-lg {
         width: 1240px;
     }
 }
+@media ( max-width: 1300px){
+    .change-in-sm.margin-top-40{
+        margin-top:0px;
+    }
 
+}
 /** added by naresh on may 30 **/
 #map{position:relative; height:630px; width:100%; z-index:-1;}
 .map-nav{width:60%; position:absolute; left:0; bottom:0; display:none; background:#fff; padding:10px;}

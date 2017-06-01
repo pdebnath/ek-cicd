@@ -20,7 +20,9 @@ eknock.controller('HomeOwnerController',['$rootScope','$scope','$state','_','Hom
 
    /* this function fetch claimed properties*/
     $scope.init=function(){
-        
+        $('[data-toggle="popover"]').popover({
+          trigger: "hover"
+        });
         $scope.claimedProperties=[];
         $scope.model={userId:1}
         HomeOwnerFactory.getClaimedPropertyList($scope.model).then(function(resp){
