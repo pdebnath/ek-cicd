@@ -1,0 +1,45 @@
+<header class="darkBlue">
+        <div class="container padding-top-30">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="logo"><img src="images/wt-w.png" /></div>
+                </div>
+                <div class="col-md-8 text-right margin-top-20">
+                    <span class="header-right-cont">
+                        <span class="input-group inputSearch col-md-12 whiteBg">
+                            <span class="relative block">
+                                <input type="text" class="search-query form-control" ng-model="$parent.searchText" 
+                                placeholder="Enter an address, city,  zip code or neighborhood" />
+                                <span class="icon-gps bold gps-align darkGrey" ng-click="searchPropertiesByLatlng()"></span>
+                            </span>
+                            <span class="input-group-btn padding-0">
+                                <button class="btn pinkBg white" type="button" ng-click="searchPropertiesByAddress()">
+                                    <span class="icon-search-find bold white"></span> 
+                                    <span class="white letterSpacing-2">&nbsp;Search</span>
+                                </button>
+                            </span>
+                        </span>
+                    </span>
+                    <span class="icon-user-profile size-30 margin-top-8 margin-left-20 teal pull-right"></span>
+                    <span class="icon-bell size-30 margin-top-8 margin-left-20 teal pull-right relative">
+                        <span class="notify">0</span>
+                    </span>
+                    <span class="icon-chat size-35 margin-top-8 margin-left-20 teal pull-right"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 white alignSelect uppercase margin-top-bottom-60 headerSelect">
+                    <h2 ng-if="'homeowner' | includedByState"><span class="bold">Dashboard As a</span>
+                      <select class="select">
+                          <option selected>Buyer</option>
+                          <option>Seller</option>
+                      </select>
+                    </h2>
+                    <h2 ng-if="'search' | includedByState"><span class="bold">Homes in {{searchData}}</span>
+                      
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </header>
+  
