@@ -15,7 +15,7 @@
                 <div class="col-md-5">
                 <div class="checkbox black margin-top-25 padding-top-10 margin-tp-10-sm">
                       <label class="padding-top-bottom-5">
-                          <input type="checkbox" checked="true"> Include personal concierge service (uncheck to save 5%) <i class="icon-message-information2 blue" type="button" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"></i>
+                          <input type="checkbox" checked="true">Include personal concierge service (uncheck to save 5%) <i class="icon-message-information2 blue" type="button" title="Popover title"></i>
                       </label>
                 </div>
                 </div>
@@ -64,9 +64,9 @@
                                 <div  class="col-md-3 border-right">
                                     <div class="relative min-height-198">
                                     <!--<img src="images/6154074882_52ec40c20b_o.jpg" class="full-width"/>-->
-                                        <div class="price-info">{{cProperty.interestPrice | currency}}<span>(est)</span> <i class="icon-message-information2 size-14"></i></div>
+                                        <div class="price-info">{{cProperty.interestPrice | currency}}<span>(est)</span> <i class="icon-message-information2 size-14"></i> <i class="icon-message-information2 size-14" type="button" data-trigger="hover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"></i></div>
                                         <div class="user-block-info">
-                                            <div class="user-img margin-left-right-15"><img ng-src="http://d9cc5dno6z2fj.cloudfront.net/user_profiles/4.jpg"/></div>
+                                            <div class="user-img margin-left-right-15"><img ng-src="{{cProperty.userAvatar}}"/></div>
                                             <div class="user-right-info">
                                                 <div class="uppercase darkBlueColor bold">{{cProperty.buyerName}}</div>
                                                 <div ng-if="!cProperty.userRating" class="user-rating italic lightGrey size-13">Not at rated</div> 
@@ -223,7 +223,7 @@
                             <div  class="col-md-3 border-right">
                                 <div class="relative min-height-198">
                                 <!--<img src="images/6154074882_52ec40c20b_o.jpg" class="full-width"/>-->
-                                    <div class="price-info disable">{{cProperty.interestPrice | currency}}<span>(est)</span> <i class="icon-message-information2 size-14"></i></div>
+                                    <div class="price-info">{{cProperty.interestPrice | currency}}<span>(est)</span> <i class="icon-message-information2 size-14"></i></div>
                                     <div class="user-block-info">
                                         <div class="user-img margin-left-right-15"><div class="imgarea"><i class="icon-user-profile size-25 grey"></i></div></div>
                                         <div class="user-right-info">
