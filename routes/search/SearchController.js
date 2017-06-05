@@ -23,10 +23,26 @@ searchRouter.post('/getPropertiesDetailsByLatlng', function (req, res) {
     request('https://qvm.quantarium.com/QDataService/QueryPropertiesByAddress?u=EasyKnockTest&k=pda-fb5O6ACu9QzW%23fbV&citystate_zip=29582', function (error, response, body) {
         if (!error && response.statusCode == 200) {
             //console.log(body) // Print the google web page.
+            //var propertiesData = getAdditionalPropertyInfo(body);
             return res.json({ status: 1, resp: body });
         }
     })
 });
+
+getAdditionalPropertyInfo = function(propertiesJson) {
+    var propertiesData = [];
+    propertiesJson.forEach(function (property) {
+        logger.info(property.id);
+        excuteQuery(function (conn, err) {
+            conn.query('call xxxxxxxxxxxxxxxxxxxx(?,?);', [element.id, element.address, 10000, 2, 9999, 1], function (err, rows) {
+                conn.release();
+                if (err) {
+                    logger.error('Exception while contact to homeowner :' + err);
+                }
+            });
+        })
+    });
+}
 
 /* Below code is used for contact to all property/home owners)*/
 searchRouter.post('/contactToAllHomeOwners', function (req, res) {
@@ -61,7 +77,6 @@ searchRouter.post('/viewPropertyDetails', function (req, res) {
 
 /* Below code is used for retrieving favorite count of user)*/
 searchRouter.post('/getFavoriteCount', function (req, res) {
-
     excuteQuery((conn, err) => {
         return conn.query('call sp_select_user_favorites_count(?)', [req.body.userId], function (err, rows) {
             conn.release();

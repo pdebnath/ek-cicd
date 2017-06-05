@@ -1,5 +1,5 @@
 var eknock = eknock || angular.module('eknock');
-eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'SearchFactory', '_','$uibModal', function ($rootScope, $scope, $state, SearchFactory, _, $uibModal) {
+eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'SearchFactory', '_', '$uibModal', 'NgMap', function ($rootScope, $scope, $state, SearchFactory, _, $uibModal, NgMap) {
 
     $scope.init = function () {
         if ($scope.searchText) {
@@ -9,7 +9,7 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
             console.log($scope.latlng);
             getPropertyDetailsByLatlng($scope.latlng);
         } else {
-            alert('It appears that you have entered an invalid address. Please check your search criteria');
+            //alert('It appears that you have entered an invalid address. Please check your search criteria');
             //$scope.searchPropertiesByLatlng();
         }
     }
@@ -22,7 +22,7 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
                 if (resp.data.status === 1) {
                     $scope.propertyDetails = resp.data.resp;
                 }
-                var resultData = JSON.parse($scope.propertyDetails).reverse();
+                var resultData = JSON.parse($scope.propertyDetails);
                 _.each(resultData, function (data) {
                     $scope.propertyDetailsJson.push(data);
                 })
@@ -34,14 +34,14 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
                 if (resp.data.status === 1) {
                     $scope.propertyDetails = resp.data.resp;
                 }
-                var resultData = JSON.parse($scope.propertyDetails).reverse();
+                var resultData = JSON.parse($scope.propertyDetails);
                 _.each(resultData, function (data) {
                     $scope.propertyDetailsJson.push(data);
                 })
                 console.log($scope.propertyDetailsJson.length);
             });
         } else {
-            alert('It appears that you have entered an invalid address. Please check your search criteria');
+            //alert('It appears that you have entered an invalid address. Please check your search criteria');
         }
     }
 
@@ -75,12 +75,12 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
             if (resp.data.status === 1) {
                 $scope.propertyDetails = resp.data.resp;
             }
-            var resultData = JSON.parse($scope.propertyDetails).reverse();
+            var resultData = JSON.parse($scope.propertyDetails);
             _.each(resultData, function (data) {
                 $scope.propertyDetailsJson.push(data);
-
             })
             console.log($scope.propertyDetailsJson.length);
+            $scope.setMapBounds();
             //$('#expandMap').trigger('click');             
         })
     }
@@ -92,11 +92,12 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
             if (resp.data.status === 1) {
                 $scope.propertyDetails = resp.data.resp;
             }
-            var resultData = JSON.parse($scope.propertyDetails).reverse();
+            var resultData = JSON.parse($scope.propertyDetails);
             _.each(resultData, function (data) {
                 $scope.propertyDetailsJson.push(data);
             })
             console.log($scope.propertyDetailsJson.length);
+            $scope.setMapBounds();
         });
     }
 
@@ -227,8 +228,57 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
         });
     }
 
-    $scope.init();
+    $scope.viewPropertyDetailsMap = function (e, property) {
+        SearchFactory.viewPropertyDetails(property).then(function (resp) {
+            if (resp.data.status === 1) {
+                alert(resp.data.resp);
+                $state.go('property_details', { 'property': property });
+            }
+        });
+    }
 
+    $scope.setMapBounds = function () {
+        var bounds = new google.maps.LatLngBounds();
+        for (var i = 0; i < $scope.propertyDetailsJson.length; i++) {
+            var latlng = new google.maps.LatLng($scope.propertyDetailsJson[i].latitude, $scope.propertyDetailsJson[i].longitude);
+            bounds.extend(latlng);
+        }
+        NgMap.getMap().then(function (map) {
+            map.setCenter(bounds.getCenter());
+            map.fitBounds(bounds);
+        })
+    }
+
+    $scope.showDetailMap = function (e, property) {
+        $scope.propertyDetails=property;
+        NgMap.getMap().then(function (map) {
+            map.showInfoWindow('info-iw', $scope.propertyDetails.id);
+        })
+    };
+
+    $scope.showDetail = function (property) {
+        $scope.propertyDetails=property;
+        NgMap.getMap().then(function (map) {
+            map.showInfoWindow('info-iw', $scope.propertyDetails.id);
+        })
+    };
+
+    $scope.expand = function () {
+        if ($scope.expandMap) {
+            $('#flat-cards').removeClass('col-md-6').addClass('col-md-4');
+            $('#flat-cards > div.col-sm-6').addClass('col-md-12');
+            $('#mapConteroller').removeClass('col-md-6').addClass('col-md-8');
+            $scope.setMapBounds();
+        } else {
+            $('#flat-cards').removeClass('col-md-4').addClass('col-md-6');
+            $('#mapConteroller').removeClass('col-md-8').addClass('col-md-6');
+            $('#flat-cards > div.col-sm-6').removeClass('col-md-12');
+            $scope.setMapBounds();
+        }
+    };
+
+
+    $scope.init();
 }]);
 
 

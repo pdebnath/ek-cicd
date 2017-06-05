@@ -4,7 +4,7 @@ underscore.factory('_', ['$window', function ($window) {
 }]);
 
 
-var eknock = angular.module('eknock', ['ui.router', 'ui.bootstrap', 'oc.lazyLoad', 'underscore']);
+var eknock = angular.module('eknock', ['ui.router', 'ui.bootstrap', 'ngMap','oc.lazyLoad', 'underscore']);
 
 eknock.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
