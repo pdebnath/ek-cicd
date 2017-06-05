@@ -1,6 +1,6 @@
 var winston = require('winston');
 var dateFormat = require('dateformat');
-
+var logfile=require('./logfile');
 var logger = new (winston.Logger)({
   transports: [
     new (winston.transports.Console)({
@@ -12,7 +12,7 @@ var logger = new (winston.Logger)({
         }
     }),
     //new winston.transports.File({ filename: __dirname + '/debug.log', json: false })
-    new winston.transports.File({ filename:'D:\\logs_easyknock\\debug.log',level: 'info', json: false,
+    new winston.transports.File({ filename:logfile.debugFilePath+ '//easyknock_debug.log',level: logfile.logLevel, json: false,
         timestamp: function() {
             return dateFormat(new Date(), "yyyy-mmm-dd HH:MM:ss");
         },
@@ -24,7 +24,7 @@ var logger = new (winston.Logger)({
   exceptionHandlers: [
     new (winston.transports.Console)({ json: false, timestamp: true }),
     //new winston.transports.File({ filename: __dirname + '/exceptions.log', json: false })
-     new winston.transports.File({ filename:'D:\\logs_easyknock\\exceptions.log', json: false })
+     new winston.transports.File({ filename:logfile.debugFilePath+ '//easyknock_exception.log',level: logfile.logLevel,  json: false })
   ],
   exitOnError: false
 });
