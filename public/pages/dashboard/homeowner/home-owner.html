@@ -40,7 +40,7 @@
                       <label class="margin-right-30 padding-top-bottom-5">
                           <input type="checkbox" ng-model="verificationCheck" ng-change="devideDeals()"> Has at least 
                            <select class="select-class black" ng-model="verification" ng-options="vc.verificatons for vc in verificationArray" ng-init="verification=verificationArray[0]"  ng-change="devideDeals()"></select>
-                          Varifications
+                          Verifications
                       </label>
                       <label class=" padding-top-bottom-5">
                           <span class="darkGrey">Sort By:</span> 
@@ -51,12 +51,12 @@
             </div>
             <div class="row">
                 <div class="col-md-12 margin-top-30 darkGrey alignSelect size-16" ng-click="showOngoingDeals = !showOngoingDeals">
-                    <label>Ongoing Deals ({{cPropertyOnGoing.length}})</label>
+                    <label>Ongoing Conversations ({{cPropertyOnGoing.length}})</label>
                     <i class="icon-arrow-down size-14"></i>   
                 </div>
                 <div class="col-md-12 margin-top-30">
                     <div ng-show="cPropertyOnGoing.length<=0">
-                        <p class="text-center">You have no ongoing deals at this movement</p>
+                        <p class="text-center">You have no ongoing conversations at this movement</p>
                     </div>
 <!-- Cards -->                    
                     <div ng-show="showOngoingDeals">
@@ -136,15 +136,13 @@
                     </div>
                     </div>
 
-                    <!-- Cards --> 
-
                  <div class="col-md-12 margin-top-30 darkGrey alignSelect size-16" ng-click="showPendingDeals = !showPendingDeals">
-                    <label>Pending Deals ({{cPropertyOpen.length}})</label> 
+                    <label>Pending Conversations ({{cPropertyOpen.length}})</label> 
                     <i class="icon-arrow-down size-14"></i>   
                 </div>
                 <div class="col-md-12 margin-top-30">
                     <div ng-show="cPropertyOpen.length<=0">
-                        <p class="text-center">You have no Pending deals at this movement</p>
+                        <p class="text-center">You have no Pending conversations at this movement</p>
                     </div>
                     <div ng-show="showPendingDeals">
                     <div class="jumboCard white" ng-repeat="cProperty in  cPropertyOpen">
@@ -216,22 +214,21 @@
                     </div>
                     </div>
                 </div>
-               
+                <hr/>
                 <div style="min-height:200px"></div>
                 <div class="col-md-12 margin-top-30 darkGrey alignSelect size-16" ng-click="showCompletedDeals = !showCompletedDeals">
-                    <label>Completed Deals ({{cPropertyClosed.length}})</label>
+                    <label>Ended Conversations ({{cPropertyClosed.length}})</label>
                      <i class="icon-arrow-down size-14"></i>   
                 </div>
                 <div class="col-md-12 margin-top-30">
                     <div ng-show="cPropertyClosed.length<=0">
-                        <p class="text-center">You have no Completed deals</p>
+                        <p class="text-center">You have no Ended Conversations</p>
                     </div>
                     <div ng-show="showCompletedDeals">
                     <div class="jumboCard white" ng-repeat="cProperty in  cPropertyClosed">
                         <div class="row">
                             <div  class="col-md-3 border-right border-right-mob-0">
                                 <div class="relative min-height-198">
-                                <!--<img src="images/6154074882_52ec40c20b_o.jpg" class="full-width"/>-->
                                     <div class="price-info">{{cProperty.interestPrice | currency}}<span>(est)</span> <i class="icon-message-information2 size-14" type="button" data-toggle="popover" data-content="{{cProperty.interestPrice | currency}}"></i>
                                     </div>
                                     <div class="user-block-info">
