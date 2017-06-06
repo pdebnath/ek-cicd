@@ -148,6 +148,12 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
         var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
             templateUrl: 'pages/search/favorite-modal.html',
+            controller:function($uibModalInstance ,$scope){
+            $scope.cancel = function () {
+                    $uibModalInstance.dismiss('cancel');
+                };
+
+            },
             scope: $scope,
             size: size
         });
@@ -206,6 +212,7 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
 
         });
     }
+    
     // --------- Favorites related functionalities ----- End-----------
     // --------- Saved Search related functionalities ----- Start-----------
     $scope.showSavedSearches = function () {
