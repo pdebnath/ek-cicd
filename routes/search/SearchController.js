@@ -20,7 +20,7 @@ searchRouter.post('/getPropertiesDetailsByAddress', function (req, res) {
 searchRouter.post('/getPropertiesDetailsByLatlng', function (req, res) {
     var latlng = req.body.latlng;
     console.log(req.body);
-    request('https://qvm.quantarium.com/QDataService/QueryPropertiesByAddress?u=EasyKnockTest&k=pda-fb5O6ACu9QzW%23fbV&citystate_zip=29582', function (error, response, body) {
+    request('https://qvm.quantarium.com/QDataService/QueryPropertiesByAddress?u=EasyKnockTest&k=pda-fb5O6ACu9QzW%23fbV&address=knights brg&citystate_zip=guilderland,ny', function (error, response, body) {
         if (!error && response.statusCode == 200) {
             //console.log(body) // Print the google web page.
             //var propertiesData = getAdditionalPropertyInfo(body);

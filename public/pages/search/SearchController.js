@@ -133,7 +133,7 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
         if (propertiesDeatils.length > 0) {
             SearchFactory.contactToAllHomeOwners(propertiesDeatils).then(function (resp) {
                 if (resp.data.status === 1) {
-                    alert(resp.data.resp);
+                    //alert(resp.data.resp);
                 }
             });
         } else {
@@ -216,6 +216,7 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
     // --------- Favorites related functionalities ----- End-----------
     // --------- Saved Search related functionalities ----- Start-----------
     $scope.showSavedSearches = function () {
+        alert("Under Consturction");
     }
 
     $scope.applySavedSearch = function () {
@@ -232,7 +233,7 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
         console.log(property);
         SearchFactory.viewPropertyDetails(property).then(function (resp) {
             if (resp.data.status === 1) {
-                alert(resp.data.resp);
+                //alert(resp.data.resp);
                 $state.go('property_details', { 'property': property });
             }
         });
@@ -241,7 +242,7 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
     $scope.viewPropertyDetailsMap = function (e, property) {
         SearchFactory.viewPropertyDetails(property).then(function (resp) {
             if (resp.data.status === 1) {
-                alert(resp.data.resp);
+                //alert(resp.data.resp);
                 $state.go('property_details', { 'property': property });
             }
         });

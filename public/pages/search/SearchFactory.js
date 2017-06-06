@@ -27,7 +27,6 @@ eknock.factory('SearchFactory', ['$http', '$log', '$q', function ($http, $log, $
 		},
 
 		contactToAllHomeOwners: function (model) {
-			alert(model);
 			var deferred = $q.defer();
 			var propertiesData = { "key": model };
 			$http({ url: '/api/search/contactToAllHomeOwners/', data: propertiesData, ignoreLoadingBar: true, method: 'post', headers: { 'Content-Type': 'application/json' } })
