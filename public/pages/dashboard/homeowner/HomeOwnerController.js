@@ -108,7 +108,7 @@ eknock.controller('HomeOwnerController', ['$rootScope', '$scope', '$state', '_',
     /* filter for Bulk Request*/
     if ($scope.notBulkRequest) {
       $scope.groupData = _.filter($scope.groupData, function (obj) {
-        return obj.contactedViaBulk == 1;
+        return obj.contactedViaBulk == 0;
       });
     }
 
