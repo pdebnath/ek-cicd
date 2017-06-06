@@ -130,13 +130,15 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
     Contact to all Homeowners
     */
     $scope.onContactAllHomeowners = function (propertiesDeatils) {
-        //var propertyIds = _.pluck(propertiesDeatils, 'id');
-        alert(propertiesDeatils);
-        SearchFactory.contactToAllHomeOwners(propertiesDeatils).then(function (resp) {
-            if (resp.data.status === 1) {
-                alert(resp.data.resp);
-            }
-        });
+        if (propertiesDeatils.length > 0) {
+            SearchFactory.contactToAllHomeOwners(propertiesDeatils).then(function (resp) {
+                if (resp.data.status === 1) {
+                    alert(resp.data.resp);
+                }
+            });
+        } else {
+            alert("No properties to send reqeust");
+        }
     }
 
     // --------- Favorites related functionalities ----- Start-----------
@@ -220,6 +222,7 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
 
     //---------------------- View Property Details ---------Start--------------
     $scope.viewPropertyDetails = function (property) {
+        console.log(property);
         SearchFactory.viewPropertyDetails(property).then(function (resp) {
             if (resp.data.status === 1) {
                 alert(resp.data.resp);
@@ -229,7 +232,6 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
     }
 
     $scope.viewPropertyDetailsMap = function (e, property) {
-        console.log(property);
         SearchFactory.viewPropertyDetails(property).then(function (resp) {
             if (resp.data.status === 1) {
                 alert(resp.data.resp);
@@ -251,14 +253,14 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
     }
 
     $scope.showDetailMap = function (e, property) {
-        $scope.propertyDetails=property;
+        $scope.propertyDetails = property;
         NgMap.getMap().then(function (map) {
             map.showInfoWindow('info-iw', $scope.propertyDetails.id);
         })
     };
 
     $scope.showDetail = function (property) {
-        $scope.propertyDetails=property;
+        $scope.propertyDetails = property;
         NgMap.getMap().then(function (map) {
             map.showInfoWindow('info-iw', $scope.propertyDetails.id);
         })

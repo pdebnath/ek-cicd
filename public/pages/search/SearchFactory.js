@@ -5,7 +5,7 @@ eknock.factory('SearchFactory', ['$http', '$log', '$q', function ($http, $log, $
 		getPropertyDetailsByAddress: function (model) {
 			var deferred = $q.defer();
 			var addressData = { "address": model };
-			$http({ url: '/api/search/getPropertiesDetailsByAddress/', data: addressData, method: 'post', headers: { 'Content-Type': 'application/json' } })
+			$http({ url: '/api/search/getPropertiesDetailsByAddress/', data: addressData, method: 'post', ignoreLoadingBar: true, headers: { 'Content-Type': 'application/json' } })
 				.then(function onSuccess(resp) {
 					deferred.resolve(resp);
 				}, function onError(error) {
@@ -30,7 +30,7 @@ eknock.factory('SearchFactory', ['$http', '$log', '$q', function ($http, $log, $
 			alert(model);
 			var deferred = $q.defer();
 			var propertiesData = { "key": model };
-			$http({ url: '/api/search/contactToAllHomeOwners/', data: propertiesData, method: 'post', headers: { 'Content-Type': 'application/json' } })
+			$http({ url: '/api/search/contactToAllHomeOwners/', data: propertiesData, ignoreLoadingBar: true, method: 'post', headers: { 'Content-Type': 'application/json' } })
 				.then(function onSuccess(resp) {
 					deferred.resolve(resp);
 				}, function onError(error) {

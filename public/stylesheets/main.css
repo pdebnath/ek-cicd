@@ -178,6 +178,10 @@ body.eKnock{
     margin-top:60px;
     margin-bottom:60px;
 }
+.eKnock .margin-top-bottom-10{
+    margin-top:10px;
+    margin-bottom:10px;
+}
 .eKnock .margin-top-8{
     margin-top: 8px;
 }
@@ -508,4 +512,5 @@ body.eKnock{
 #mapConteroller{padding:0;}
 #mapConteroller:hover .map-nav{display:block; }
 .drawonmap{position:absolute;}
-
+#loading-bar-spinner{text-align:center;background-color:rgba(0, 0, 0, 0.5); height: 100%; width:105%;position: fixed; top:0; left:-10px !important;z-index:99999;pointer-events: all !important;}
+.spinner-icon{display:none;}

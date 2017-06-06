@@ -4,10 +4,9 @@ underscore.factory('_', ['$window', function ($window) {
 }]);
 
 
-var eknock = angular.module('eknock', ['ui.router', 'ui.bootstrap', 'ngMap','oc.lazyLoad', 'underscore']);
+var eknock = angular.module('eknock', ['ui.router', 'ui.bootstrap', 'ngMap', 'oc.lazyLoad', 'underscore', 'angular-loading-bar']);
 
-eknock.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-
+eknock.config(['$stateProvider', '$urlRouterProvider', 'cfpLoadingBarProvider', function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvider) {
 	$stateProvider.state('login', {
 		url: '/login',
 		templateUrl: 'pages/user/user-login.html',
@@ -36,7 +35,7 @@ eknock.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider,
 		url: '/view_property',
 		templateUrl: 'pages/property_details/property_details.html',
 		controller: 'PropertyController',
-		params: {property: null}
+		params: { property: null }
 	})
 
 	$urlRouterProvider.otherwise('/homeowner');

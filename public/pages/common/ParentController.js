@@ -2,10 +2,14 @@ var eknock = eknock || angular.module('eknock');
 eknock.controller('ParentController', ['$rootScope', '$scope', '$state', function ($rootScope, $scope, $state) {
 
     $scope.searchPropertiesByAddress = function () {
-        $scope.latlng=null;
-        $scope.searchData = $scope.searchText;
-        $scope.$broadcast('searchPropertiesByAddressEvent', $scope.searchText);
-        $state.go('search');
+        if ($scope.searchText = '') {
+            $scope.latlng = null;
+            $scope.searchData = $scope.searchText;
+            $scope.$broadcast('searchPropertiesByAddressEvent', $scope.searchText);
+            $state.go('search');
+        } else {
+            alert('It appears that you have entered an invalid address. Please check your search criteria');
+        }
     };
 
     $scope.searchPropertiesByLatlng = function () {
@@ -21,9 +25,9 @@ eknock.controller('ParentController', ['$rootScope', '$scope', '$state', functio
     // });
 
     getCurrentLocation = function (position) {
-        $scope.searchText=null;
+        $scope.searchText = null;
         $scope.searchData = 'MY LOCATION';
-        $scope.latlng= position.coords.latitude + "," + position.coords.longitude;
+        $scope.latlng = position.coords.latitude + "," + position.coords.longitude;
         $scope.$broadcast('searchPropertiesByLatlngEvent', $scope.latlng);
         $state.go('search');
     };
