@@ -40,7 +40,7 @@
 							/>  
 					<span class="margin-left-20">{{$index+1}} &nbsp;</span> 
 						<span  ng-class="{strikethrough: list.checked ,italic: list.checked , activeButton : (disabledList.indexOf(list.sequenceId) != -1 && !list.checked)} "  >	{{list.name}}  </span>
-                        <span class="size-13 italic text-right" style="right: 0;bottom: 0;position: absolute;margin-right: 15px;">Buyer content you by <i class="icon-message-information2 size-14 blue"></i></span> 
+> 
                         <span style="right: 0;bottom: 0;position: absolute;margin-right: 15px;" ng-if="list.name=='Hire concierge (optional)'"   ng-click="getSequence(list , 1)"> {{skipConcierge}} </span> 
                         <span style="right: 0;bottom: 0;position: absolute;margin-right: 15px;" ng-if="list.name=='Hire an attorney (optional)'" ng-click="getSequence(list , 2)">{{skipAttorney}} </span>
                     </label>
