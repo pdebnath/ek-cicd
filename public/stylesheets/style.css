@@ -6,23 +6,56 @@ a {
   color: #00B7FF;
 }
 .modal-header{
-  background-image:url('https://uploads.toptal.io/blog/image/91092/toptal-blog-image-1430741874305-ff5cf6be18d32ac3dc83b32dfb8edb56.jpg');
+  background-image:url('../images/pexels-photo-106399.jpeg');
   background-repeat: no-repeat;
   background-color:#ccc;
   background-size:cover;
+  background-position:center;
 }
+ .modal-content .checklist-model-window  .modal-header{
+  padding-left:0;
+  padding-right:0px;
+  min-height:280px;
+  position: relative;
+}
+ .modal-content .checklist-model-window  .modal-header::after{
+    display: table;
+    content: " ";
+	background: -webkit-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1)); 
+    background: -o-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1)); 
+    background: -moz-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1)); 
+    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1));
+    position: absolute;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+	color:#FFF;
+ }
+.checklist-model-window  .modal-header .modal-Address{
+	position: absolute;
+	bottom:0;
+	padding-bottom:30px;
+	z-index:9;
+}
+.eKnock .modal-header .close{
+  color: #FFF;
+  opacity: 0.6;
+  margin-right:20px;
+}
+
 ekprice{background:#FF008A; color:#fff; font-size:24px; float:left; padding:5px; position: absolute; top: 0; left: 0;}
 /*<i class="fa fa-info-circle" aria-hidden="true"></i>*/
 .modal-backdrop{background: rgba(0,0,0,.9);}
 .address{color:#fff;}
-.modal-Address{margin: 100px 0;}
-.offer-right{position: relative;}
+.modal-Address{margin: 100px 25px 0px 25px;}
+.offer-right{position: relative; top:-160px;}
 .padding-20{padding:20px;}
 .padding-10{padding:10px;}
 .padding-5{padding:5px;}
-.avatar{width:100px; height: 100px; border-radius: 100px;}
-.avatar img{width:inherit; height: inherit; border-radius: inherit;}
-.deal-card{border-radius: 5px; position: absolute; left: 0; top: -200px;}
+.avatar{ border-radius: 50%;overflow: hidden;position: relative;}
+.avatar img{width:100%; height: inherit;}
+/*.deal-card{border-radius: 5px; position: absolute; left: 0; top: -200px;}*/
+.deal-card{border-radius: 5px; }
 .in-active-text, .verify-list{color:#CCC;}
 .verify-list .fa-check{color:#000041;}
 .blue-bg{background: #000041; color:#fff;}
@@ -43,7 +76,7 @@ ekprice{background:#FF008A; color:#fff; font-size:24px; float:left; padding:5px;
 .btn.btn-easyknock:hover{background-color:#19C7B8!important;  }
 .sticky-btn{width:80%; margin:10% 10%; bottom: -70px; padding: 15px;}
 .text-uppercase, .deal-card label{text-transform:uppercase;}
-.cancel-deal{right: 0; left: 0; bottom: -80; margin: 0 auto; text-align: center;}
+.cancel-deal{right: 0; left: 0;text-align: center;}
 .bottom{bottom:0;}
 .bottom-rounded{border-radius:0 0 5px 5px;}
 .content-box{box-sizing:content-box}
@@ -52,7 +85,27 @@ ekprice{background:#FF008A; color:#fff; font-size:24px; float:left; padding:5px;
 .help-tips{margin:40px; padding:0;}
 .help-tips li {margin-bottom:20px;color:#999;}
 .help-tips li  a{color:#999;}
-.bottom-note{bottom: -56px;left: 0;}
+.bottom-note{    
+	position: absolute;
+    bottom: 0;
+    display: inline-block;
+    text-align: right;
+    left: inherit;
+    right: 20px;
+}
+.bottom-card{
+	position: absolute;
+    bottom: 0;
+	min-height:200px;
+	width:100%;
+    display: inline-block;
+    text-align: right;
+    left: 0;
+    right: inherit;
+}
+.checklist-model{
+	margin-bottom:20px;
+}
 .min-h-1000{min-height:1000px;}
 .nav-tabs{background:transparent;}
 .nav-tabs .active {border-bottom:solid 2px #009688}
@@ -63,13 +116,16 @@ ekprice{background:#FF008A; color:#fff; font-size:24px; float:left; padding:5px;
 .checklist-ul li .form-group{margin:0; }
 .checklist-ul li{margin:0; padding:0;}
 .checklist-ul li .checkbox{margin:10px;}
+
+.checklist-ul .roundedCheckbox .check{
+	border-radius:50%;
+}
 .strikethrough {
             text-decoration: line-through;
 }
 .activeButton {
     color:#009688 ;
 }
-=======
 .margin-top-25{margin-top:25px;}
 .margin-top-40{margin-top:40px;}
 .margin-top-45{margin-top:45px;}
@@ -118,3 +174,18 @@ ekprice{background:#FF008A; color:#fff; font-size:24px; float:left; padding:5px;
 .jumboCard:hover .price-info{opacity: 1;}
 
 
+@media (max-width: 991px) {
+	.eKnock .deal-card{
+		top:0;
+		position: relative;
+	} 
+	.eKnock .bottom-card{
+		position: relative;
+	}
+	.eKnock  .offer-right{
+		top:0;
+	}
+	.eknock .cancel-deal{
+		bottom: 0;
+	}
+}
