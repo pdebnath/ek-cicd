@@ -2,7 +2,7 @@
 <div class="modal-header" ng-init="getModalCheckList()">
    <div class="checklist-box">
    <button type="button" class="close" data-dismiss="modal" ng-click="cancel()" aria-hidden="true"><i class="icon-close size-13"></i></button>
-    <ekprice> {{propertyObject.property.interestPrice}} (est) <i class="fa fa-info-circle size-16" aria-hidden="true"></i></ekprice>
+    <ekprice> {{propertyObject.property.interestPrice}} (est) <!--<i class="fa fa-info-circle size-16" aria-hidden="true"></i> --></ekprice>
         <div class=" col-md-8 modal-Address">
             <div class="address">
               <h4>{{ propertyObject.address.propertyAddress}} <i class="fa fa-share" aria-hidden="true"></i></h4>
@@ -40,7 +40,7 @@
 							/>  
 					<span class="margin-left-20">{{$index+1}} &nbsp;</span> 
 						<span  ng-class="{strikethrough: list.checked ,italic: list.checked , activeButton : (disabledList.indexOf(list.sequenceId) != -1 && !list.checked)} "  >	{{list.name}}  </span>                        
-                         <span class="size-13 italic text-right" style="right: 0;bottom: 0;position: absolute;margin-right: 15px;" ng-if="propertyObject.property.contactedViaBulk && ($index+1 == 1)">Buyer contacted you via bulk-request <i class="icon-message-information2 size-14 blue"></i></span>
+                         <span class="size-13 italic text-right" style="right: 0;bottom: 0;position: absolute;margin-right: 15px;" ng-if="propertyObject.property.contactedViaBulk && ($index+1 == 1)">Buyer contacted you via bulk-request <!-- <i class="icon-message-information2 size-14 blue"></i>--></span>
                         <span style="right: 0;bottom: 0;position: absolute;margin-right: 15px;" ng-if="list.name=='Hire concierge (optional)'"   ng-click="getSequence(list , 1)"> {{skipConcierge}} </span> 
                         <span style="right: 0;bottom: 0;position: absolute;margin-right: 15px;" ng-if="list.name=='Hire an attorney (optional)'" ng-click="getSequence(list , 2)">{{skipAttorney}} </span>
                     </label>
@@ -100,7 +100,7 @@
         </div>
         
     </div><br/><br/><br/>
-    <div class="blue-bg padding-20 margin-n20 absolute bottom bottom-rounded full-width text-center" ng-if="propertyObject.property.contactedViaBulk">Contacted via bulk-request <i class="icon-message-information2 size-14"></i></div>
+    <div class="blue-bg padding-20 margin-n20 absolute bottom bottom-rounded full-width text-center" ng-if="propertyObject.property.contactedViaBulk">Contacted via bulk-request <!-- <i class="icon-message-information2 size-14"></i> --></div>
 </div>
 	<div class="text-uppercase align-center cancel-deal margin-top-15 margin-bottom-15 cursor"><span class="darkGrey" ng-click="updateSellerDealStatus(3)">Cancel Deal</span></div> 
 	<div class="card padding-20 left-0">
@@ -129,7 +129,7 @@
             </div>
         </div>
     </div>
-    <div class="bottom-note"><i> Brokers are strictly prohibited from soliciting EasyKnock members </i><i class="fa fa-info-circle color-blue" aria-hidden="true"></i></div> 
+    <div class="bottom-note"><i> Brokers are strictly prohibited from soliciting EasyKnock members </i><!-- <i class="fa fa-info-circle color-blue" aria-hidden="true"></i> --></div> 
 </div>
 </div>
 <div class="modal-footer">

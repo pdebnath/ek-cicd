@@ -3,7 +3,6 @@ var eknock = eknock || angular.module('eknock');
 eknock.controller('commonChecklistController', ['$rootScope', '$scope', '$state', 'HomeOwnerFactory', '$http', '$uibModalInstance', 'checklistModalFactory', 'commonDataHolder', '$timeout'
     , function ($rootScope, $scope, $state, HomeOwnerFactory, $http, $uibModalInstance, checklistModalFactory, commonDataHolder, $timeout) {
 
-
         var currentIndex;
         var nextIndex;
         var lastObjectInList;
@@ -144,15 +143,12 @@ eknock.controller('commonChecklistController', ['$rootScope', '$scope', '$state'
         * dealStatus : 2/3/4  
         */
         $scope.updateSellerDealStatus = function(statusValue){
-
             var objupdateSellerDealStatus = {
                 "dealStatus": statusValue,
                 "currentDealStatusId": $scope.checkListCurrentStatus,
                 "propertyDealId": $scope.propertyObject.property.dealId
             };
-            
              checklistModalFactory.updateCheckList(objupdateSellerDealStatus).then(function (result) {
-
                         if(statusValue == 3){
                                  alert("Successfully cancelled the deal");
                                  $scope.cancel();
@@ -164,9 +160,6 @@ eknock.controller('commonChecklistController', ['$rootScope', '$scope', '$state'
                         }
 
             });
- 
-            
         }
-
     }]);
 
