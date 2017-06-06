@@ -1,6 +1,7 @@
 var eknock = eknock || angular.module('eknock');
 eknock.controller('HomeOwnerController', ['$rootScope', '$scope', '$state', '_', 'HomeOwnerFactory', '$uibModal', 'commonDataHolder', function ($rootScope, $scope, $state, _, HomeOwnerFactory, $uibModal, commonDataHolder) {
   /* init Data*/
+  $scope.showOngoingDeals=true;
   $scope.sortingArray = [
     { type: 1, value: 'Newest first' },
     { type: 2, value: 'Oldest first' },
@@ -35,7 +36,13 @@ eknock.controller('HomeOwnerController', ['$rootScope', '$scope', '$state', '_',
       }
     })
   }
-
+  $scope.popover =function(){    
+         setTimeout(function(){ 
+             $('[data-toggle="popover"]').popover({
+                 trigger: "hover"
+             }); 
+         }, 1000);   
+    }
   /* this function fetch deals for one claimed 
   property based on claimded property drop down*/
   $scope.getClaimedPropertyDeals = function () {
@@ -126,7 +133,7 @@ eknock.controller('HomeOwnerController', ['$rootScope', '$scope', '$state', '_',
     $scope.cPropertyOpen = $scope.groupData.open;
     $scope.cPropertyOnGoing = $scope.groupData.progress;
     $scope.cPropertyClosed = $scope.groupData.closed;
-
+    $scope.popover();
     /* Sorting funvtionality*/
     if ($scope.sortingType.type == 1) {
       $scope.cPropertyOnGoing = _.sortBy($scope.cPropertyOnGoing, function (obj) { return obj.modifiedDate; });

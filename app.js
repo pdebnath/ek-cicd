@@ -7,8 +7,8 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 //var users = require('./routes/users');
 
-var homeOwnerDashBoardController = require('./routes/dashborad/HomeOwnerDashBoardController');
-var checklistModal = require('./routes/dashborad/CommonChecklistModal');
+var homeOwnerDashBoardController = require('./routes/dashboard/HomeOwnerDashBoardController');
+var checklistModal = require('./routes/dashboard/CommonChecklistModal');
 var searchController = require('./routes/search/SearchController');
 var propertyController = require('./routes/property/PropertyController');
 
