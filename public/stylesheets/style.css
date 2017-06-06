@@ -94,15 +94,35 @@ ekprice{background:#FF008A; color:#fff; font-size:24px; float:left; padding:5px;
     right: 20px;
 }
 .bottom-card{
-	position: absolute;
     bottom: 0;
-	min-height:200px;
+	min-height:250px;
 	width:100%;
     display: inline-block;
     text-align: right;
     left: 0;
+	position: relative;
+	background-size:cover;
     right: inherit;
 }
+.eKnock .bottom-card .card-area{
+	padding:30px;
+	position: relative;
+    z-index: 9;
+    left: 0;
+    right: 0;
+    color: #fff;
+    top: 0;
+    bottom: 0;
+}
+.eKnock .bottom-card:after{
+    content:'';
+    position: absolute;
+    top:0;
+    bottom:0;
+	left:0;
+    right: 0;
+    background:rgba(0,0,0,0.4);
+} 
 .checklist-model{
 	margin-bottom:20px;
 }
@@ -132,6 +152,8 @@ ekprice{background:#FF008A; color:#fff; font-size:24px; float:left; padding:5px;
 .margin-top-50{margin-top:50px;}
 .margin-bottom-70{margin-bottom:70px;}
 .rating{justify-content:left;}
+
+
 @media (max-width: 768px) {
 	.eKnock .align-sm-center{
 		text-align: center;
@@ -187,5 +209,8 @@ ekprice{background:#FF008A; color:#fff; font-size:24px; float:left; padding:5px;
 	}
 	.eknock .cancel-deal{
 		bottom: 0;
+	}
+	.bottom-card{
+		margin-left:inherit;
 	}
 }

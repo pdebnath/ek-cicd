@@ -2,7 +2,7 @@
 <div class="modal-header" ng-init="getModalCheckList()">
    <div class="checklist-box">
    <button type="button" class="close" data-dismiss="modal" ng-click="cancel()" aria-hidden="true"><i class="icon-close size-13"></i></button>
-    <ekprice> {{propertyObject.property.interestPrice}} (est)<i class="fa fa-info-circle" aria-hidden="true"></i></ekprice>
+    <ekprice> {{propertyObject.property.interestPrice}} (est) <i class="fa fa-info-circle size-16" aria-hidden="true"></i></ekprice>
         <div class=" col-md-8 modal-Address">
             <div class="address">
               <h4>{{ propertyObject.address.propertyAddress}} <i class="fa fa-share" aria-hidden="true"></i></h4>
@@ -102,8 +102,7 @@
     </div><br/><br/><br/>
     <div class="blue-bg padding-20 margin-n20 absolute bottom bottom-rounded full-width text-center" ng-if="propertyObject.property.contactedViaBulk">Contacted via bulk-request <i class="icon-message-information2 size-14"></i></div>
 </div>
-	<div class="text-uppercase align-center cancel-deal margin-top-15"><span class="darkGrey" ng-click="updateSellerDealStatus(3)">Cancel Deal</span></div> 
-	<br/><br/>
+	<div class="text-uppercase align-center cancel-deal margin-top-15 margin-bottom-15 cursor"><span class="darkGrey" ng-click="updateSellerDealStatus(3)">Cancel Deal</span></div> 
 	<div class="card padding-20 left-0">
 		<div class="color-blue text-center">Helpful Tips:</div>
 		<ul class="help-tips">
@@ -120,9 +119,17 @@
     </div>
 </div>
 </div>
+<div class="clear"></div>
 <div class="row">
-    <div class="col-md-4 margin-top-15"><div class="bottom-card gray-bg ">Image Here</div></div>
-    <div class="bottom-note"><i>It is a long established fact that a reader will be distracted </i><i class="fa fa-info-circle color-blue" aria-hidden="true"></i></div> 
+    <div class="col-md-4">
+        <div class="bottom-card white" style="background-image:url('../images/pexels-photo-106399.jpeg')">
+            <div class="card-area text-left"
+            ><h4 class="uppercase bold">Hire an attorney</h4>
+            <p class="margin-top-30 size-16">Choose from over 150+ top Lawyers from the EasyKnock attorney network</p>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-note"><i> Brokers are strictly prohibited from soliciting EasyKnock members </i><i class="fa fa-info-circle color-blue" aria-hidden="true"></i></div> 
 </div>
 </div>
 <div class="modal-footer">
