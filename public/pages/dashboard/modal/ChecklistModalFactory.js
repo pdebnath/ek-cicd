@@ -56,10 +56,21 @@ eknock.factory('checklistModalFactory',['$http','$log','$q',function($http,$log,
 			  });
 			return deferred.promise;
 	   	},
-		 buyerSubmitOffer :function(model){
-			
-			
-			return modal;
+		 cancelDeal :function(model){
+			var deferred=$q.defer();
+			$http(
+				{
+					url:'/api/common/dashboard/checklist/modal/details/cancel',
+					data : model,
+					method:'post',
+					headers: {'Content-Type': 'application/json'
+				}})
+			.then(function onSuccess(resp) {
+			   	deferred.resolve(resp);
+			  },function onError(error) {
+			  	deferred.reject('Error While Fetching Sequence');
+			  });
+			return deferred.promise;
 	   	}
 
      }
