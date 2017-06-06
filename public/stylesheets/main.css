@@ -485,7 +485,15 @@ body.eKnock{
 .eKnock .popover .arrow{
     display:block;
 }
-
+.eKnock .align-dot{
+    font-size: 44px;
+    display: inline-block;
+    line-height: 0;
+    position: absolute;
+    margin-top: -4px;
+    margin-left: -14px;
+    vertical-align: baseline;
+}
 @media (min-width: 1300px){
     .modal .modal-dialog.modal-lg {
         width: 1240px;
