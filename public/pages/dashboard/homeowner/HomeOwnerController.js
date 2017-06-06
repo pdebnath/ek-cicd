@@ -78,7 +78,9 @@ eknock.controller('HomeOwnerController', ['$rootScope', '$scope', '$state', '_',
       templateUrl: 'pages/dashboard/modal/common-modal.html',
       controller: 'commonChecklistController',
       size: size
-    });
+    }).closed.then(function(){
+         $scope.getClaimedPropertyDeals();
+      });
   }
 
 

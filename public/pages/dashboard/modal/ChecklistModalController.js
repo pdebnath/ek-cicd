@@ -64,9 +64,12 @@ eknock.controller('commonChecklistController', ['$rootScope', '$scope', '$state'
         $scope.skipAttorney = 'Skip';
         $scope.getSequence = function (item , value) {
             if(value == 0){
-                         $scope.skipConcierge = 'Undo Skip';
-                         $scope.skipAttorney = 'Undo Skip';
-                         
+                if(item.name == 'Hire concierge (optional)'){
+                    $scope.skipConcierge = 'Undo Skip';
+                }else if(item.name == 'Hire an attorney (optional)'){
+                    $scope.skipAttorney = 'Undo Skip';
+                }
+                          
                         var checkedObj = item;
                         var objgetSequence = {
                             "currentStatusId": item.dealStatusId,
@@ -82,6 +85,7 @@ eknock.controller('commonChecklistController', ['$rootScope', '$scope', '$state'
             });
          }else if(value == 1){
              $scope.skipConcierge = 'Undo Skip';
+             
          }else {
               $scope.skipAttorney = 'Undo Skip';
          }
@@ -149,9 +153,19 @@ eknock.controller('commonChecklistController', ['$rootScope', '$scope', '$state'
             
              checklistModalFactory.updateCheckList(objupdateSellerDealStatus).then(function (result) {
 
-                             console.log(result);
+                        if(statusValue == 3){
+                                 alert("Successfully cancelled the deal");
+                                 $scope.cancel();
+                                 
+                        }
+                        if(statusValue == 4){
+                             alert("Successfully completed the deal");
+                              $scope.cancel();
+                        }
 
             });
+ 
+            
         }
 
     }]);
