@@ -229,6 +229,7 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
     }
 
     $scope.viewPropertyDetailsMap = function (e, property) {
+        console.log(property);
         SearchFactory.viewPropertyDetails(property).then(function (resp) {
             if (resp.data.status === 1) {
                 alert(resp.data.resp);
