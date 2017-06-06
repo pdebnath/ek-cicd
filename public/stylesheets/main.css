@@ -205,6 +205,9 @@ body.eKnock{
 .eKnock .margin-top-40{
     margin-top: 40px;
 }
+.eKnock .margin-bottom-15{
+    margin-bottom: 15px;
+}
 .eKnock .margin-bottom-30{
     margin-bottom: 30px;
 }
@@ -327,6 +330,7 @@ body.eKnock{
     background: #FF008A;
     font-size: 24px;
     font-weight: 300;
+    z-index:2;
     padding: 5px 15px;
 }
 .eKnock .reply-icon{
@@ -401,11 +405,12 @@ body.eKnock{
 }
 .eKnock .user-block-info{
     position: relative;
-    top: 60px;
+    padding-top: 60px;
 }
 .eKnock .user-right-info{
     padding-left: 100px;
     line-height: 1.6;
+    display:block;
 }
 .eKnock .user-img{
     position: absolute;  
@@ -468,6 +473,14 @@ body.eKnock{
 .eKnock  label.checkbox-inline input[type=checkbox]:checked+.checkbox-material .check:before{
     color:#19C7B8;
 }
+.eKnock .popover{
+    color: #999;
+    background: #fff;
+    min-width: 164px;
+}
+.eKnock .popover .arrow{
+    display:block;
+}
 
 @media (min-width: 1300px){
     .modal .modal-dialog.modal-lg {
@@ -480,6 +493,14 @@ body.eKnock{
     }
 
 }
+@media (max-width: 991px){
+    .eKnock .full-width{
+        margin-left:0;
+    }
+    .eKnock .border-right.border-right-mob-0{
+        border-right:0;
+    }
+}
 /** added by naresh on may 30 **/
 #map{position:relative; height:630px; width:100%; z-index:-1;}
 .map-nav{width:60%; position:absolute; left:0; bottom:0; display:none; background:#fff; padding:10px;}
@@ -487,6 +508,4 @@ body.eKnock{
 #mapConteroller{padding:0;}
 #mapConteroller:hover .map-nav{display:block; }
 .drawonmap{position:absolute;}
-
-
 
