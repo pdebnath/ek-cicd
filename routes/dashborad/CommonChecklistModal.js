@@ -45,16 +45,9 @@ router.post('/modal/details/sequence',  (req ,res) => {
 
 router.post('/modal/details/update',  (req ,res) => {
        excuteQuery((conn,err) => {
-   
-     let userType = req.body.userType;
-     let currentDealStatusId = req.body.currentDealStatusId;
-     let buyerId = req.body.buyerId; 
-     let homeOwnerId = req.body.homeOwnerId; 
-     let propertyId = req.body.propertyId; 
  
-
-	   return conn.query('call sp_homeowner_update_deal_status(?,?,?,?,?)',[
-       userType,currentDealStatusId,buyerId,homeOwnerId,propertyId
+	   return conn.query('call sp_update_homeowner_deal_status(?,?,?)',[
+       req.body.dealStatus , req.body.currentDealStatusId , req.body.propertyDealId
 
      ],function(err,rows){
             conn.release();
