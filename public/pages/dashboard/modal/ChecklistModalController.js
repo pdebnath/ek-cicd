@@ -12,7 +12,7 @@ eknock.controller('commonChecklistController', ['$rootScope', '$scope', '$state'
         $scope.checkeddList = [];
         $scope.propertyObject = commonDataHolder.data;
         
-        const updatingDealStatus = 2;
+        const updatingDealStatus = 1;
         const cancellingDealStatus = 3;
         const closingDealStatus = 4;
          
