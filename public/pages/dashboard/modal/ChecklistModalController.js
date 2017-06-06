@@ -35,7 +35,7 @@ eknock.controller('commonChecklistController', ['$rootScope', '$scope', '$state'
                 lastObjectInList = $scope.checklist[$scope.checklist.length - 1];
                 $timeout(function () {
                    $.material.init();
-                }, 1000);
+                }, 100);
                     getSequenceByIndexDealStatusId($scope.propertyObject.property.homeOwnerDealStatusId);
             });
 
