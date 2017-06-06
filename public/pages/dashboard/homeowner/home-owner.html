@@ -2,7 +2,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="margin-top-bottom-15 margin-bt-0-sm">
-                        <span class="size-13">Viewing deals for</span>&nbsp;
+                        <span class="size-13">Viewing deals for :</span>&nbsp;
                         <span>
                             <select class="select-class select-width-class black size-13 normal" ng-model="claimedProperty" ng-init="claimedProperty=claimedProperties[0]"  ng-options = "cProperty.propertyAddress for cProperty in claimedProperties" ng-change="getClaimedPropertyDeals()">
                             </select>
@@ -74,8 +74,8 @@
                                             </div>
                                             <div class="user-right-info">
                                                 <div class="uppercase darkBlueColor bold">{{cProperty.buyerName}}</div>
-                                                <div ng-if="!cProperty.userRating" class="user-rating italic lightGrey size-13">Not at rated</div> 
-                                                <div ng-if="cProperty.userRating" class="user-rating italic lightGrey size-13">
+                                                <div class="user-rating italic lightGrey size-13">
+                                                    <span ng-if="!cProperty.userRating" class="user-rating italic lightGrey size-13">Not at rated</span>
                                                     <div class="rating star-icon value-{{cProperty.userRating}} align-sm-left">
                                                         <div class="star-container">
                                                             <div class="star">
@@ -160,8 +160,8 @@
                                         </div>
                                         <div class="user-right-info">
                                             <div class="uppercase darkBlueColor bold">{{cProperty.buyerName}}</div>
-                                            <div ng-if="!cProperty.userRating" class="user-rating italic lightGrey size-13">Not at rated</div> 
-                                            <div ng-if="cProperty.userRating" class="user-rating italic lightGrey size-13">
+                                            <div class="user-rating italic lightGrey size-13">
+                                                <span ng-if="!cProperty.userRating" class="user-rating italic lightGrey size-13">Not at rated</span>
                                                 <div class="rating star-icon value-{{cProperty.userRating}}">
                                                     <div class="star-container">
                                                         <div class="star">
@@ -242,8 +242,9 @@
                                         </div>
                                         <div class="user-right-info">
                                             <div class="uppercase darkBlueColor bold">{{cProperty.buyerName}}</div>
-                                            <div ng-if="!cProperty.userRating" class="user-rating italic lightGrey size-13">Not at rated</div> 
-                                            <div ng-if="cProperty.userRating" class="user-rating italic lightGrey size-13">
+                                            
+                                            <div class="user-rating italic lightGrey size-13">
+                                                <span ng-if="!cProperty.userRating" class="user-rating italic lightGrey size-13">Not at rated</span>
                                                 <div class="rating star-icon value-{{cProperty.userRating}}">
                                                     <div class="star-container">
                                                         <div class="star">
