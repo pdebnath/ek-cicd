@@ -2,7 +2,7 @@ var eknock = eknock || angular.module('eknock');
 eknock.controller('ParentController', ['$rootScope', '$scope', '$state', function ($rootScope, $scope, $state) {
 
     $scope.searchPropertiesByAddress = function () {
-       if ($scope.searchText != '') {
+       if ($scope.searchText != '' && $scope.searchText != undefined) {
             $scope.latlng = null;
             $scope.searchData = $scope.searchText;
             $scope.$broadcast('searchPropertiesByAddressEvent', $scope.searchText);
