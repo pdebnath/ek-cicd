@@ -41,7 +41,7 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
                 console.log($scope.propertyDetailsJson.length);
             });
         } else {
-            //alert('It appears that you have entered an invalid address. Please check your search criteria');
+            alert('It appears that you have entered an invalid address. Please check your search criteria');
         }
     }
 
@@ -69,8 +69,8 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
 
 
     getPropertyDetailsByAddress = function (data) {
-        //$scope.$emit('searchDataEvent', data);
-        $scope.propertyDetailsJson.length = 0;
+        $scope.$emit('searchDataEvent', 'HOMES IN '+data);
+        $scope.propertyDetailsJson = [];
         SearchFactory.getPropertyDetailsByAddress(data).then(function (resp) {
             if (resp.data.status === 1) {
                 $scope.propertyDetails = resp.data.resp;
@@ -86,8 +86,8 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
     }
 
     getPropertyDetailsByLatlng = function (data) {
-        //$scope.$emit('searchDataEvent', data);
-        $scope.propertyDetailsJson.length = 0;
+        $scope.$emit('searchDataEvent', 'HOMES NEAR TO YOUR LOCATION');
+        $scope.propertyDetailsJson = [];
         SearchFactory.getPropertyDetailsByLatlng(data).then(function (resp) {
             if (resp.data.status === 1) {
                 $scope.propertyDetails = resp.data.resp;
@@ -261,6 +261,12 @@ eknock.controller('SearchController', ['$rootScope', '$scope', '$state', 'Search
     }
 
     $scope.showDetailMap = function (e, property) {
+        // console.log(this.icon.fillColor);
+        // //this.icon.fillColor = 'blue';
+        // this.icon=this.hovericon;
+        // setTimeout(function () {
+        //     this.icon=this.hovericon;
+        // }, 100);
         $scope.propertyDetails = property;
         NgMap.getMap().then(function (map) {
             map.showInfoWindow('info-iw', $scope.propertyDetails.id);
