@@ -3,6 +3,7 @@ phases:
   install:
     commands:
       - npm install
+      - npm install bower -g
       - cd public
       - bower install
 artifacts:
