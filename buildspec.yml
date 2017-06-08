@@ -1,9 +1,10 @@
-version: 0.1
+version: 0.2
 phases:
-  build:
+  install:
     commands:
       - npm install
-      - cd public && bower install
+      - cd public
+      - bower install
 artifacts:
   files:
-    - *
+    - **/*
