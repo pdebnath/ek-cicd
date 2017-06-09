@@ -2,10 +2,12 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/ek-cicd/
+    destination: /tmp/codedeploy-deployment-staging-area
 hooks:
+  BeforeInstall:
+    - location: scripts/cleanup.sh
   ApplicationStart:
-    - location: scripts/start_application
+    - location: scripts/start_application.sh
       timeout: 300
   ValidateService:
     - location: scripts/basic_health_check.sh
