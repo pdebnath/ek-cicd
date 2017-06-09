@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /tmp/codedeploy-deployment-staging-area/
+    destination: /home/ec2-user/ek-cicd/
 hooks:
   ApplicationStart:
     - location: scripts/start_application
